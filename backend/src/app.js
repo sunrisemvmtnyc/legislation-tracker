@@ -1,10 +1,8 @@
-const { promisify } = require("util");
-require('dotenv').config();
+import 'dotenv/config';
 
-const debug = require('debug')('app');
-const express = require('express');
-const fetch = require('node-fetch');
-const redis = require('redis');
+import express from 'express';
+import fetch from 'node-fetch';
+import redis from 'redis';
 
 // Create Express server
 const host = '0.0.0.0';
@@ -12,9 +10,7 @@ const port = 3001;
 const app = express();
 
 // Create redis client
-const redisClient = redis.createClient('redis://redis')
-const redisGet = promisify(redisClient.get).bind(redisClient);
-const redisSet = promisify(redisClient.set).bind(redisClient);
+const redisClient = redis.createClient('redis://redis');
 
 // Global constants
 const REDIS_CACHE_TIME = 60 * 60 * 6; // seconds
@@ -22,20 +18,19 @@ const BILL_PAGE_SIZE = 3000;
 
 // Format the URL with the key and given offset
 function legAPI(path, offset = '0') {
-  return `https://legislation.nysenate.gov/${path}?key=${process.env.OPEN_LEGISLATION_KEY}&offset=${offset}&limit=1000`
+  return `https://legislation.nysenate.gov/${path}?key=${process.env.OPEN_LEGISLATION_KEY}&offset=${offset}&limit=1000`;
 }
 
 const requestBillsFromAPI = async(year) => {
-
-    // First request with no offset
+  // First request with no offset
   let firstResponse = await fetch(legAPI(`api/3/bills/${year}`));
-    let firstResponseData = await firstResponse.json();
+  let firstResponseData = await firstResponse.json();
 
   if (!firstResponseData.success) {
     throw('Did not successfully retrieve bills from legislation.nysenate.gov. Response from API was marked as a failure.');
   }
 
-    // Retrieve the remaining pages
+  // Retrieve the remaining pages
   let allBills = firstResponseData.result.items;
   const totalPages = Math.ceil(firstResponseData.total / 1000);
   for (let i = 1; i < totalPages; i++) {
@@ -48,7 +43,7 @@ const requestBillsFromAPI = async(year) => {
 };
 
 const getBillsWithCache = async(year) => {
-  const cachedBills = await redisGet(year);
+  const cachedBills = await redisClient.get(year);
   if (cachedBills && cachedBills.length > 0) return JSON.parse(cachedBills);
   else return [];
 };
@@ -83,8 +78,7 @@ const resetCache = async() => {
     console.log(`Making automatic request for bills of year ${year}`);
     try {
       let bills = await requestBillsFromAPI(year);
-      // console.log(JSON.stringify(bills));
-      redisSet(year, JSON.stringify(bills));
+      redisClient.set(year, JSON.stringify(bills));
       console.log(`Successful automatic request for bills of year ${year}`);
       console.log(`Fetched ${bills.length} bills`);
     } catch (error) {
