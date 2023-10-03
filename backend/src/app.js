@@ -10,7 +10,9 @@ const port = 3001;
 const app = express();
 
 // Create redis client
-const redisClient = redis.createClient('redis://redis');
+const redisClient = await redis.createClient({
+  socket: { host: "redis"}
+}).on('error', err => console.log('Redis Client Error', err)).connect();
 
 // Global constants
 const REDIS_CACHE_TIME = 60 * 60 * 6; // seconds
@@ -43,7 +45,7 @@ const requestBillsFromAPI = async(year) => {
 };
 
 const getBillsWithCache = async(year) => {
-  const cachedBills = await redisClient.get(year);
+  const cachedBills = await redisClient.get(year.toString());
   if (cachedBills && cachedBills.length > 0) return JSON.parse(cachedBills);
   else return [];
 };
@@ -78,9 +80,9 @@ const resetCache = async() => {
     console.log(`Making automatic request for bills of year ${year}`);
     try {
       let bills = await requestBillsFromAPI(year);
-      redisClient.set(year, JSON.stringify(bills));
       console.log(`Successful automatic request for bills of year ${year}`);
       console.log(`Fetched ${bills.length} bills`);
+      await redisClient.set(year.toString(), JSON.stringify(bills));
     } catch (error) {
       console.error(`Error automatically requesting bills for year ${year}`);
       console.error(error);
