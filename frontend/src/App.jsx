@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+import './index.css';
+import BillList from './components/BillList';
+
+const BILLS =[
+  ["2019", "S8496"],
+  ["2019", "S2574b"],
+  ["2019", "S3253b"],
+  ["2019", "A6144"],
+  ["2019", "S3595b"],
+  ["2019", "A10609"],
+  ["2019", "A1531"],
+  ["2019", "S6601a"],
+  ["2019", "S8493"],
+  ["2019", "A10608"],
+]
+
+const THEME = createMuiTheme({
+   typography: {
+    "fontFamily": `"Fjalla One", "Roboto", "Helvetica", "Arial", sans-serif`,
+   }
+});
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <ThemeProvider theme={THEME}>
+      <div className="App">
+        <BillList bills={BILLS}/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
