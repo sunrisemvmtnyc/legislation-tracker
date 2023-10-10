@@ -1,0 +1,31 @@
+.search-bar {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 2ch;
+}
+
+.search-bar input {
+  flex-grow: 1;
+  padding: 1ch;
+  border: 3px solid #000;
+  border-radius: 0;
+  height: 5rem;
+}
+
+.search-bar button {
+  border: 1px solid #000;
+  background-color: #fff;
+  color: #000;
+  height: 5rem;
+}
+
+.search-bar button:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.search-bar button:active {
+  border: 1px solid var(--highlight-blue);
+  background-color: var(--highlight-blue);
+  color: #fff;
+}

@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+}
+:root {
+  --highlight-yellow: #ffda00;
+  --highlight-blue: #2077c7;
+  --highlight-orange: #ff7a00;
+  --highlight-lgreen: #e6feb1;
+  --highlight-lyellow: #f2deb8;
+  --highlight-lred: #e4c3c3;
+}
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+  font-family: "DM Mono", monospace;
+  margin: 1em;
+}
+
+body {
+  font-size: 1.6em;
+  letter-spacing: -0.05em;
+  color: #000;
+  border: 3px solid currentColor;
+  text-align: left;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Fjalla One", sans-serif;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 2.5em;
+  text-transform: uppercase;
+}
+
+h2 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+p {
+  font-weight: 300;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+a,
+a:link,
+a:visited {
+  color: #000;
+  text-decoration: none;
+}
+
+a:hover,
+a:active,
+a:focus {
+  text-decoration: underline;
+}
+
+svg {
+  fill: currentColor;
+}
+
+.icon {
+  width: 96px;
+  height: 96px;
+}
+
+.status__icon {
+  width: 72px;
+  height: 72px;
+}
+/* }}} */
+
+/* Callout {{{ */
+
+.callout {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+.callout__icon {
+  margin-right: 2ch;
+}
+
+a:hover .callout__text {
+  background-color: var(--highlight-yellow);
+}
+
+.callout__text::before {
+  content: ">>";
+}
+
+.callout__text::after {
+  content: "<<";
+}
