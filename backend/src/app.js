@@ -4,6 +4,8 @@ import express from 'express';
 import fetch from 'node-fetch';
 import redis from 'redis';
 
+import { getBill, getRelatedBills, requestBillsFromAPI } from './nysenate-api.js';
+
 // Create Express server
 const host = '0.0.0.0';
 const port = 3001;
@@ -17,32 +19,6 @@ const redisClient = await redis.createClient({
 // Global constants
 const REDIS_CACHE_TIME = 60 * 60 * 6; // seconds
 const BILL_PAGE_SIZE = 3000;
-
-// Format the URL with the key and given offset
-function legAPI(path, offset = '0') {
-  return `https://legislation.nysenate.gov/${path}?key=${process.env.OPEN_LEGISLATION_KEY}&offset=${offset}&limit=1000`;
-}
-
-const requestBillsFromAPI = async(year) => {
-  // First request with no offset
-  let firstResponse = await fetch(legAPI(`api/3/bills/${year}`));
-  let firstResponseData = await firstResponse.json();
-
-  if (!firstResponseData.success) {
-    throw('Did not successfully retrieve bills from legislation.nysenate.gov. Response from API was marked as a failure.');
-  }
-
-  // Retrieve the remaining pages
-  let allBills = firstResponseData.result.items;
-  const totalPages = Math.ceil(firstResponseData.total / 1000);
-  for (let i = 1; i < totalPages; i++) {
-    let offsetStart = (i * 1000) + 1;
-    let nextResponse = await fetch(legAPI(`/api/3/bills/${year}`, offsetStart));
-    let nextResponseData = await nextResponse.json();
-    allBills = allBills.concat(nextResponseData.result.items);
-  }
-  return allBills;
-};
 
 const getBillsWithCache = async(year) => {
   const cachedBills = await redisClient.get(year.toString());
