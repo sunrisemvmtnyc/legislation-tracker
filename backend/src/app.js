@@ -47,6 +47,13 @@ app.get('/api/v1/bills/:year/:printNumber', async (req, res) => {
   res.json(await apiResponse.json());
 });
 
+/** Endpoint to get related bill in opposite chamber */
+app.get('/api/v1/bills/:year/:printNumber/related', async(req, res) => {
+  const bill = await getBill(req.params.year, req.params.printNumber);
+  const bills = await getRelatedBills(req.params.year, bill.billType.chamber, bill.summary)
+  res.json(bills)
+})
+
 const resetCache = async() => {
   console.log('resetting cache automatically');
   const years = [2023];

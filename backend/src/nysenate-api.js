@@ -29,3 +29,20 @@ export const requestBillsFromAPI = async(year) => {
   }
   return allBills;
 };
+
+export const getBill = async(year, printNumber) => {
+  return (await (await fetch(legAPI(`api/3/bills/${year}/${printNumber}`))).json()).result
+}
+
+/** Leverage ElasticSearch fuzzy search to try & get similar bills from other chamber */
+export const getRelatedBills = async(year, chamber, summary) => {
+
+  // HACK: use 1/4 number of words in a string as baseline for fuzzy search
+  const summaryWc = summary.trim().split(/\s+/).length;
+  const chamberFilter = {
+    SENATE: "ASSEMBLY",
+    ASSEMBLY: "SENATE",
+  }[chamber.toUpperCase()];
+  const url = `${legAPIBase}/bills/${year}/search?key=${process.env.OPEN_LEGISLATION_KEY}&term=summary:"${summary}"~${Math.floor(summaryWc / 4)}&AND&billType.chamber=${chamberFilter}`
+  return (await (await fetch(url)).json()).result?.items || []
+}
