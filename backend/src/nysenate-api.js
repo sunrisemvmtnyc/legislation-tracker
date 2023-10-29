@@ -1,11 +1,16 @@
 import fetch from 'node-fetch';
 
 export const legAPIBase = "https://legislation.nysenate.gov/api/3"
+export const legAPIURL = (path, params = {}) => {
+  params.key = process.env.OPEN_LEGISLATION_KEY;
+  console.log("legapiurl to string", `${legAPIBase}${path}` + "?" + (new URLSearchParams(params)).toString())
+  return `${legAPIBase}${path}` + "?" + (new URLSearchParams(params)).toString()
+
+}
 
 // Format the URL with the key and given offset
 export const legAPI = (path, offset = '0') => {
   const url =  `https://legislation.nysenate.gov/${path}?key=${process.env.OPEN_LEGISLATION_KEY}&offset=${offset}&limit=1000`;
-  console.log(`using url: ${url}`)
   return url
 }
 
@@ -32,17 +37,4 @@ export const requestBillsFromAPI = async(year) => {
 
 export const getBill = async(year, printNumber) => {
   return (await (await fetch(legAPI(`api/3/bills/${year}/${printNumber}`))).json()).result
-}
-
-/** Leverage ElasticSearch fuzzy search to try & get similar bills from other chamber */
-export const getRelatedBills = async(year, chamber, summary) => {
-
-  // HACK: use 1/4 number of words in a string as baseline for fuzzy search
-  const summaryWc = summary.trim().split(/\s+/).length;
-  const chamberFilter = {
-    SENATE: "ASSEMBLY",
-    ASSEMBLY: "SENATE",
-  }[chamber.toUpperCase()];
-  const url = `${legAPIBase}/bills/${year}/search?key=${process.env.OPEN_LEGISLATION_KEY}&term=summary:"${summary}"~${Math.floor(summaryWc / 4)}&AND&billType.chamber=${chamberFilter}`
-  return (await (await fetch(url)).json()).result?.items || []
 }

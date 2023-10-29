@@ -4,7 +4,7 @@ import express from 'express';
 import fetch from 'node-fetch';
 import redis from 'redis';
 
-import { getBill, getRelatedBills, requestBillsFromAPI } from './nysenate-api.js';
+import { legAPIURL, requestBillsFromAPI } from './nysenate-api.js';
 
 // Create Express server
 const host = '0.0.0.0';
@@ -43,16 +43,10 @@ app.get('/api/v1/bills/:year', async (req, res) => {
 
 // Endpoint to get a single bill
 app.get('/api/v1/bills/:year/:printNumber', async (req, res) => {
-  let apiResponse = await fetch(legAPI(`/api/3/bills/${req.params.year}/${req.params.printNumber}`));
+  const url = legAPIURL(`/bills/${req.params.year}/${req.params.printNumber}`, { view: 'with_refs' })
+  let apiResponse = await fetch(url);
   res.json(await apiResponse.json());
 });
-
-/** Endpoint to get related bill in opposite chamber */
-app.get('/api/v1/bills/:year/:printNumber/related', async(req, res) => {
-  const bill = await getBill(req.params.year, req.params.printNumber);
-  const bills = await getRelatedBills(req.params.year, bill.billType.chamber, bill.summary)
-  res.json(bills)
-})
 
 const resetCache = async() => {
   console.log('resetting cache automatically');
