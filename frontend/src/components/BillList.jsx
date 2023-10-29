@@ -6,10 +6,12 @@ import Search from './Search';
 import CommitteeDropdown from './CommitteeDropdown';
 import './BillList.css'
 
+import { BILL_STATUS } from '../utils/billUtils';
+
 export default function BillList() {
   const [search, setSearch] = useState('');
   const [committee, setCommittee] = useState('')
-  const [currentFilter, setFilter] = useState('SIGNED_BY_GOV')
+  const [currentFilter, setFilter] = useState(BILL_STATUS.signed)
   const [bills, setBills] = useState([]);
 
   useEffect(() => {
@@ -48,7 +50,7 @@ export default function BillList() {
         wasInCommittee()
       )
     );
-  }).slice(0, 500); // The user does not need to see 23,000 bills
+  }).slice(0, 500); // The user does not need to see 23,000 bills // TODO should the backend do the filter?
 
   const filterByStatus = (status) => { return () => setFilter(status) };
 
@@ -63,14 +65,20 @@ export default function BillList() {
         <div className="table-head">DESCRIPTION</div>
         <div className="table-head">OVERALL STATUS</div>
         <div className="table-head">INTRODUCED</div>
-        <div className="table-head" onClick={filterByStatus('IN_SENATE_COMM')}>IN COMMITTEE</div>
-        <div className="table-head" onClick={filterByStatus('SENATE_FLOOR')}>ON FLOOR CALENDAR</div>
-        <div className="table-head pass-two">
-          <p className="header-senate-paragraph" onClick={filterByStatus('PASSED_SENATE')}>PASSED SENATE</p>
-          <p className="header-assembly-paragraph" onClick={filterByStatus('PASSED_ASSEMBLY')}>PASSED ASSEMBLY</p>
+        <div className="table-head two-lines">
+          <p onClick={filterByStatus(BILL_STATUS.inSenateComm)}>IN SENATE COMMITTEE</p>
+          <p onClick={filterByStatus(BILL_STATUS.inAssemblyComm)}>IN ASSEMBLY COMMITTEE</p>
         </div>
-        <div className="table-head" onClick={filterByStatus('DELIVERED_TO_GOV')}>DELIVERED TO GOVERNOR</div>
-        <div className="table-head" onClick={filterByStatus('SIGNED_BY_GOV')}>SIGNED BY GOVERNOR</div>
+        <div className="table-head two-lines">
+          <p onClick={filterByStatus(BILL_STATUS.senateFloor)}>ON SENATE FLOOR CALENDAR</p>
+          <p onClick={filterByStatus(BILL_STATUS.assemblyFloor)}>ON ASSEMBLY FLOOR CALENDAR</p>
+        </div>
+        <div className="table-head two-lines">
+          <p onClick={filterByStatus(BILL_STATUS.passedSenate)}>PASSED SENATE</p>
+          <p onClick={filterByStatus(BILL_STATUS.passedAssembly)}>PASSED ASSEMBLY</p>
+        </div>
+        <div className="table-head" onClick={filterByStatus(BILL_STATUS.delivered)}>DELIVERED TO GOVERNOR</div>
+        <div className="table-head" onClick={filterByStatus(BILL_STATUS.signed)}>SIGNED BY GOVERNOR</div>
       </section>
       <div className="bill">
         {filteredBills.map((value, index) => {

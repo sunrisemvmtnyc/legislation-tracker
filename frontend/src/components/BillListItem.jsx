@@ -1,33 +1,16 @@
 import React from 'react';
 import Icons from './icons.svg';
+import { BILL_STATUS, hasBillCompletedStep } from '../utils/billUtils';
 
+// TODO move it to css file?
 const rowStyle = {
   display: "grid",
   gridTemplateColumns: "3fr 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr",
+  borderBottom: "3px solid #000",
+  margin: 0,
 };
 
-
-
-function stepCompleted(billData, step) {
-  const completedSteps = {
-    'IN_SENATE_COMM': ['In Committee'],
-    'SENATE_FLOOR': ['In Committee', 'On Floor Calendar'],
-    'PASSED_SENATE': ['In Committee', 'On Floor Calendar', 'Passed Senate'],
-
-    'IN_ASSEMBLY_COMM': ['In Committee'],
-    'ASSEMBLY_FLOOR': ['In Committee', 'On Floor Calendar'],
-    'PASSED_ASSEMBLY': ['In Committee', 'On Floor Calendar', 'Passed Assembly'],
-
-    'DELIVERED_TO_GOV': ['In Committee', 'On Floor Calendar', 'Passed Senate', 'Passed Assembly', 'Delivered to Governor'],
-    'SIGNED_BY_GOV': ['In Committee', 'On Floor Calendar', 'Passed Senate', 'Passed Assembly', 'Delivered to Governor', 'Signed by Governor'],
-    'VETOED': ['In Committee', 'On Floor Calendar', 'Passed Senate', 'Passed Assembly', 'Delivered to Governor', 'Vetoed'],
-  }[billData.status.statusType] || [];
-
-  return completedSteps.includes(step);
-}
-
-export default function BillListItem(props) {
-  const billData = props.billData;
+export default function BillListItem({ billData }) {
 
   // Don't render anything if there is no data
   if (billData === null || billData === undefined) {
@@ -42,9 +25,9 @@ export default function BillListItem(props) {
     fullBillName = `Assembly Bill ${billData.printNo}`;
   }
 
-  let billURL = `https://www.nysenate.gov/legislation/bills/${billData.session}/${billData.printNo}`;
+  const billURL = `https://www.nysenate.gov/legislation/bills/${billData.session}/${billData.printNo}`;
 
-  const completed = (step) => stepCompleted(billData, step);
+  const completed = (step) => hasBillCompletedStep(billData, step);
 
   return (
     <div style={rowStyle} className={billData.printNo}>
@@ -64,23 +47,41 @@ export default function BillListItem(props) {
           <use xlinkHref={`${Icons}#icon--yes24`} />
         </svg>
       </div>
-      <div className="in-committee">
-        {completed("In Committee") && (
-          <svg className="icon status__icon">
-            <use xlinkHref={`${Icons}#icon--yes24`} />
-          </svg>
-        )}
+      <div className="two-lines">
+        <div>
+          {completed(BILL_STATUS.inSenateComm) && (
+            <svg className="icon status__icon">
+              <use xlinkHref={`${Icons}#icon--yes24`} />
+            </svg>
+          )}
+        </div>
+        <div>
+          {completed(BILL_STATUS.inAssemblyComm) && (
+            <svg className="icon status__icon">
+              <use xlinkHref={`${Icons}#icon--yes24`} />
+            </svg>
+          )}
+        </div>
       </div>
-      <div className="on-floor">
-        {completed("On Floor Calendar") && (
-          <svg className="icon status__icon">
-            <use xlinkHref={`${Icons}#icon--yes24`} />
-          </svg>
-        )}
+      <div className="two-lines">
+        <div>
+          {completed(BILL_STATUS.senateFloor) && (
+            <svg className="icon status__icon">
+              <use xlinkHref={`${Icons}#icon--yes24`} />
+            </svg>
+          )}
+        </div>
+        <div>
+          {completed(BILL_STATUS.assemblyFloor) && (
+            <svg className="icon status__icon">
+              <use xlinkHref={`${Icons}#icon--yes24`} />
+            </svg>
+          )}
+        </div>
       </div>
-      <div className="pass-two">
+      <div className="two-lines">
         <div className="pass-senate">
-          {completed("Passed Senate") ? (
+          {completed(BILL_STATUS.passedSenate) ? (
             <svg className="icon status__icon">
               <use xlinkHref={`${Icons}#icon--yes24`} />
             </svg>) : (
@@ -90,7 +91,7 @@ export default function BillListItem(props) {
           )}
         </div>
         <div className="pass-assembly">
-          {completed("Passed Assembly") ? (
+          {completed(BILL_STATUS.passedAssembly) ? (
             <svg className="icon status__icon">
               <use xlinkHref={`${Icons}#icon--yes24`} />
             </svg>) : (
@@ -101,14 +102,14 @@ export default function BillListItem(props) {
         </div>
       </div>
       <div className="deliver-gov">
-        {completed("Delivered to Governor") && (
+        {completed(BILL_STATUS.delivered) && (
           <svg className="icon status__icon">
             <use xlinkHref={`${Icons}#icon--yes24`} />
           </svg>
         )}
       </div>
       <div className="sign-gov">
-        {completed("Signed by Governor") && (
+        {completed(BILL_STATUS.signed) && (
           <svg className="icon status__icon">
             <use xlinkHref={`${Icons}#icon--yes24`} />
           </svg>

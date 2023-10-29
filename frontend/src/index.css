@@ -528,7 +528,7 @@ a:hover .callout__text {
   border-right: none;
 }
 
-.bill-description,
+/* .bill-description,
 .overall-status,
 .introduced,
 .in-committee,
@@ -538,7 +538,7 @@ a:hover .callout__text {
 .sign-gov {
   border-bottom: 3px solid #000;
   margin: 0;
-}
+} */
 
 .bill-description,
 .overall-status,
@@ -578,22 +578,19 @@ a:hover .callout__text {
   background-color: var(--highlight-lred);
 }
 
-.pass-two {
+.two-lines {
+  display: flex;
   flex-flow: column nowrap;
-}
-
-.pass-senate,
-.pass-assembly {
   justify-content: center;
   align-items: center;
 }
 
-.pass-senate {
+/* .pass-senate {
   padding-top: 1em;
 }
 .pass-assembly {
   padding-bottom: 1em;
-}
+} */
 
 /* }}} */
 
