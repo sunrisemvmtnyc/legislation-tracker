@@ -5,8 +5,7 @@ import fetch from 'node-fetch';
 import redis from 'redis';
 
 // Create Express server
-const host = '0.0.0.0';
-const port = 3001;
+const port = parseInt(process.env.PORT) || 8080;
 const app = express();
 
 // Create redis client
@@ -97,7 +96,7 @@ const resetCache = async() => {
 };
 
 // Listen
-app.listen(port, host, () => {
-  console.log(`Example app listening at http://${host}:${port}`);
+app.listen(port, () => {
+  console.log(`Example app listening at ${port}`);
   resetCache();
 });
