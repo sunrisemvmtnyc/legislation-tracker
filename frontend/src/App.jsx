@@ -1,13 +1,14 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import Tracker from "./components/Tracker";
-import Status from "./components/Status";
 import Senator from "./components/Senator";
 import AssemblyMember from "./components/AssemblyMember";
-
+import Header2 from "./components/Header2";
+import Home from "./components/Home";
+import Footer from "./components/Footer";
 import "./index.css";
+import "./App.css";
 import BillList from "./components/BillList";
 
 const BILLS = [
@@ -23,7 +24,7 @@ const BILLS = [
   ["2019", "A10608"],
 ];
 
-const THEME = createMuiTheme({
+const THEME = createTheme({
   typography: {
     fontFamily: `"Fjalla One", "Roboto", "Helvetica", "Arial", sans-serif`,
   },
@@ -32,11 +33,12 @@ const THEME = createMuiTheme({
 function App() {
   return (
     <ThemeProvider theme={THEME}>
+      <Header2 />
       <div className="App">
         <Routes>
-          <Route path="/" element={<BillList bills={BILLS} />}></Route>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/tracker" element={<Tracker />}></Route>
-          <Route path="/status" element={<Status />}></Route>
+          <Route path="/status" element={<BillList bills={BILLS} />}></Route>
           <Route
             path="/assembly/:memberName"
             element={<AssemblyMember />}
@@ -44,6 +46,7 @@ function App() {
           <Route path="/senate/:senatorName" element={<Senator />}></Route>
         </Routes>
       </div>
+      <Footer />
     </ThemeProvider>
   );
 }
