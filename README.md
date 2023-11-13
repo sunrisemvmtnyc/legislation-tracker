@@ -1,6 +1,8 @@
 # Legislation Tracker
 
-A tracker that shows the sponsors of a bill and the current status of a bill in the New York State Legislature (Assembly and Senate) and the New York City Council
+A tracker that shows the sponsors of a bill and the current status of a bill in the New York State Legislature (Assembly and Senate) and the New York City Council.
+
+Compare to the [existing spreadsheet](https://docs.google.com/spreadsheets/d/1oTbQNLVf8iMC0ShOdkilr3Sh9d4-Rf8Gjt0ZyU2Gq18/edit#gid=1038006981).
 
 ## Prerequisites
 
