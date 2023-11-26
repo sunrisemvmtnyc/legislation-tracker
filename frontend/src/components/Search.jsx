@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import {useState} from 'react';
 import './Search.css'
 
 const Search = (props) => {
@@ -23,6 +24,9 @@ const Search = (props) => {
       </form>
     </div>
   )
+}
+Search.propTypes = {
+  setSearchText: PropTypes.func.isRequired,
 }
 
 export default Search;

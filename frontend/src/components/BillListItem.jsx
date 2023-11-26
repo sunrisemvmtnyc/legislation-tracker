@@ -1,12 +1,10 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import Icons from './icons.svg';
 
 const rowStyle = {
   display: "grid",
   gridTemplateColumns: "3fr 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr",
 };
-
-
 
 function stepCompleted(billData, step) {
   const completedSteps = {
@@ -116,4 +114,7 @@ export default function BillListItem(props) {
       </div>
     </div>
   );
+}
+BillListItem.propTypes = {
+  billData: PropTypes.object.isRequired,
 }

@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./Header.css";
 import Icons from "./icons.svg";
 
