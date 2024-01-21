@@ -1,22 +1,19 @@
 import fetch from 'node-fetch';
 
-export const legAPIBase = "https://legislation.nysenate.gov/api/3"
-export const legAPIURL = (path, params = {}) => {
+export const URL_BASE = "https://legislation.nysenate.gov/api/3"
+
+export const legApi = (path, params = {}) => {
+
+  // Add API key to all requests
   params.key = process.env.OPEN_LEGISLATION_KEY;
-  console.log("legapiurl to string", `${legAPIBase}${path}` + "?" + (new URLSearchParams(params)).toString())
-  return `${legAPIBase}${path}` + "?" + (new URLSearchParams(params)).toString()
+  // console.log("API URL to string", `${URL_BASE}${path}` + "?" + (new URLSearchParams(params)).toString())
+  return `${URL_BASE}/${path}` + "?" + (new URLSearchParams(params)).toString()
 
 }
 
-// Format the URL with the key and given offset
-export const legAPI = (path, offset = '0') => {
-  const url =  `https://legislation.nysenate.gov/${path}?key=${process.env.OPEN_LEGISLATION_KEY}&offset=${offset}&limit=1000`;
-  return url
-}
-
-export const requestBillsFromAPI = async(year) => {
+export const billsFromYear = async(year) => {
   // First request with no offset
-  let firstResponse = await fetch(legAPI(`api/3/bills/${year}`));
+  let firstResponse = await fetch(legApi(`bills/${year}`));
   let firstResponseData = await firstResponse.json();
 
   if (!firstResponseData.success) {
@@ -28,7 +25,7 @@ export const requestBillsFromAPI = async(year) => {
   const totalPages = Math.ceil(firstResponseData.total / 1000);
   for (let i = 1; i < totalPages; i++) {
     let offsetStart = (i * 1000) + 1;
-    let nextResponse = await fetch(legAPI(`/api/3/bills/${year}`, offsetStart));
+    let nextResponse = await fetch(legApi(`bills/${year}`, {offset: offsetStart}));
     let nextResponseData = await nextResponse.json();
     allBills = allBills.concat(nextResponseData.result.items);
   }
@@ -36,5 +33,5 @@ export const requestBillsFromAPI = async(year) => {
 };
 
 export const getBill = async(year, printNumber) => {
-  return (await (await fetch(legAPI(`api/3/bills/${year}/${printNumber}`))).json()).result
+  return (await (await fetch(legApi(`bills/${year}/${printNumber}`))).json()).result
 }
