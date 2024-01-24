@@ -12,6 +12,11 @@ const redisClient = await redis.createClient({
 }).on('error', err => console.log('Redis Client Error', err)).connect();
 
 
+// TODO: gets all bills & amendments. We don't need amendments.
+// Figure out how to ignore amendments
+// "Bills typically get amended and their print no gets suffixed with an amendment letter (e.g. S1234B). The bill API
+// returns bill responses that contain every amendment version so you should just provide the base print no
+// (e.g. S1234)."
 export const getBillsWithCache = async(year) => {
   const cachedBills = await redisClient.get(year.toString());
   if (cachedBills && cachedBills.length > 0) return JSON.parse(cachedBills);
