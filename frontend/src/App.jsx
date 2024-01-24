@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
+import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from "@mui/material/styles";
 import Tracker from "./components/Tracker";
 import Status from "./components/Status";
 import Senator from "./components/Senator";
@@ -23,7 +23,7 @@ const BILLS = [
   ["2019", "A10608"],
 ];
 
-const THEME = createMuiTheme({
+const THEME = createTheme({
   typography: {
     fontFamily: `"Fjalla One", "Roboto", "Helvetica", "Arial", sans-serif`,
   },
