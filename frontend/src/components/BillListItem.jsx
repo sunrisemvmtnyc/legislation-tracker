@@ -40,14 +40,12 @@ export default function BillListItem(props) {
     fullBillName = `Assembly Bill ${billData.printNo}`;
   }
 
-  let billURL = `https://www.nysenate.gov/legislation/bills/${billData.session}/${billData.printNo}`;
-
   const completed = (step) => stepCompleted(billData, step);
 
   return (
     <div style={rowStyle} className={billData.printNo}>
       <div className="bill-description">
-        <a target="_blank" rel="noopener noreferrer" href={billURL}><h2>{fullBillName}</h2></a>
+        <a href={`/bill/${billData.session}/${billData.printNo}`}><h2>{fullBillName}</h2></a>
         <p>{billData.title}</p>
       </div>
       <div className="overall-status passed">
