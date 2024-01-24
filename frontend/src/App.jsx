@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { createTheme } from '@mui/material/styles';
 import { ThemeProvider } from "@mui/material/styles";
@@ -9,6 +8,7 @@ import AssemblyMember from "./components/AssemblyMember";
 
 import "./index.css";
 import BillList from "./components/BillList";
+import Bill from "./components/Bill";
 
 const BILLS = [
   ["2019", "S8496"],
@@ -42,6 +42,7 @@ function App() {
             element={<AssemblyMember />}
           ></Route>
           <Route path="/senate/:senatorName" element={<Senator />}></Route>
+          <Route path="/bill/:sessionYear/:printNo" element={<Bill />}></Route>
         </Routes>
       </div>
     </ThemeProvider>

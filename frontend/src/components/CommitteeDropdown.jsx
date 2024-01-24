@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import Select from 'react-select';
 
 import ChevronDown from './chevron-down';
@@ -54,6 +54,7 @@ const committees = [
   "Women's Issues",
 ]
 
+// eslint-disable-next-line no-unused-vars
 const CommitteeDropdown = ({committee, setCommittee}) => {
   return (
     <Select
@@ -68,12 +69,18 @@ const CommitteeDropdown = ({committee, setCommittee}) => {
         menuList: (base) => ({...base, scrollbarWidth: "none", borderRight: "3px solid #000", borderBottom: "3px solid #000", borderLeft: "3px solid #000", borderRadius: 0}),
       }}
       components={{
+        // eslint-disable-next-line react/prop-types
         DropdownIndicator: ({ innerRef }) => (
           <ChevronDown ref={innerRef} style={{fill: "none"}} size={30}/>
-        ),
+          ),
+          // eslint-disable-next-line react/prop-types
         IndicatorSeparator: ({ innerRef }) => <div className="custom-sep" ref={innerRef}></div>,
       }}
     />
   )
+}
+CommitteeDropdown.propTypes = {
+  committee: PropTypes.object.isRequired,
+  setCommittee: PropTypes.func.isRequired,
 }
 export default CommitteeDropdown;
