@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom"
 
 const RelatedBills = ({related}) => {
   if (!related) return <div>No related bills</div>
-  console.log("related", related)
   return (
     <div>
       {Object.values(related).map((bill) => (<div key={bill.printNo}><a href={`/bill/${bill.session}/${bill.printNo}`}>{bill.printNo}</a>: {bill.title}</div>))}
