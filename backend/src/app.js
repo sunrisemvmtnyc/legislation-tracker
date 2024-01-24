@@ -34,7 +34,7 @@ app.get('/api/v1/bills/:year', async (req, res) => {
 app.get('/api/v1/bills/:year/:printNumber', async (req, res) => {
   const url = legApi(`bills/${req.params.year}/${req.params.printNumber}`, { view: 'with_refs' })
   let apiResponse = await fetch(url);
-  res.json(await apiResponse.json());
+  res.json((await apiResponse.json()).result);
 });
 
 // Listen

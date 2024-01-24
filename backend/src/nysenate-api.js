@@ -31,7 +31,3 @@ export const billsFromYear = async(year) => {
   }
   return allBills;
 };
-
-export const getBill = async(year, printNumber) => {
-  return (await (await fetch(legApi(`bills/${year}/${printNumber}`))).json()).result
-}
