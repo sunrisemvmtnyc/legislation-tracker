@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 const ChevronDown = forwardRef(({ color = 'currentColor', size = 24, ...rest }, ref) => {
