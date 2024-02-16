@@ -11,6 +11,18 @@ export const legApi = (path, params = {}) => {
 
 }
 
+const fetchAllPages = async(apiPath, firstResponseData) => {
+  let allItems = firstResponseData.result.items;
+  const totalPages = Math.ceil(firstResponseData.total / 1000);
+  for (let i = 1; i < totalPages; i++) {
+    let offsetStart = (i * 1000) + 1;
+    let nextResponse = await fetch(legApi(apiPath, {offset: offsetStart}));
+    let nextResponseData = await nextResponse.json();
+    allItems = allItems.concat(nextResponseData.result.items);
+  }
+  return allItems
+}
+
 export const billsFromYear = async(year) => {
   // First request with no offset
   let firstResponse = await fetch(legApi(`bills/${year}`));
@@ -21,13 +33,18 @@ export const billsFromYear = async(year) => {
   }
 
   // Retrieve the remaining pages
-  let allBills = firstResponseData.result.items;
-  const totalPages = Math.ceil(firstResponseData.total / 1000);
-  for (let i = 1; i < totalPages; i++) {
-    let offsetStart = (i * 1000) + 1;
-    let nextResponse = await fetch(legApi(`bills/${year}`, {offset: offsetStart}));
-    let nextResponseData = await nextResponse.json();
-    allBills = allBills.concat(nextResponseData.result.items);
+  return fetchAllPages(`bills/${year}`, firstResponseData);
+};
+
+export const membersFromYear = async(year) => {
+  // First request with no offset
+  let firstResponse = await fetch(legApi(`members/${year}`));
+  let firstResponseData = await firstResponse.json();
+
+  if (!firstResponseData.success) {
+    throw('Did not successfully retrieve members from legislation.nysenate.gov. Response from API was marked as a failure.');
   }
-  return allBills;
+
+  // Retrieve the remaining pages
+  return fetchAllPages(`members/${year}`, firstResponseData);
 };
