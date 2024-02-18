@@ -1,3 +1,5 @@
+// FIXME: LEGACY, all currently unused
+
 import 'dotenv/config';
 
 import redis from 'redis';
