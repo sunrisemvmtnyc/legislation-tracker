@@ -33,7 +33,7 @@ const Card = ({ bill }) => {
       }
       <div>{bill.title}</div>
       {!!bill.status.statusDesc && <div > Status: <b>{bill.status.statusDesc}</b></div>}
-    </a >
+    </a>
   );
 };
 

@@ -1,11 +1,39 @@
-/* #home-page > .GridLink > .LinkCard,
-#home-page > .GridLink > .LinkCard > .LinkCard-body {
-    width: 100%;
-} */
+#home-page {
+  margin: 30px;
+}
+
+#home-banner {
+  background: #000;
+  display: grid;
+  grid-template-columns: 66% auto;
+  color: #fff;
+}
+
+@media screen and (max-width: 800px) {
+  #home-banner {
+    grid-template-columns: 100%;
+  }
+}
+
+#home-banner div {
+  margin: 20px;
+}
+
+#home-banner .home-banner-title {
+  font-size: xx-large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px;
+}
+
+#home-banner .home-banner-desc {
+  border: 1px solid #fff;
+  padding: 20px;
+}
 
 #home-bill-grid {
   display: grid;
-  margin: 20px;
   gap: 20px 20px;
   margin-bottom: 42px;
   grid-template-columns: repeat(4, 1fr);

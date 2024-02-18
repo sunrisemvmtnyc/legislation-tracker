@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import './HomePage.css';
 
 import Card from './Card';
+import Header from '../Header';
+import Banner from './Banner';
 
 const HomePage = () => {
   const [bills, setBills] = useState([]);
@@ -24,12 +26,16 @@ const HomePage = () => {
   }, []); // Only run on initial page load
 
   return (
-    <div id='home-page'>
-      <h1>Sunrise featured bills</h1>
-      <div id='home-bill-grid'>
-        {bills.map(bill => <Card bill={bill} key={bill.basePrintNoStr} />)}
+    <>
+      <Header />
+      <Banner />
+      <div id='home-page'>
+        <h1>Sunrise featured bills</h1>
+        <div id='home-bill-grid'>
+          {bills.map(bill => <Card bill={bill} key={bill.basePrintNoStr} />)}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
