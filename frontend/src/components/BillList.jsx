@@ -14,13 +14,15 @@ export default function BillList() {
 
   useEffect(() => {
       const paginateBills = async() => {
-        let start = 0
-        do {
-          const res = await fetch(`/api/v1/bills/2023?start=${start}`);
-          const {bills, end} = await res.json();
-          await setBills((prevBills) => [...prevBills].concat(bills));
-          start = end
-        } while (start > 0)
+        let offset = 1;
+        let done = false;
+        while (!done){
+          const res = await fetch(`/api/v1/bills/2023/search?offset=${offset}`);
+          const out = await res.json()
+          await setBills((prevBills) => [...prevBills].concat(out.result.items.map(item => item.result)));
+          offset = out.offsetEnd;
+          if (out.offsetEnd >= out.total) done = true;
+        }
       }
       paginateBills()
   }, []); // Only run on initial page load
