@@ -14,6 +14,11 @@ RelatedBills.propTypes = {
   related: PropTypes.object.isRequired,
 };
 
+function getSponsorNumber(billData) {
+  const { activeVersion, amendments: { items } } = billData;
+  return 1 + items[activeVersion].coSponsors.size + items[activeVersion].multiSponsors.size;
+}
+
 export const Bill = () => {
   const {sessionYear, printNo} = useParams();
   const [bill, setBill] = useState();
@@ -40,6 +45,7 @@ export const Bill = () => {
       <h2>{title}</h2>
       <p>{summary}</p>
       <div><span>{sponsorName}:{sponsorId}</span></div>
+      <div><span>Total Sponsors: {getSponsorNumber(bill)}</span></div>
       <RelatedBills related={bill.billInfoRefs.items} />
     </div>
   )
