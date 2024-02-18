@@ -4,6 +4,7 @@ import express from 'express';
 import fetch from 'node-fetch';
 
 import { legApi } from './nysenate-api.js';
+import { categories, categoryMapping } from './categories.js'
 
 // Create Express server
 const host = '0.0.0.0';
@@ -46,12 +47,22 @@ app.get('/api/v1/bills/:year/search', async (req, res) => {
   res.json(out)
 });
 
+// Mapping from bill id to category
+app.get('/api/v1/bills/category-mapping', async (_, res) => {
+  res.json(categoryMapping())
+})
+
 // Endpoint to get a single bill
 app.get('/api/v1/bills/:year/:printNumber', async (req, res) => {
   const url = legApi(`bills/${req.params.year}/${req.params.printNumber}`, { view: 'with_refs' })
   let apiResponse = await fetch(url);
   res.json((await apiResponse.json()).result);
 });
+
+// Category metadata
+app.get('/api/v1/categories', async (_, res) => {
+  res.json(categories())
+})
 
 // Listen
 app.listen(port, host, () => {
