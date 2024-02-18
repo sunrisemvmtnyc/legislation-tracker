@@ -9,6 +9,7 @@ import AssemblyMember from "./components/AssemblyMember";
 import "./index.css";
 import BillList from "./components/BillList";
 import Bill from "./components/Bill";
+import HomePage from "./components/Home/HomePage";
 
 const THEME = createTheme({
   typography: {
@@ -21,7 +22,8 @@ function App() {
     <ThemeProvider theme={THEME}>
       <div className="App">
         <Routes>
-          <Route path="/" element={<BillList />}></Route>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/bills" element={<BillList />}></Route>
           <Route path="/tracker" element={<Tracker />}></Route>
           <Route path="/status" element={<Status />}></Route>
           <Route

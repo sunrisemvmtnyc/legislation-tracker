@@ -22,8 +22,8 @@ html {
 body {
   font-size: 1.6em;
   letter-spacing: -0.05em;
-  color: #000;
-  border: 3px solid currentColor;
+  /* color: #000; */
+  /* border: 3px solid currentColor; */
   text-align: left;
 }
 h1,

@@ -1,0 +1,65 @@
+/* #home-page > .GridLink > .LinkCard,
+#home-page > .GridLink > .LinkCard > .LinkCard-body {
+    width: 100%;
+} */
+
+#home-bill-grid {
+  display: grid;
+  margin: 20px;
+  gap: 20px 20px;
+  margin-bottom: 42px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.home-bill-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-decoration: none;
+  padding: 16px;
+  background: #fafaf5;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  border-radius: 10px;
+  transition: border 0.2s;
+}
+
+.home-bill-card>div:last-of-type {
+  margin-top: auto;
+}
+
+.home-bill-card:hover {
+  border: 2px solid #bcc6a8;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1450px) {
+  #home-bill-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #home-bill-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .home-bill-card {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #home-bill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.home-bill-categories {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
