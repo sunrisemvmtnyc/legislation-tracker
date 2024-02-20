@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+html {
+    font-family: 'Source Sans 3';
+}
+.canvas {
+    border-radius: 10px;
+    background: #f0f0f0;
+    padding: 20px;
+}
+.summary {
+    width: 45%;
+    float: left;
+}
+.action {
+    width: 45%;
+    overflow: auto;
+    border-radius: 10px;
+    background: #f0f0f0;
+    padding: 20px;
+    float: right;
+    max-height: max-content;
+    min-height: min-content;
+    margin-top: 20px;
+}
