@@ -1,4 +1,4 @@
-import { PropTypes } from "prop-types";
+// import { PropTypes } from "prop-types";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./Bill.css";
@@ -82,10 +82,10 @@ export const Bill = () => {
         <div className="Script">
           <h4>Script</h4>
           <p>
-            Hi, my name is [NAME] and I\'m a constituent from [CITY, ZIP].
+            Hi, my name is [NAME] and I&#39;m a constituent from [CITY, ZIP].
             <br />
             <br />
-            I'm calling to urge [REP/SEN NAME] to vote YES on {printNo}.
+            I&#39;m calling to urge [REP/SEN NAME] to vote YES on {printNo}.
             <br />
             Thank you for your time and consideration.
             <br />
