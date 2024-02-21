@@ -1,7 +1,20 @@
-// import { PropTypes } from "prop-types";
+import { PropTypes } from "prop-types";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Header from ".././Header";
 import "./Bill.css";
+
+const RelatedBills = ({related}) => {
+  if (!related) return <div>No related bills</div>
+  return (
+    <div>
+      {Object.values(related).map((bill) => (<div key={bill.printNo}><a href={`/bill/${bill.session}/${bill.printNo}`}>{bill.printNo}</a>: {bill.title}</div>))}
+    </div>
+  );
+  }
+RelatedBills.propTypes = {
+  related: PropTypes.object.isRequired,
+};
 
 export const Bill = () => {
   const { sessionYear, printNo } = useParams();
@@ -53,14 +66,24 @@ export const Bill = () => {
 
   return (
     <div>
+      <Header></Header>
       <div className="summary">
         <h2>{title}</h2>
         <p>{summary}</p>
+      </div>
+      <div className="category">
+        {/* bill.category */}
+      </div>
+      <div className="status">
         <p>
-          Sponsored by {sponsorName} | District{" "}
-          {bill.sponsor.member.districtCode}
+          Sponsored by <span style={{fontWeight:'bold'}}>{sponsorName}</span>
+          <br />
+          District {bill.sponsor.member.districtCode}
         </p>
-        <p>Status: {bill.status.statusDesc}</p>
+        <p>Status: <span style={{fontWeight:'bold'}}>{bill.status.statusDesc}</span></p>
+      </div>
+      <div className="important">
+
       </div>
       <div className="action">
         <h2>Take Action!</h2>
