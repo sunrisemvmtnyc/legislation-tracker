@@ -16,14 +16,11 @@ body {
 html {
   font-size: 10px;
   font-family: "DM Mono", monospace;
-  /* margin: 1em; */
 }
 
 body {
   font-size: 1.6em;
   letter-spacing: -0.05em;
-  /* color: #000; */
-  /* border: 3px solid currentColor; */
   text-align: left;
 }
 h1,

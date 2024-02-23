@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import './HomePage.css';
 
 import Card from './Card';
-import Header from '../Header';
 import Banner from './Banner';
 
 const HomePage = () => {
@@ -27,7 +26,6 @@ const HomePage = () => {
 
   return (
     <>
-      <Header />
       <Banner />
       <div id='home-page'>
         <h1>Sunrise featured bills</h1>

@@ -9,12 +9,6 @@
   color: #fff;
 }
 
-@media screen and (max-width: 800px) {
-  #home-banner {
-    grid-template-columns: 100%;
-  }
-}
-
 #home-banner div {
   margin: 20px;
 }
@@ -62,6 +56,12 @@
   text-decoration: none;
 }
 
+.home-bill-categories {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
 @media screen and (max-width: 1450px) {
   #home-bill-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -76,9 +76,17 @@
   .home-bill-card {
     width: 100%;
   }
+
+  #home-banner .home-banner-title {
+    font-size: x-large;
+  }
 }
 
 @media screen and (max-width: 800px) {
+  #home-banner {
+    grid-template-columns: 100%;
+  }
+
   #home-bill-grid {
     display: flex;
     flex-wrap: wrap;
@@ -86,8 +94,8 @@
   }
 }
 
-.home-bill-categories {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
+@media screen and (max-width: 480px) {
+  #home-banner .home-banner-title {
+    font-size: large;
+  }
 }
