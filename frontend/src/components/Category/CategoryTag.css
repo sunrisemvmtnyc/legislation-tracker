@@ -1,0 +1,21 @@
+.category-tag {
+  padding: 5px 10px;
+  background: #fbe8e0;
+  box-sizing: border-box;
+  border-radius: 20px;
+  min-width: fit-content;
+  width: fit-content;
+  white-space: nowrap;
+}
+
+.category-tag-education {
+  background: #fbe8e0;
+}
+
+.category-tag-climate {
+  background: #cbecda;
+}
+
+.category-tag-lgbtq {
+  background: #c9dbfc;
+}

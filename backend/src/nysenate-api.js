@@ -12,6 +12,7 @@ export const legApi = (path, params = {}) => {
 }
 
 export const billsFromYear = async(year) => {
+  // FIXME: legacy, delete
   // First request with no offset
   let firstResponse = await fetch(legApi(`bills/${year}`));
   let firstResponseData = await firstResponse.json();
