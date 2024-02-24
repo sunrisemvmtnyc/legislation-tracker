@@ -5,10 +5,18 @@ html {
 }
 .canvas {
     border-radius: 10px;
-    background: #f0f0f0;
+    background: #eeede7;
     padding: 20px;
 }
 .summary {
+    width: 45%;
+    float: left;
+}
+.status {
+    width: 45%;
+    float: left;
+}
+.category {
     width: 45%;
     float: left;
 }
@@ -16,10 +24,137 @@ html {
     width: 45%;
     overflow: auto;
     border-radius: 10px;
-    background: #f0f0f0;
+    background: #eeede7;
     padding: 20px;
     float: right;
     max-height: max-content;
     min-height: min-content;
     margin-top: 20px;
+}
+
+.script {
+    overflow: auto;
+    border-radius: 10px;
+    background: #ffffff;
+    padding: 10px;
+    float: right;
+    max-height: max-content;
+    min-height: min-content;
+    margin-top: 20px;
+}
+
+.important {
+    overflow: auto;
+    border-radius: 10px;
+    background: #eeede7;
+    padding: 10px;
+    float: left;
+    max-height: max-content;
+    min-height: min-content;
+    margin-top: 20px;
+}
+
+/* Navigation pane */
+.navigation-pane {
+
+    position: absolute;
+    height: 144px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+
+    background: #FFDE16;
+    mix-blend-mode: normal;
+}
+
+
+/* LEARN */
+.nav-item {
+    position: absolute;
+    width: 67px;
+    height: 23px;
+    right: 309px;
+    top: 93px;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 130%;
+    /* or 26px */
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+/* image 1 */
+
+.sunrisemvmt-image {
+
+    position: absolute;
+    width: 252px;
+    height: 71px;
+    left: 24px;
+    top: 31px;
+
+    background: url(image.png);
+}
+
+/* Rectangle 16 */
+
+.get-involved-box {
+
+    position: absolute;
+    width: 160px;
+    height: 45px;
+    left: 1248px;
+    top: 31px;
+
+    background: #000000;
+}
+
+/* GET INVOLVED */
+
+.get-involved {
+    position: absolute;
+    width: 139px;
+    height: 26px;
+    right: 43px;
+    top: 41px;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 130%;
+    /* identical to box height, or 26px */
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+
+/* NY STATE LEGISLATIVE TRACKER */
+.ny-state-legislative-tracker {
+        
+    position: absolute;
+    width: 407px;
+    height: 80px;
+    left: 298px;
+    top: 25px;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 100%;
+    /* or 40px */
+    letter-spacing: -0.01em;
+
+    color: #000000;
+
 }

@@ -34,8 +34,7 @@ export const Bill = () => {
     const fetchMembers = async () => {
       const nayMembers = bill?.votes?.items[bill.votes.items.length - 1]?.memberVotes?.items?.NAY?.items || [];
       const promises = nayMembers.map(async member => {
-        const res = await fetch(`https://v3.openstates.org/people?jurisdiction=New%20York&district=${member.districtCode}&include=offices&page=1&per_page=1&apikey=7747347d-782f-43d1-b3e5-8c4bed578a27
-        `);
+        const res = await fetch(`https://v3.openstates.org/people?jurisdiction=New%20York&district=${member.districtCode}&include=offices&page=1&per_page=1&apikey=7747347d-782f-43d1-b3e5-8c4bed578a27`);
         const data = await res.json();
         return data.results[0];
       });
@@ -48,13 +47,11 @@ export const Bill = () => {
     }
   }, [bill]);
 
-  if (!bill) {
-    return (
-      <div>
-        <div>This is the bill {printNo}&apos;s page</div>
-      </div>
-    );
-  }
+  if (!bill) return (
+    <div>
+      <div>This is the bill {printNo}&apos;s page</div>
+    </div>
+  );
 
   const {
     title,
@@ -70,21 +67,29 @@ export const Bill = () => {
       <div className="summary">
         <h2>{title}</h2>
         <p>{summary}</p>
-      </div>
-      <div className="category">
-        {/* bill.category */}
-      </div>
-      <div className="status">
+      
+        <div className="category">
+          {bill.category} Sample Category
+        </div><br />
         <p>
           Sponsored by <span style={{fontWeight:'bold'}}>{sponsorName}</span>
           <br />
           District {bill.sponsor.member.districtCode}
         </p>
         <p>Status: <span style={{fontWeight:'bold'}}>{bill.status.statusDesc}</span></p>
+        <div className="important">
+          <h4>Why is this important? Why should this bill pass?</h4>
+          <p>
+            Sample reasons why it should be passed!
+            <ol>
+              <li>Reason 1</li>
+              <li>Just because</li>
+            </ol>
+          </p>
+        </div>
+        {RelatedBills}
       </div>
-      <div className="important">
-
-      </div>
+      
       <div className="action">
         <h2>Take Action!</h2>
         <p>Members currently AGAINST this bill:</p>
@@ -102,8 +107,8 @@ export const Bill = () => {
           </li>
         ))}
         </ul>
-        <div className="Script">
-          <h4>Script</h4>
+        <h2>Script</h2>
+        <div className="script">
           <p>
             Hi, my name is [NAME] and I&#39;m a constituent from [CITY, ZIP].
             <br />
