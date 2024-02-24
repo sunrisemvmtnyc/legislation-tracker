@@ -81,6 +81,8 @@ export const Bill = () => {
           <br />
           District {bill.sponsor.member.districtCode}
         </p>
+        <div><span>Total Sponsors: {getSponsorNumber(bill)}</span></div>
+        <RelatedBills related={bill.billInfoRefs.items} />
         <p>Status: <span style={{fontWeight:'bold'}}>{bill.status.statusDesc}</span></p>
         <div className="important">
           <h4>Why is this important? Why should this bill pass?</h4>
