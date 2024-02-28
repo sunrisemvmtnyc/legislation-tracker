@@ -1,10 +1,11 @@
 import { useMemo } from 'react';
 
 import CategoryTag from "../Category/CategoryTag";
+import { TAGS } from '../../constants';
 
 // TODO replace with actual categories when available
 function generateRandomTags() {
-  const tags = ["Climate", "Social Justice", "Education", "LGBTQ"];
+  const tags = TAGS.slice();
   const numTags = Math.floor(Math.random() * 2) + 1; // Generates either 1 or 2
   const randomTags = [];
 
