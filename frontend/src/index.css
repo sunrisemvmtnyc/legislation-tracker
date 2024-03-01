@@ -360,6 +360,8 @@ template {
   --highlight-lgreen: #e6feb1;
   --highlight-lyellow: #f2deb8;
   --highlight-lred: #e4c3c3;
+  --h-text-font: "Fjalla One", sans-serif;
+  --text-font: "DM Mono", monospace;
 }
 
 * {
@@ -368,7 +370,7 @@ template {
 
 html {
   font-size: 10px;
-  font-family: "DM Mono", monospace;
+  font-family: var(--text-font);
 }
 
 body {
@@ -383,7 +385,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Fjalla One", sans-serif;
+  font-family: var(--h-text-font);
   letter-spacing: -0.01em;
 }
 

@@ -1,16 +1,11 @@
+import { FormControl } from '@mui/material';
+
 import { TAGS, BILL_STATUSES } from "../../constants";
 import Dropdown from "./Dropdown";
 import "./Filters.css";
 
-const Options = ({ options }) =>
-  options.map((option) => (
-    <option key={option} value={option}>
-      {option}
-    </option>
-  ));
-
 const Filters = () => (
-  <div className="filters-bar">
+  <FormControl className="filters-bar" fullWidth>
     <Dropdown
       id="legislator-select"
       label="Legislator Name"
@@ -26,7 +21,7 @@ const Filters = () => (
       label="Bill Category"
       options={TAGS}
     />
-  </div>
+  </FormControl>
 );
 
 export default Filters;

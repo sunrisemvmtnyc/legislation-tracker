@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { InputLabel, Select, MenuItem } from "@mui/material";
+import { Select, MenuItem } from "@mui/material";
 
-// TODO: use MUI multiple select
-// TODO: styles
+import "./Dropdown.css";
+
 const Dropdown = ({ id, label, options }) => {
   const [selected, setSelected] = useState([]);
 
@@ -12,12 +12,12 @@ const Dropdown = ({ id, label, options }) => {
 
   return (
     <div className="dropdown">
-      <InputLabel htmlFor={id} className="dropdown-label">
+      <label htmlFor={id} className="dropdown-label">
         {label}
-      </InputLabel>
+      </label>
       <Select
-        id={id}
         className="dropdown-options"
+        id={id}
         multiple
         value={selected}
         onChange={updateSelected}

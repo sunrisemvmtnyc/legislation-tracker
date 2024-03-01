@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { createTheme } from '@mui/material/styles';
-import { ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
+import { StyledEngineProvider, ThemeProvider } from "@mui/material/styles";
 
 import LearnPage from "./components/LearnPage";
 import HomePage from "./components/HomePage";
@@ -23,25 +23,30 @@ const THEME = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={THEME}>
-      <Header />
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="/bills" element={<BillList />}></Route>
-          <Route path="/learn" element={<LearnPage />}></Route>
-          <Route path="/advanced" element={<AdvancedPage />}></Route>
-          <Route path="/about" element={<AboutPage />}></Route>
-          <Route
-            path="/assembly/:memberName"
-            element={<AssemblyMember />}
-          ></Route>
-          <Route path="/senate/:senatorName" element={<Senator />}></Route>
-          <Route path="/bill/:sessionYear/:printNo" element={<Bill />}></Route>
-        </Routes>
-      </div>
-      <Footer />
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={THEME}>
+        <Header />
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<HomePage />}></Route>
+            <Route path="/bills" element={<BillList />}></Route>
+            <Route path="/learn" element={<LearnPage />}></Route>
+            <Route path="/advanced" element={<AdvancedPage />}></Route>
+            <Route path="/about" element={<AboutPage />}></Route>
+            <Route
+              path="/assembly/:memberName"
+              element={<AssemblyMember />}
+            ></Route>
+            <Route path="/senate/:senatorName" element={<Senator />}></Route>
+            <Route
+              path="/bill/:sessionYear/:printNo"
+              element={<Bill />}
+            ></Route>
+          </Routes>
+        </div>
+        <Footer />
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 }
 
