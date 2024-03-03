@@ -1,7 +1,7 @@
 import { PropTypes } from "prop-types";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Header from ".././Header";
+// import Header from ".././Header";
 import "./Bill.css";
 
 const RelatedBills = ({related}) => {
@@ -31,6 +31,7 @@ export const Bill = () => {
       const res = await fetch(`/api/v1/bills/${sessionYear}/${printNo}`);
       const billData = await res.json();
       setBill(billData);
+      // console.log(billData);
     };
     fetchBill();
   }, [sessionYear, printNo]);
@@ -38,6 +39,7 @@ export const Bill = () => {
   useEffect(() => {
     const fetchMembers = async () => {
       const nayMembers = bill?.votes?.items[bill.votes.items.length - 1]?.memberVotes?.items?.NAY?.items || [];
+      console.log(nayMembers);
       const promises = nayMembers.map(async member => {
         const res = await fetch(`https://v3.openstates.org/people?jurisdiction=New%20York&district=${member.districtCode}&include=offices&page=1&per_page=1&apikey=7747347d-782f-43d1-b3e5-8c4bed578a27`);
         const data = await res.json();
@@ -50,6 +52,7 @@ export const Bill = () => {
     if (bill) {
       fetchMembers();
     }
+    console.log(bill);
   }, [bill]);
 
   if (!bill) return (
@@ -67,8 +70,7 @@ export const Bill = () => {
   } = bill;
 
   return (
-    <div>
-      <Header></Header>
+    <div className="content">
       <div className="summary">
         <h2>{title}</h2>
         <p>{summary}</p>
