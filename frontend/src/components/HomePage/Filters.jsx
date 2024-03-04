@@ -1,27 +1,59 @@
+import { useMemo } from 'react';
 import { FormControl } from '@mui/material';
 
-import { TAGS, BILL_STATUSES } from "../../constants";
-import Dropdown from "./Dropdown";
-import "./Filters.css";
+import { TAGS, BILL_STATUSES } from '../../constants';
+import Dropdown from './Dropdown';
+import './Filters.css';
 
-const Filters = () => (
-  <FormControl className="filters-bar" fullWidth>
-    <Dropdown
-      id="legislator-select"
-      label="Legislator Name"
-      options={["Alex", "Bo", "Carly"]}
-    />
-    <Dropdown
-      id="status-select"
-      label="Bill Status"
-      options={Object.values(BILL_STATUSES)}
-    />
-    <Dropdown
-      id="category-select"
-      label="Bill Category"
-      options={TAGS}
-    />
-  </FormControl>
-);
+const stringToOptionShape = string => ({
+  displayName: string,
+  value: string,
+});
+
+const Filters = ({ bills }) => {
+  const sponsors = useMemo(() => {
+    const seenSponsors = {};
+    const sponsorDataList = [];
+
+    bills.forEach((bill) => {
+      const displayName = bill.sponsor.member?.fullName;
+      const value = bill.sponsor.member?.memberId;
+
+      if (!displayName || seenSponsors[displayName]) return;
+
+      sponsorDataList.push({
+        displayName,
+        value,
+      });
+
+      seenSponsors[displayName] = true;
+    });
+
+    // alphabetize sponsors
+    return sponsorDataList.sort((a, b) =>
+      a.displayName.localeCompare(b.displayName)
+    );
+  }, [bills]);
+
+  return (
+    <FormControl className="filters-bar" fullWidth>
+      <Dropdown
+        id="legislator-select"
+        label="Legislator Name"
+        options={sponsors}
+      />
+      <Dropdown
+        id="status-select"
+        label="Bill Status"
+        options={Object.values(BILL_STATUSES).map(stringToOptionShape)}
+      />
+      <Dropdown
+        id="category-select"
+        label="Bill Category"
+        options={TAGS.map(stringToOptionShape)}
+      />
+    </FormControl>
+  );
+};
 
 export default Filters;

@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Select, MenuItem } from "@mui/material";
+import { useState } from 'react';
+import { Select, MenuItem } from '@mui/material';
 
-import "./Dropdown.css";
+import './Dropdown.css';
 
 const Dropdown = ({ id, label, options }) => {
   const [selected, setSelected] = useState([]);
@@ -22,11 +22,13 @@ const Dropdown = ({ id, label, options }) => {
         value={selected}
         onChange={updateSelected}
       >
-        {options.map((option) => (
-          <MenuItem className="dropdown-option" value={option} key={option}>
-            {option}
-          </MenuItem>
-        ))}
+        {options.map((option) => {
+          return (
+            <MenuItem className="dropdown-option" value={option.value} key={option.value}>
+              {option.displayName}
+            </MenuItem>
+          );
+        })}
       </Select>
     </div>
   );
