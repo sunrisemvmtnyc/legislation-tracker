@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { FormControl } from '@mui/material';
+import { FormGroup } from '@mui/material';
 
 import { TAGS, BILL_STATUSES } from '../../constants';
 import Dropdown from './Dropdown';
@@ -36,7 +36,7 @@ const Filters = ({ bills }) => {
   }, [bills]);
 
   return (
-    <FormControl className="filters-bar" fullWidth>
+    <FormGroup className="filters-bar" fullWidth>
       <Dropdown
         id="legislator-select"
         label="Legislator Name"
@@ -52,7 +52,7 @@ const Filters = ({ bills }) => {
         label="Bill Category"
         options={TAGS.map(stringToOptionShape)}
       />
-    </FormControl>
+    </FormGroup>
   );
 };
 
