@@ -10,19 +10,34 @@ const HomePage = () => {
 
   // TODO: to improve
   useEffect(() => {
+
+    // Correctly handle double-mount in dev/StrictMode
+    // https://stackoverflow.com/a/72238236
+    const abortController = new AbortController();
+
     const paginateBills = async () => {
       let offset = 1;
       let done = false;
       while (!done) {
-        const res = await fetch(`/api/v1/bills/2023/search?offset=${offset}`);
-        const out = await res.json()
-        await setBills((prevBills) => [...prevBills].concat(out.result.items.map(item => item.result)));
-        offset = out.offsetEnd;
-        // if (out.offsetEnd >= out.total) done = true;
+        try {
+          const res = await fetch(`/api/v1/bills/2023/search?offset=${offset}`, {
+            signal: abortController.signal,
+          });
+          const out = await res.json()
+          await setBills((prevBills) => [...prevBills].concat(out.result.items.map(item => item.result)));
+          offset = out.offsetEnd;
+        } catch (error) {
+          console.log('Home bills request aborted')
+        }
         done = true;
       }
     }
     paginateBills()
+    return () => {
+      setBills([])
+      abortController.abort()
+    }
+    // console.log('running useeffect'
   }, []); // Only run on initial page load
 
   return (
