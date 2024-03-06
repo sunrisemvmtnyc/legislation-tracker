@@ -37,7 +37,6 @@ const HomePage = () => {
       setBills([])
       abortController.abort()
     }
-    // console.log('running useeffect'
   }, []); // Only run on initial page load
 
   return (
