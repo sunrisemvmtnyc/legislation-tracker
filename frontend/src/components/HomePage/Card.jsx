@@ -28,6 +28,7 @@ const Card = ({ bill }) => {
           <div className='home-bill-categories'>
             {
               categories.map(category => <CategoryTag category={category} key={category} />)
+              // categories.map(category => <CategoryTag category={category} key={`${bill.basePrintNoStr}:${category}`} />)
             }
           </div>
         )
