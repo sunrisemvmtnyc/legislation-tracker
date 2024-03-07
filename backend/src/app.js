@@ -32,7 +32,7 @@ const BILL_PAGE_SIZE = 100;
 // });
 
 // Paginated & searchable endopint
-app.get('/api/v1/bills/:year/search', async (req, res) => {
+app.get('/api/v1/bills/:year/search', async (req, res, next) => {
   const year = req.params.year;
   const limit = Math.min(req.query.limit || BILL_PAGE_SIZE);
   const offset = req.query.offset || 1
@@ -42,9 +42,15 @@ app.get('/api/v1/bills/:year/search', async (req, res) => {
   const url = legApi(`bills/${year}/search`, {year, offset, sort, term, limit})
   const out = await (await fetch(url)).json()
   if (!out.success) {
-    throw('Did not successfully retrieve bills from legislation.nysenate.gov. Response from API was marked as a failure.');
+    // TODO: upgrade expressJS when v5 is stable
+    // https://expressjs.com/en/guide/error-handling.html
+    console.log("Failed bill request:");
+    console.log(out.message);
+    console.log(url);
+    next('Did not successfully retrieve bills from legislation.nysenate.gov. Response from API was marked as a failure.');
+  } else {
+    res.json(out);
   }
-  res.json(out)
 });
 
 // Mapping from bill id to category
