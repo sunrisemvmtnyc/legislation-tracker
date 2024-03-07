@@ -49,10 +49,12 @@ app.get('/api/v1/bills/:year/search', async (req, res, next) => {
   if (!out.success) {
     // TODO: upgrade expressJS when v5 is stable
     // https://expressjs.com/en/guide/error-handling.html
-    console.log("Failed bill request:");
+    console.log('Failed bill request:');
     console.log(out.message);
     console.log(url);
-    next('Did not successfully retrieve bills from legislation.nysenate.gov. Response from API was marked as a failure.');
+    next(
+      'Did not successfully retrieve bills from legislation.nysenate.gov. Response from API was marked as a failure.'
+    );
   } else {
     res.json(out);
   }
