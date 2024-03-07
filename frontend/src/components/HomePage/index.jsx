@@ -25,7 +25,7 @@ const HomePage = () => {
           const res = await fetch(`/api/v1/bills/2023/search?offset=${offset}`, {
             signal: abortController.signal,
           });
-          const out = await res.json()
+          const out = await res.json();
           await setBills((prevBills) => [...prevBills].concat(out.result.items.map(item => item.result)));
           offset = out.offsetEnd;
           // if (out.offsetEnd >= out.total) done = true;
@@ -35,39 +35,39 @@ const HomePage = () => {
           done = true;
         }
       }
-    }
+    };
 
     const billCategoryMappings = async () => {
       try {
         const res = await fetch(`/api/v1/bills/category-mappings`, {
           signal: abortController.signal,
-        })
-        setCategoryMappings(await res.json())
+        });
+        setCategoryMappings(await res.json());
       } catch (error) {
-        console.log('Home category mappings request aborted')
+        console.log('Home category mappings request aborted');
       }
-    }
+    };
 
     const categories = async () => {
       try {
         const res = await fetch(`/api/v1/categories`, {
           signal: abortController.signal,
-        })
-        setCategories(await res.json())
+        });
+        setCategories(await res.json());
       } catch (error) {
-        console.log('Home categories request aborted')
+        console.log('Home categories request aborted');
       }
-    }
+    };
 
-    paginateBills()
-    billCategoryMappings()
-    categories()
+    paginateBills();
+    billCategoryMappings();
+    categories();
     return () => {
-      abortController.abort()
-      setBills([])
-      setCategories({})
-      setCategoryMappings({})
-    }
+      abortController.abort();
+      setBills([]);
+      setCategories({});
+      setCategoryMappings({});
+    };
   }, []); // Only run on initial page load
 
   return (

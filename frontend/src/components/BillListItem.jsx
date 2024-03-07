@@ -115,4 +115,4 @@ export default function BillListItem(props) {
 }
 BillListItem.propTypes = {
   billData: PropTypes.object.isRequired,
-}
+};
