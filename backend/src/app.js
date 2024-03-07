@@ -5,6 +5,7 @@ import fetch from 'node-fetch';
 
 import { legApi } from './nysenate-api.js';
 import { categories, categoryMapping } from './categories.js'
+import { openStatesApi } from './openstates-api.js';
 
 // Create Express server
 const host = '0.0.0.0';
@@ -62,6 +63,25 @@ app.get('/api/v1/bills/:year/:printNumber', async (req, res) => {
 // Category metadata
 app.get('/api/v1/categories', async (_, res) => {
   res.json(categories())
+})
+
+app.get('/api/v1/legislators/search/offices', async(req, res, next) => {
+  const name = req.query.name;
+  const url = openStatesApi("people", {name: name, include: "offices"});
+  const apiResponse = await fetch(url);
+  const out = await apiResponse.json()
+  if (!apiResponse.ok || !out || !out.pagination?.total_items) {
+    // TODO: upgrade expressJS when v5 is stable
+    // https://expressjs.com/en/guide/error-handling.html
+    console.log("Failed bill request:", apiResponse.status, out.detail || out.pagination?.total_items);
+    console.log(url);
+    next('Did not successfully retrieve legislator from openstates.org. Response from API was marked as a failure.');
+  } else {
+
+    // Note: arbitrarily using first result
+    const legislator = out.results[0]
+    res.json(legislator.offices)
+  }
 })
 
 // Listen
