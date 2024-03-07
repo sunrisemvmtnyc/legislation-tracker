@@ -48,7 +48,7 @@ app.get('/api/v1/bills/:year/search', async (req, res) => {
 });
 
 // Mapping from bill id to category
-app.get('/api/v1/bills/category-mapping', async (_, res) => {
+app.get('/api/v1/bills/category-mappings', async (_, res) => {
   res.json(categoryMapping());
 });
 
