@@ -13,7 +13,7 @@ function Header() {
         </div>
       </Link>
       <div className="header-actions">
-        <a className="header-get-involved" href="https://sunrisenyc.org/get-involved" target="_blank">Get involved</a>
+        <a className="header-get-involved" href="https://sunrisenyc.org/get-involved" target="_blank" rel="noreferrer">Get involved</a>
         <div className="header-navbar">
           <Link to="/learn">Learn</Link>
           <Link to="/advanced">Advanced view</Link>

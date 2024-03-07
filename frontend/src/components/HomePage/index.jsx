@@ -23,20 +23,20 @@ const HomePage = () => {
           const res = await fetch(`/api/v1/bills/2023/search?offset=${offset}`, {
             signal: abortController.signal,
           });
-          const out = await res.json()
+          const out = await res.json();
           await setBills((prevBills) => [...prevBills].concat(out.result.items.map(item => item.result)));
           offset = out.offsetEnd;
         } catch (error) {
-          console.log('Home bills request aborted')
+          console.log('Home bills request aborted');
         }
         done = true;
       }
-    }
-    paginateBills()
+    };
+    paginateBills();
     return () => {
-      setBills([])
-      abortController.abort()
-    }
+      setBills([]);
+      abortController.abort();
+    };
   }, []); // Only run on initial page load
 
   return (

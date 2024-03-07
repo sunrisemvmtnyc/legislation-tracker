@@ -15,8 +15,8 @@ export const categories = () => {
     {long_name: "Justice Roadmap", short_name: "Justice Roadmap", id: "justice-roadmap"},
     {long_name: "Education", short_name: "Education", id: "ed"},
     {long_name: "Miscellaneous", short_name: "Misc", id: "misc-sunrise"},
-  ]
-}
+  ];
+};
 
 export const categoryMapping = () => {
   return {
@@ -201,5 +201,5 @@ export const categoryMapping = () => {
     A01263: "misc-sunrise",
     A00341: "misc-sunrise",
     A02454: "misc-sunrise",
-  }
-}
+  };
+};
