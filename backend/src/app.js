@@ -14,7 +14,6 @@ const app = express();
 // Global constants
 const BILL_PAGE_SIZE = 100;
 
-
 // Endpoint to get all the bills in a year
 // FIXME: legacy, delete
 // app.get('/api/v1/bills/:year', async (req, res) => {
@@ -36,13 +35,19 @@ app.get('/api/v1/bills/:year/search', async (req, res) => {
   const year = req.params.year;
   const limit = Math.min(req.query.limit || BILL_PAGE_SIZE);
   const offset = req.query.offset || 1;
-  const sort = "_score:desc,session:desc"; // taken from leg-API sample app
-  const term = req.query.term || "*";
+  const sort = '_score:desc,session:desc'; // taken from leg-API sample app
+  const term = req.query.term || '*';
 
-  const url = legApi(`bills/${year}/search`, {year, offset, sort, term, limit});
+  const url = legApi(`bills/${year}/search`, {
+    year,
+    offset,
+    sort,
+    term,
+    limit,
+  });
   const out = await (await fetch(url)).json();
   if (!out.success) {
-    throw('Did not successfully retrieve bills from legislation.nysenate.gov. Response from API was marked as a failure.');
+    throw 'Did not successfully retrieve bills from legislation.nysenate.gov. Response from API was marked as a failure.';
   }
   res.json(out);
 });
@@ -54,7 +59,9 @@ app.get('/api/v1/bills/category-mappings', async (_, res) => {
 
 // Endpoint to get a single bill
 app.get('/api/v1/bills/:year/:printNumber', async (req, res) => {
-  const url = legApi(`bills/${req.params.year}/${req.params.printNumber}`, { view: 'with_refs' });
+  const url = legApi(`bills/${req.params.year}/${req.params.printNumber}`, {
+    view: 'with_refs',
+  });
   let apiResponse = await fetch(url);
   res.json((await apiResponse.json()).result);
 });
