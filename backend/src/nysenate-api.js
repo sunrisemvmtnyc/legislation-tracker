@@ -1,15 +1,15 @@
 import fetch from 'node-fetch';
 
-export const URL_BASE = "https://legislation.nysenate.gov/api/3"
+export const URL_BASE = "https://legislation.nysenate.gov/api/3";
 
 export const legApi = (path, params = {}) => {
 
   // Add API key to all requests
   params.key = process.env.OPEN_LEGISLATION_KEY;
   // console.log("API URL to string", `${URL_BASE}${path}` + "?" + (new URLSearchParams(params)).toString())
-  return `${URL_BASE}/${path}` + "?" + (new URLSearchParams(params)).toString()
+  return `${URL_BASE}/${path}` + "?" + (new URLSearchParams(params)).toString();
 
-}
+};
 
 const fetchAllPages = async(apiPath, firstResponseData) => {
   let allItems = firstResponseData.result.items;
@@ -24,6 +24,7 @@ const fetchAllPages = async(apiPath, firstResponseData) => {
 }
 
 export const billsFromYear = async(year) => {
+  // FIXME: legacy, delete
   // First request with no offset
   let firstResponse = await fetch(legApi(`bills/${year}`));
   let firstResponseData = await firstResponse.json();

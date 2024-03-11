@@ -25,15 +25,3 @@ services:
       - './backend/src:/srv/src'
     ports:
       - '3001:3001'
-    depends_on:
-      - redis
-
-  redis:
-    image: 'redis:6.0-alpine'
-    ports:
-    - '6379'
-    volumes:
-      - redis_data:/data
-
-volumes:
-  redis_data:

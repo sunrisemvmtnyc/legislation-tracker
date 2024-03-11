@@ -4,43 +4,45 @@ import BillListItem from './BillListItem';
 import Header from './Header';
 import Search from './Search';
 import CommitteeDropdown from './CommitteeDropdown';
-import './BillList.css'
+import './BillList.css';
 
 export default function BillList() {
   const [search, setSearch] = useState('');
-  const [committee, setCommittee] = useState('')
-  const [currentFilter, setFilter] = useState('SIGNED_BY_GOV')
+  const [committee, setCommittee] = useState('');
+  const [currentFilter, setFilter] = useState('SIGNED_BY_GOV');
   const [bills, setBills] = useState([]);
 
   useEffect(() => {
       const paginateBills = async() => {
-        let start = 0
-        do {
-          const res = await fetch(`/api/v1/bills/2023?start=${start}`);
-          const {bills, end} = await res.json();
-          await setBills((prevBills) => [...prevBills].concat(bills));
-          start = end
-        } while (start > 0)
-      }
-      paginateBills()
+        let offset = 1;
+        let done = false;
+        while (!done){
+          const res = await fetch(`/api/v1/bills/2023/search?offset=${offset}`);
+          const out = await res.json();
+          await setBills((prevBills) => [...prevBills].concat(out.result.items.map(item => item.result)));
+          offset = out.offsetEnd;
+          if (out.offsetEnd >= out.total) done = true;
+        }
+      };
+      paginateBills();
   }, []); // Only run on initial page load
 
   let filteredBills = bills.filter(x => {
-    const currentlyInCommittee = x.status?.committeeName && x.status.committeeName.toLowerCase() === committee.toLowerCase()
+    const currentlyInCommittee = x.status?.committeeName && x.status.committeeName.toLowerCase() === committee.toLowerCase();
     const wasInCommittee = () => {
       if (!x?.milestones?.items) return false;
       for (const status of x.milestones.items) {
-        if (status.committeeName?.toLowerCase() === committee.toLowerCase()) return true
+        if (status.committeeName?.toLowerCase() === committee.toLowerCase()) return true;
       }
-      return false
-    }
+      return false;
+    };
 
-    const infilter = x.status.statusType === currentFilter
+    const infilter = x.status.statusType === currentFilter;
     const inSearch = (
       x.title.toLowerCase().includes(search.toLowerCase()) ||
       x.basePrintNo.toLowerCase().includes(search.toLowerCase()) || // S11, A29A, etc.
       x.sponsor?.member?.fullName.includes(search.toLowerCase())
-    )
+    );
     return (
       infilter && inSearch && (
         !committee ||
@@ -50,7 +52,7 @@ export default function BillList() {
     );
   }).slice(0, 500); // The user does not need to see 23,000 bills
 
-  const filterByStatus = (status) => { return () => setFilter(status) };
+  const filterByStatus = (status) => { return () => setFilter(status); };
 
   return (
     <div>
