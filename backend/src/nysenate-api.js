@@ -35,15 +35,22 @@ export const billsFromYear = async (year) => {
   return fetchAllPages(`bills/${year}`, firstResponseData);
 };
 
-export const membersFromYear = async(year) => {
-  // First request with no offset
-  let firstResponse = await fetch(legApi(`members/${year}`));
+export const membersFromYear = async (year, limit, offset = 1) => {
+  // Limit capped at 1000
+  const MAX_LIMIT = 1000;
+  limit = Math.min(limit, MAX_LIMIT);
+
+  const url = legApi(`members/${year}`, {
+    limit: limit,
+    offset: offset,
+  });
+  let firstResponse = await fetch(url);
   let firstResponseData = await firstResponse.json();
 
   if (!firstResponseData.success) {
-    throw('Did not successfully retrieve members from legislation.nysenate.gov. Response from API was marked as a failure.');
+    console.log(url);
+    throw 'Did not successfully retrieve members from legislation.nysenate.gov. Response from API was marked as a failure.';
   }
 
-  // Retrieve the remaining pages
-  return fetchAllPages(`members/${year}`, firstResponseData);
+  return firstResponseData;
 };
