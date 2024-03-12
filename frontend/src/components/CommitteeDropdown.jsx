@@ -57,7 +57,7 @@ const committees = [
   "Transportation",
   "Veterans, Homeland Security and Military Affairs",
   "Women's Issues",
-]
+];
 
 // eslint-disable-next-line no-unused-vars
 const CommitteeDropdown = ({committee, setCommittee}) => {
@@ -82,10 +82,10 @@ const CommitteeDropdown = ({committee, setCommittee}) => {
         IndicatorSeparator: ({ innerRef }) => <div className="custom-sep" ref={innerRef}></div>,
       }}
     />
-  )
-}
+  );
+};
 CommitteeDropdown.propTypes = {
   committee: PropTypes.object.isRequired,
   setCommittee: PropTypes.func.isRequired,
-}
+};
 export default CommitteeDropdown;

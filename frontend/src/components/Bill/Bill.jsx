@@ -1,17 +1,15 @@
-import { PropTypes } from "prop-types";
-import { useState, useEffect } from "react";
+import {PropTypes} from "prop-types";
+import {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
-// import Header from ".././Header";
-import "./Bill.css";
 
 const RelatedBills = ({related}) => {
-  if (!related) return <div>No related bills</div>
+  if (!related) return <div>No related bills</div>;
   return (
     <div>
       {Object.values(related).map((bill) => (<div key={bill.printNo}><a href={`/bill/${bill.session}/${bill.printNo}`}>{bill.printNo}</a>: {bill.title}</div>))}
     </div>
   );
-  }
+  };
 RelatedBills.propTypes = {
   related: PropTypes.object.isRequired,
 };
@@ -29,37 +27,16 @@ export const Bill = () => {
   useEffect(() => {
     const fetchBill = async () => {
       const res = await fetch(`/api/v1/bills/${sessionYear}/${printNo}`);
-      const billData = await res.json();
-      setBill(billData);
-      // console.log(billData);
+      await setBill(await res.json());
     };
     fetchBill();
-  }, [sessionYear, printNo]);
-
-  useEffect(() => {
-    const fetchMembers = async () => {
-      const nayMembers = bill?.votes?.items[bill.votes.items.length - 1]?.memberVotes?.items?.NAY?.items || [];
-      console.log(nayMembers);
-      const promises = nayMembers.map(async member => {
-        const res = await fetch(`https://v3.openstates.org/people?jurisdiction=New%20York&district=${member.districtCode}&include=offices&page=1&per_page=1&apikey=7747347d-782f-43d1-b3e5-8c4bed578a27`);
-        const data = await res.json();
-        return data.results[0];
-      });
-      const nayMembersData = await Promise.all(promises);
-      setNayMembersData(nayMembersData);
-    };
-
-    if (bill) {
-      fetchMembers();
-    }
-    console.log(bill);
-  }, [bill]);
+  }, []);
 
   if (!bill) return (
     <div>
       <div>This is the bill {printNo}&apos;s page</div>
     </div>
-  );
+  );;
 
   const {
     title,
@@ -134,4 +111,6 @@ export const Bill = () => {
       </div>
     </div>
   );
+};;
+
 };

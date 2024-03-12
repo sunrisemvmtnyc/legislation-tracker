@@ -4,7 +4,8 @@ import express from 'express';
 import fetch from 'node-fetch';
 
 import { legApi } from './nysenate-api.js';
-import { categories, categoryMapping } from './categories.js'
+import { categories, categoryMapping } from './categories.js';
+import { openStatesApi } from './openstates-api.js';
 
 // Create Express server
 const host = '0.0.0.0';
@@ -13,7 +14,6 @@ const app = express();
 
 // Global constants
 const BILL_PAGE_SIZE = 100;
-
 
 // Endpoint to get all the bills in a year
 // FIXME: legacy, delete
@@ -32,36 +32,71 @@ const BILL_PAGE_SIZE = 100;
 // });
 
 // Paginated & searchable endopint
-app.get('/api/v1/bills/:year/search', async (req, res) => {
+app.get('/api/v1/bills/:year/search', async (req, res, next) => {
   const year = req.params.year;
   const limit = Math.min(req.query.limit || BILL_PAGE_SIZE);
-  const offset = req.query.offset || 1
-  const sort = "_score:desc,session:desc" // taken from leg-API sample app
-  const term = req.query.term || "*"
+  const offset = req.query.offset || 1;
+  const sort = '_score:desc,session:desc'; // taken from leg-API sample app
+  const term = req.query.term || '*';
 
-  const url = legApi(`bills/${year}/search`, {year, offset, sort, term, limit})
-  const out = await (await fetch(url)).json()
+  const url = legApi(`bills/${year}/search`, {
+    year,
+    offset,
+    sort,
+    term,
+    limit,
+  });
+  const out = await (await fetch(url)).json();
   if (!out.success) {
-    throw('Did not successfully retrieve bills from legislation.nysenate.gov. Response from API was marked as a failure.');
+    // TODO: upgrade expressJS when v5 is stable
+    // https://expressjs.com/en/guide/error-handling.html
+    console.log('Failed bill request:');
+    console.log(out.message);
+    console.log(url);
+    next(
+      'Did not successfully retrieve bills from legislation.nysenate.gov. Response from API was marked as a failure.'
+    );
+  } else {
+    res.json(out);
   }
-  res.json(out)
 });
 
 // Mapping from bill id to category
-app.get('/api/v1/bills/category-mapping', async (_, res) => {
-  res.json(categoryMapping())
-})
+app.get('/api/v1/bills/category-mappings', async (_, res) => {
+  res.json(categoryMapping());
+});
 
 // Endpoint to get a single bill
 app.get('/api/v1/bills/:year/:printNumber', async (req, res) => {
-  const url = legApi(`bills/${req.params.year}/${req.params.printNumber}`, { view: 'with_refs' })
+  const url = legApi(`bills/${req.params.year}/${req.params.printNumber}`, {
+    view: 'with_refs',
+  });
   let apiResponse = await fetch(url);
   res.json((await apiResponse.json()).result);
 });
 
 // Category metadata
 app.get('/api/v1/categories', async (_, res) => {
-  res.json(categories())
+  res.json(categories());
+});
+
+app.get('/api/v1/legislators/search/offices', async(req, res, next) => {
+  const name = req.query.name;
+  const url = openStatesApi("people", {name: name, include: "offices"});
+  const apiResponse = await fetch(url);
+  const out = await apiResponse.json()
+  if (!apiResponse.ok || !out || !out.pagination?.total_items) {
+    // TODO: upgrade expressJS when v5 is stable
+    // https://expressjs.com/en/guide/error-handling.html
+    console.log("Failed bill request:", apiResponse.status, out.detail || out.pagination?.total_items);
+    console.log(url);
+    next('Did not successfully retrieve legislator from openstates.org. Response from API was marked as a failure.');
+  } else {
+
+    // Note: arbitrarily using first result
+    const legislator = out.results[0]
+    res.json(legislator.offices)
+  }
 })
 
 // Listen
