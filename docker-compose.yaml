@@ -21,6 +21,7 @@ services:
     environment:
       DEBUG: 'app'
       OPEN_LEGISLATION_KEY: ${OPEN_LEGISLATION_KEY}
+      OPEN_STATES_KEY: ${OPEN_STATES_KEY}
     volumes:
       - './backend/src:/srv/src'
     ports:
