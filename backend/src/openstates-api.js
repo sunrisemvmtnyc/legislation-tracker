@@ -15,6 +15,9 @@ export const openStatesApi = (path, params = {}) => {
   // Note: currently we only support NY
   // Note: this is case-sensitive (some fields, eg name, are not case-sensitive)
   params.jurisdiction = 'New York';
+
+  // Set to API default values if not provided, for code clarity
+  // https://v3.openstates.org/docs#/people/people_search_people_get
   params.page = params.page || 1;
   params.per_page = params.per_page || 10;
 
