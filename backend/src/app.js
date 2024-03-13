@@ -3,7 +3,7 @@ import 'dotenv/config';
 import express from 'express';
 import fetch from 'node-fetch';
 
-import { legApi } from './nysenate-api.js';
+import { legApi, membersFromYear } from './nysenate-api.js';
 import { categories, categoryMapping } from './categories.js';
 import { openStatesApi } from './openstates-api.js';
 
@@ -14,6 +14,7 @@ const app = express();
 
 // Global constants
 const BILL_PAGE_SIZE = 100;
+const MEMBER_PAGE_SIZE = 1000;
 
 // Endpoint to get all the bills in a year
 // FIXME: legacy, delete
@@ -71,6 +72,27 @@ app.get('/api/v1/bills/:year/:printNumber', async (req, res) => {
   const url = legApi(`bills/${req.params.year}/${req.params.printNumber}`, {
     view: 'with_refs',
   });
+  let apiResponse = await fetch(url);
+  res.json((await apiResponse.json()).result);
+});
+
+// Endpoint to get all the members in a year
+app.get('/api/v1/members/:year', async (req, res) => {
+  let offset = 1;
+  if (parseInt(req.query.start)) offset = parseInt(req.query.offset);
+
+  let members = await membersFromYear(
+    req.params.year,
+    MEMBER_PAGE_SIZE,
+    offset
+  );
+
+  res.json(members);
+});
+
+// Endpoint to get a single member
+app.get('/api/v1/members/:year/:memberId', async (req, res) => {
+  const url = legApi(`members/${req.params.year}/${req.params.memberId}`);
   let apiResponse = await fetch(url);
   res.json((await apiResponse.json()).result);
 });
