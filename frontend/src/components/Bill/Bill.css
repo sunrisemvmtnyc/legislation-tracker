@@ -1,15 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
+@media screen and (max-width: 1000px) {
+    .bill-content {
+        display: flex;
+        flex-direction: column;
+    }
+    .summary {
+        display: flex;
+        /* width: 100%; */
+        flex-direction: column;
+        overflow: auto;
+        background: #eeede7;
+        max-height: max-content;
+        min-height: min-content;
+        border-radius: 10px;
+        margin: 16px;
+        padding: 20px;
+    }
+}
+
 html {
     font-family: 'Source Sans 3';
 }
-.content {
+.bill-content {
     display: flex;
+    /* flex-direction: column; */
 }
-.summary {
-    /* width: 45%; */
-    justify-content: flex-start;
+@media screen and (min-width: 1001px) {
+    .summary {
+        width: 60%;
+        justify-content: flex-start;
+        padding: 20px;
+        overflow: auto;
+        margin: 16px;
+    }
 }
+
 .status {
     /* width: 45%; */
     justify-content: flex-start;
@@ -27,27 +53,26 @@ html {
     justify-content: flex-end;
     max-height: max-content;
     min-height: min-content;
-    margin-top: 20px;
+    margin: 16px;
 }
 
 .script {
     overflow: auto;
     border-radius: 10px;
     background: #ffffff;
-    padding: 10px;
     justify-content: flex-end;
     max-height: max-content;
     min-height: min-content;
-    margin-top: 20px;
+    margin-top: 16px;
 }
 
 .important {
     overflow: auto;
     border-radius: 10px;
     background: #eeede7;
-    padding: 10px;
+    padding: 0px 20px;
     justify-content: flex-start;
     max-height: max-content;
     min-height: min-content;
-    margin-top: 20px;
+    margin-top: 16px;
 }

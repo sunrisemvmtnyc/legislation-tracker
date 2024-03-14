@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-keys */
 // NOTE: all hardcoded at the moment
 // They are functions, hopefully to make it easier to rip out hardcoding
 
