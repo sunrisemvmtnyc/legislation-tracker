@@ -1,5 +1,7 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import Icons from './icons.svg';
+import CategoryTag from './Category/CategoryTag';
 
 const rowStyle = {
   display: "grid",
@@ -27,6 +29,9 @@ function stepCompleted(billData, step) {
 export default function BillListItem(props) {
   const billData = props.billData;
 
+  // Derive categories based on keywords from billData
+  // const billCategories = getCategories(billData);
+
   // Don't render anything if there is no data
   if (billData === null || billData === undefined) {
     return "";
@@ -44,6 +49,8 @@ export default function BillListItem(props) {
 
   return (
     <div style={rowStyle} className={billData.printNo}>
+      {/* Render the CategoryTag component and pass the billCategories prop to it */}
+      {/* <CategoryTag billCategories={billCategories} /> */}
       <div className="bill-description">
         <a href={`/bill/${billData.session}/${billData.printNo}`}><h2>{fullBillName}</h2></a>
         <p>{billData.title}</p>
@@ -114,5 +121,5 @@ export default function BillListItem(props) {
   );
 }
 BillListItem.propTypes = {
-  billData: PropTypes.object.isRequired,
+  billData: PropTypes.object.isRequired
 };
