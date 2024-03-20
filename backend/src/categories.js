@@ -4,17 +4,49 @@
 // TODO: possible extension: logo png/image
 export const categories = () => {
   return {
-    ["renews"]: {long_name: "NY Renews: Climate, Jobs and Justice", short_name: "NY Renews", id: "renews"},
-    ["invest"]: {long_name: "Invest in our New York: Plan to Fund our Future", short_name: "Invest in NY", id: "invest"},
-    ["fixmta"]: {long_name: "Fix the MTA", short_name: "MTA", id: "fixmta"},
-    ["addtl-climate"]: {long_name: "Additional Climate", short_name: "Climate", id: "addtl-climate"},
-    ["churches-house"]: {long_name: "Churches United for Fair Housing", short_name: "Fair Housing", id: "churches-house"},
-    ["raise-up"]: {long_name: "#RaiseUpNY Minimum Wage", short_name: "#RaiseUpNY", id: "raise-up"},
-    ["ofw"]: {long_name: "OFW: One Fair Wage", short_name: "OFW", id: "ofw"},
-    ["fphc"]: {long_name: "Fair Pay for Home Care", short_name: "Home Care", id: "fphc"},
-    ["justice-roadmap"]: {long_name: "Justice Roadmap", short_name: "Justice Roadmap", id: "justice-roadmap"},
-    ["ed"]: {long_name: "Education", short_name: "Education", id: "ed"},
-    ["misc-sunrise"]: {long_name: "Miscellaneous", short_name: "Misc", id: "misc-sunrise"},
+    ['renews']: {
+      long_name: 'NY Renews: Climate, Jobs and Justice',
+      short_name: 'NY Renews',
+      id: 'renews',
+    },
+    ['invest']: {
+      long_name: 'Invest in our New York: Plan to Fund our Future',
+      short_name: 'Invest in NY',
+      id: 'invest',
+    },
+    ['fixmta']: { long_name: 'Fix the MTA', short_name: 'MTA', id: 'fixmta' },
+    ['addtl-climate']: {
+      long_name: 'Additional Climate',
+      short_name: 'Climate',
+      id: 'addtl-climate',
+    },
+    ['churches-house']: {
+      long_name: 'Churches United for Fair Housing',
+      short_name: 'Fair Housing',
+      id: 'churches-house',
+    },
+    ['raise-up']: {
+      long_name: '#RaiseUpNY Minimum Wage',
+      short_name: '#RaiseUpNY',
+      id: 'raise-up',
+    },
+    ['ofw']: { long_name: 'OFW: One Fair Wage', short_name: 'OFW', id: 'ofw' },
+    ['fphc']: {
+      long_name: 'Fair Pay for Home Care',
+      short_name: 'Home Care',
+      id: 'fphc',
+    },
+    ['justice-roadmap']: {
+      long_name: 'Justice Roadmap',
+      short_name: 'Justice Roadmap',
+      id: 'justice-roadmap',
+    },
+    ['ed']: { long_name: 'Education', short_name: 'Education', id: 'ed' },
+    ['misc-sunrise']: {
+      long_name: 'Miscellaneous',
+      short_name: 'Misc',
+      id: 'misc-sunrise',
+    },
   };
 };
 
