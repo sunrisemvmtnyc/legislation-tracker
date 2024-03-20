@@ -80,8 +80,15 @@ const HomePage = () => {
       <div id="home-page">
         <h1>Sunrise featured bills</h1>
         <Filters />
-        <div id='home-bill-grid'>
-          {bills.map(bill => <Card bill={bill} key={bill.basePrintNoStr} category={categoryMappings[bill.basePrintNo] && categories[categoryMappings[bill.basePrintNo]] && categories[categoryMappings[bill.basePrintNo]].short_name} />)}
+        <div id="home-bill-grid">
+          {bills.map((bill) => (
+            <Card
+              bill={bill}
+              key={bill.basePrintNoStr}
+              billCategoryMappings={categoryMappings[bill.basePrintNo]}
+              allCategories={categories}
+            />
+          ))}
         </div>
       </div>
     </>
