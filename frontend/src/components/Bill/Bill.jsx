@@ -1,5 +1,5 @@
 import { PropTypes } from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
 function getSponsorNumber(billData) {
@@ -28,6 +28,7 @@ const RelatedBills = ({ related }) => {
     </div>
   );
 };
+
 RelatedBills.propTypes = {
   related: PropTypes.object.isRequired,
 };
@@ -78,9 +79,27 @@ export const Bill = () => {
   useEffect(() => {
     const fetchBill = async () => {
       const res = await fetch(`/api/v1/bills/${sessionYear}/${printNo}`);
-      await setBill(await res.json());
+      const billData = await res.json();
+      setBill(billData);
     };
     fetchBill();
+  }, [sessionYear, printNo]);
+
+  const fetchReps = useCallback(async (lat, long) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`https://v3.openstates.org/people.geo?lat=${lat}&lng=${long}&include=offices&apikey=${OPENSTATES_API_KEY}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      setRepsData(data.results);
+    } catch (error) {
+      console.error('Error fetching representatives:', error);
+      setError('Error fetching representatives');
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   // Fetch bill committee data
@@ -116,6 +135,8 @@ export const Bill = () => {
   } = bill;
 
   return (
+
+export default Bill;
     <div>
       <div>This is the bill {printNo}&apos;s page</div>
       <h2>{title}</h2>

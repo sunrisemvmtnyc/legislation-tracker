@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react';
 import './HomePage.css';
-
 import Card from './Card';
 import Banner from './Banner';
 import Filters from './Filters';
 
 const HomePage = () => {
   const [bills, setBills] = useState([]);
-  const [categoryMappings, setCategoryMappings] = useState({});
-  const [categories, setCategories] = useState({});
 
   useEffect(() => {
     // Correctly handle double-mount in dev/StrictMode
@@ -43,36 +40,25 @@ const HomePage = () => {
 
     const billCategoryMappings = async () => {
       try {
-        const res = await fetch(`/api/v1/bills/category-mappings`, {
-          signal: abortController.signal,
-        });
-        setCategoryMappings(await res.json());
+        const res = await fetch(`/api/v1/bills/2023/search`, { signal: abortController.signal });
+        const data = await res.json();
+        // Assign categories to each bill
+        const billsWithCategories = data.result.items.map(item => ({
+          ...item.result,
+          categories: getCategories(item.result.summary)
+        }));
+        setBills(billsWithCategories);
       } catch (error) {
-        console.log('Home category mappings request aborted');
+        console.error('Error fetching data:', error.message);
       }
     };
 
-    const categories = async () => {
-      try {
-        const res = await fetch(`/api/v1/categories`, {
-          signal: abortController.signal,
-        });
-        setCategories(await res.json());
-      } catch (error) {
-        console.log('Home categories request aborted');
-      }
-    };
+    fetchData();
 
-    paginateBills();
-    billCategoryMappings();
-    categories();
     return () => {
       abortController.abort();
-      setBills([]);
-      setCategories({});
-      setCategoryMappings({});
     };
-  }, []); // Only run on initial page load
+  }, []);
 
   return (
     <>

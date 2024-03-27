@@ -1,21 +1,33 @@
+.category-tags {
+  display: flex;
+  flex-wrap: wrap; /* Ensure tags wrap to the next line if there's not enough space */
+}
+
+@media (max-width: 1000px) {
+  .category-tags {
+    flex-direction: column; /* Change direction to vertical when screen width is less than 1000px */
+  }
+}
+
+/* Styles for individual category tags */
 .category-tag {
   padding: 5px 10px;
   background: #fbe8e0;
   box-sizing: border-box;
   border-radius: 20px;
   min-width: fit-content;
-  width: fit-content;
   white-space: nowrap;
+  margin: 5px;
 }
 
 .category-tag-education {
   background: #fbe8e0;
 }
 
-.category-tag-climate {
+.category-tag-climate-justice {
   background: #cbecda;
 }
 
-.category-tag-lgbtq {
+.category-tag-social-justice {
   background: #c9dbfc;
 }
