@@ -1,4 +1,4 @@
-.content {
+.bill-content {
   display: grid;
   grid-template-columns: 3fr 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: repeat(5);

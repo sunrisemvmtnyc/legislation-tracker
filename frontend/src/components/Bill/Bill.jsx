@@ -1,6 +1,8 @@
 import { PropTypes } from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+
+import './Bill.css';
 
 function getSponsorNumber(billData) {
   const {
@@ -28,6 +30,7 @@ const RelatedBills = ({ related }) => {
     </div>
   );
 };
+
 RelatedBills.propTypes = {
   related: PropTypes.object.isRequired,
 };
@@ -69,19 +72,6 @@ BillCommitteeMembers.propTypes = {
 export const Bill = () => {
   const { sessionYear, printNo } = useParams();
   const [bill, setBill] = useState();
-  const [committee, setCommittee] = useState();
-
-  const fetched = !!bill;
-  const isSenate = bill?.billType?.chamber?.toLowerCase() === 'senate';
-
-  // Fetch main bill data
-  useEffect(() => {
-    const fetchBill = async () => {
-      const res = await fetch(`/api/v1/bills/${sessionYear}/${printNo}`);
-      await setBill(await res.json());
-    };
-    fetchBill();
-  }, []);
 
   // Fetch bill committee data
   useEffect(() => {
@@ -116,6 +106,7 @@ export const Bill = () => {
   } = bill;
 
   return (
+
     <div>
       <div>This is the bill {printNo}&apos;s page</div>
       <h2>{title}</h2>
