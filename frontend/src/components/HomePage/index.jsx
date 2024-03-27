@@ -11,7 +11,6 @@ const HomePage = () => {
   const [categories, setCategories] = useState({});
 
   useEffect(() => {
-
     // Correctly handle double-mount in dev/StrictMode
     // https://stackoverflow.com/a/72238236
     const abortController = new AbortController();
@@ -22,11 +21,16 @@ const HomePage = () => {
       let done = false;
       while (!done) {
         try {
-          const res = await fetch(`/api/v1/bills/2023/search?offset=${offset}`, {
-            signal: abortController.signal,
-          });
+          const res = await fetch(
+            `/api/v1/bills/2023/search?offset=${offset}`,
+            {
+              signal: abortController.signal,
+            }
+          );
           const out = await res.json();
-          await setBills((prevBills) => [...prevBills].concat(out.result.items.map(item => item.result)));
+          await setBills((prevBills) =>
+            [...prevBills].concat(out.result.items.map((item) => item.result))
+          );
           offset = out.offsetEnd;
           // if (out.offsetEnd >= out.total) done = true;
           done = true;
@@ -73,11 +77,18 @@ const HomePage = () => {
   return (
     <>
       <Banner />
-      <div id='home-page'>
+      <div id="home-page">
         <h1>Sunrise featured bills</h1>
         <Filters />
-        <div id='home-bill-grid'>
-          {bills.map(bill => <Card bill={bill} key={bill.basePrintNoStr} category={categoryMappings[bill.basePrintNo] && categories[categoryMappings[bill.basePrintNo]] && categories[categoryMappings[bill.basePrintNo]].short_name} />)}
+        <div id="home-bill-grid">
+          {bills.map((bill) => (
+            <Card
+              bill={bill}
+              key={bill.basePrintNoStr}
+              billCategoryMappings={categoryMappings[bill.basePrintNo]}
+              allCategories={categories}
+            />
+          ))}
         </div>
       </div>
     </>
