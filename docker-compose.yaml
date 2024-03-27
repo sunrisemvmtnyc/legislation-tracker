@@ -3,8 +3,6 @@ version: '3'
 services:
 
   frontend:
-    labels:
-      shipyard.route: '/'
     build: 'frontend'
     environment:
       CI: 'true'
@@ -15,13 +13,12 @@ services:
       - '5173:5173'
 
   backend:
-    labels:
-      shipyard.route: '/api'
     build: 'backend'
     environment:
       DEBUG: 'app'
       OPEN_LEGISLATION_KEY: ${OPEN_LEGISLATION_KEY}
       OPEN_STATES_KEY: ${OPEN_STATES_KEY}
+      # DEBUG: express:*
     volumes:
       - './backend/src:/srv/src'
     ports:

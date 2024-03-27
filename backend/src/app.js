@@ -91,35 +91,75 @@ app.get('/api/v1/members/:year', async (req, res) => {
 });
 
 // Endpoint to get a single member
-app.get('/api/v1/members/:year/:memberId', async (req, res) => {
+app.get('/api/v1/members/:year/:memberId', async (req, res, next) => {
   const url = legApi(`members/${req.params.year}/${req.params.memberId}`);
-  let apiResponse = await fetch(url);
-  res.json((await apiResponse.json()).result);
+  const out = await (await fetch(url)).json();
+  if (!out.success) {
+    // TODO: upgrade expressJS when v5 is stable
+    // https://expressjs.com/en/guide/error-handling.html
+    console.log('Failed member request:');
+    console.log(out.message);
+    console.log(url);
+    next(
+      'Did not successfully retrieve member from legislation.nysenate.gov. Response from API was marked as a failure.'
+    );
+  } else {
+    res.json(out.result);
+  }
 });
+
+app.get(
+  '/api/v1/committees/:year/:chamber/:committeeName',
+  async (req, res, next) => {
+    // NOTE/FIXME: NY API does not have assembly committees:
+    // https://legislation.nysenate.gov/static/docs/html/committees.html#get-a-current-committee-version
+    const url = legApi(
+      `committees/${req.params.year}/${req.params.chamber}/${req.params.committeeName}`
+    );
+    const out = await (await fetch(url)).json();
+    if (!out.success) {
+      // TODO: upgrade expressJS when v5 is stable
+      // https://expressjs.com/en/guide/error-handling.html
+      console.log('Failed committee request:');
+      console.log(out.message);
+      console.log(url);
+      next(
+        'Did not successfully retrieve committee from legislation.nysenate.gov. Response from API was marked as a failure.'
+      );
+    } else {
+      res.json(out.result);
+    }
+  }
+);
 
 // Category metadata
 app.get('/api/v1/categories', async (_, res) => {
   res.json(categories());
 });
 
-app.get('/api/v1/legislators/search/offices', async(req, res, next) => {
+app.get('/api/v1/legislators/search/offices', async (req, res, next) => {
   const name = req.query.name;
-  const url = openStatesApi("people", {name: name, include: "offices"});
+  const url = openStatesApi('people', { name: name, include: 'offices' });
   const apiResponse = await fetch(url);
-  const out = await apiResponse.json()
+  const out = await apiResponse.json();
   if (!apiResponse.ok || !out || !out.pagination?.total_items) {
     // TODO: upgrade expressJS when v5 is stable
     // https://expressjs.com/en/guide/error-handling.html
-    console.log("Failed bill request:", apiResponse.status, out.detail || out.pagination?.total_items);
+    console.log(
+      'Failed bill request:',
+      apiResponse.status,
+      out.detail || out.pagination?.total_items
+    );
     console.log(url);
-    next('Did not successfully retrieve legislator from openstates.org. Response from API was marked as a failure.');
+    next(
+      'Did not successfully retrieve legislator from openstates.org. Response from API was marked as a failure.'
+    );
   } else {
-
     // Note: arbitrarily using first result
-    const legislator = out.results[0]
-    res.json(legislator.offices)
+    const legislator = out.results[0];
+    res.json(legislator.offices);
   }
-})
+});
 
 // Listen
 app.listen(port, host, () => {
