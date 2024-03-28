@@ -1,6 +1,7 @@
 import { PropTypes } from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import './Bill.css';
 
 function getSponsorNumber(billData) {
   const {
@@ -116,26 +117,60 @@ export const Bill = () => {
   } = bill;
 
   return (
-    <div>
-      <div>This is the bill {printNo}&apos;s page</div>
-      <h2>{title}</h2>
-      <p>{summary}</p>
-      <div>
-        <span>
-          {sponsorName}:{sponsorId}
-        </span>
+    <div className="bill-content">
+      <div className="summary">
+        <h2>{title}</h2>
+        <p>{summary}</p>
+        <div className="category">
+          {bill.category} <p>(Sample Category)</p>
+        </div>
+        
+        <p>
+          Sponsored by <span style={{fontWeight:'bold'}}>{sponsorName}</span>
+          <br />
+          District {bill.sponsor.member.districtCode}
+        </p>
+        <p>Status: <span style={{fontWeight:'bold'}}>{bill.status.statusDesc}</span></p>
+        <div><p>Total Sponsors: {getSponsorNumber(bill)}</p></div>
+        <p><RelatedBills related={bill.billInfoRefs.items} /></p>
+        {fetched && (
+          <BillCommitteeMembers
+            committee={committee}
+            memberId={sponsorId}
+            isSenate={isSenate}
+          />
+        )}
+        <div className="important">
+          <h4>Why is this important? Why should this bill pass?</h4>
+          <p>
+            Sample reasons why it should be passed!
+            <ol>
+              <li>Reason 1</li>
+              <li>Just because</li>
+            </ol>
+          </p>
+        </div>
       </div>
-      <div>
-        <span>Total Sponsors: {getSponsorNumber(bill)}</span>
+      
+      <div className="action">
+        <h2>Take Action!</h2>
+        
+        <h4>Script when calling your representative:</h4>
+        <div className="script">
+          <p>
+            Hi, my name is [NAME] and I&#39;m a constituent from [CITY, ZIP].
+            <br />
+            <br />
+            I&#39;m calling to ask that [REP/SEN NAME] support {printNo}.
+            <br />
+            Thank you for your time and consideration.
+            <br />
+            <br />
+            IF LEAVING A VOICEMAIL: Please leave your full street address to
+            ensure your call is tallied.
+          </p>
+        </div>
       </div>
-      <RelatedBills related={bill.billInfoRefs.items} />
-      {fetched && (
-        <BillCommitteeMembers
-          committee={committee}
-          memberId={sponsorId}
-          isSenate={isSenate}
-        />
-      )}
     </div>
   );
 };
