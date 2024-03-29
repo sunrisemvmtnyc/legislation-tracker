@@ -6,6 +6,7 @@ import fetch from 'node-fetch';
 import { legApi, membersFromYear } from './nysenate-api.js';
 import { categories, categoryMapping } from './categories.js';
 import { openStatesApi } from './openstates-api.js';
+import { fetchSunriseBills } from './googlesheets-api.js';
 
 // Create Express server
 const host = '0.0.0.0';
@@ -65,6 +66,11 @@ app.get('/api/v1/bills/:year/search', async (req, res, next) => {
 // Mapping from bill id to category
 app.get('/api/v1/bills/category-mappings', async (_, res) => {
   res.json(categoryMapping());
+});
+
+app.get('/api/v1/bills/sunrise-bills', async (_, res) => {
+  const mapping = await fetchSunriseBills();
+  res.json(mapping);
 });
 
 // Endpoint to get a single bill
