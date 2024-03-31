@@ -4,12 +4,15 @@ import './HomePage.css';
 import Card from './Card';
 import Banner from './Banner';
 import Filters from './Filters';
+import { createQueryStr } from '../../utils';
 
 const HomePage = () => {
   const [bills, setBills] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   const [categoryMappings, setCategoryMappings] = useState({});
   const [categories, setCategories] = useState({});
 
+  // fetch bills
   useEffect(() => {
     // Correctly handle double-mount in dev/StrictMode
     // https://stackoverflow.com/a/72238236
@@ -21,8 +24,9 @@ const HomePage = () => {
       let done = false;
       while (!done) {
         try {
+          const queryStr = createQueryStr({ offset, term: searchTerm });
           const res = await fetch(
-            `/api/v1/bills/2023/search?offset=${offset}`,
+            `/api/v1/bills/2023/search?${queryStr}`,
             {
               signal: abortController.signal,
             }
@@ -41,6 +45,19 @@ const HomePage = () => {
       }
     };
 
+    paginateBills();
+    return () => {
+      abortController.abort();
+      setBills([]);
+    };
+  }, [searchTerm]);
+
+  // fetch category mappings and categories
+  useEffect(() => {
+    // Correctly handle double-mount in dev/StrictMode
+    // https://stackoverflow.com/a/72238236
+    const abortController = new AbortController();
+
     const billCategoryMappings = async () => {
       try {
         const res = await fetch(`/api/v1/bills/category-mappings`, {
@@ -52,7 +69,7 @@ const HomePage = () => {
       }
     };
 
-    const categories = async () => {
+    const fetchCategories = async () => {
       try {
         const res = await fetch(`/api/v1/categories`, {
           signal: abortController.signal,
@@ -63,12 +80,10 @@ const HomePage = () => {
       }
     };
 
-    paginateBills();
     billCategoryMappings();
-    categories();
+    fetchCategories();
     return () => {
       abortController.abort();
-      setBills([]);
       setCategories({});
       setCategoryMappings({});
     };
@@ -79,7 +94,7 @@ const HomePage = () => {
       <Banner />
       <div id="home-page">
         <h1>Sunrise featured bills</h1>
-        <Filters />
+        <Filters setSearchTerm={setSearchTerm}/>
         <div id="home-bill-grid">
           {bills.map((bill) => (
             <Card

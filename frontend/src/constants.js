@@ -9,3 +9,8 @@ export const BILL_STATUSES = {
     DELIVER_TO_GOVERNOR: 'Deliver to Governor',
     SIGNED_BY_GOVERNOR: 'Signed By Governor',
 };
+
+export const SEARCH_QUERY_KEY_MAP =  {
+  STATUS: 'status.statusdesc',
+  SPONSOR_NAME: 'sponsor.member.fullName',
+}; 
