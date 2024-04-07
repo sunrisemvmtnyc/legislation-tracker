@@ -138,8 +138,10 @@ export const fetchSunriseBills = async () => {
   let bills = {};
   let campaigns = {};
   try {
-    bills = await sunriseBills();
-    campaigns = await sunriseCampaigns();
+    [bills, campaigns] = await Promise.all([
+      sunriseBills(),
+      sunriseCampaigns(),
+    ]);
   } catch (err) {
     console.error('fetch airtable bills or campaigns error', err);
   }
