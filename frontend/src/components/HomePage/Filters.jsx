@@ -11,7 +11,9 @@ const Filters = ({ setSearchTerm }) => {   // creates ElasticSearch query string
   // update search term when obj updatedj
   useEffect(() => {
     const searchTermStr = Object.entries(searchTermsObj)
-      .map(([key, val]) => `${key}:${val}`)
+      // check if value part of object entry is truthy
+      .filter(entry => entry[1].length)
+      .map(([key, val]) => `(${key}:${val.join(' OR ')})`)
       .join(' AND ');
     setSearchTerm(searchTermStr);
   }, [setSearchTerm, searchTermsObj]);
@@ -20,7 +22,7 @@ const Filters = ({ setSearchTerm }) => {   // creates ElasticSearch query string
     return (searchVal) => {
       setSearchTermsObj(currObj => ({
         ...currObj,
-        [searchKey]: searchVal,
+        [searchKey]: searchVal?.length ? searchVal : [],
       }));
     };
   }, [setSearchTermsObj]);
