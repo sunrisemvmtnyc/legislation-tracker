@@ -13,9 +13,11 @@ const Filters = ({ setSearchTerm }) => {   // creates ElasticSearch query string
     const searchTermStr = Object.entries(searchTermsObj)
       // check if value part of object entry is truthy
       .filter(entry => entry[1].length)
-      .map(([key, val]) => `(${key}:${val.join(' OR ')})`)
+      .map(([key, val]) => `${key}:(${val
+        .map(val => `"${val}"`)
+        .join(' OR ')})`)
       .join(' AND ');
-    setSearchTerm(searchTermStr);
+    setSearchTerm(encodeURIComponent(searchTermStr) || '*');
   }, [setSearchTerm, searchTermsObj]);
 
   const createSearchTermsObjUpdater = useCallback(searchKey => {
@@ -50,9 +52,9 @@ const Filters = ({ setSearchTerm }) => {   // creates ElasticSearch query string
       <Dropdown
         id="status-select"
         label="Bill Status"
-        options={Object.entries(BILL_STATUSES).map(([key, val]) => ({
-          displayName: val,
-          value: key,
+        options={BILL_STATUSES.map(status => ({
+          displayName: status,
+          value: status,
         }))}
         updateFilter={updateStatusFilter}
       />
