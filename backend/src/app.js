@@ -6,6 +6,7 @@ import fetch from 'node-fetch';
 import { legApi, membersFromYear } from './nysenate-api.js';
 import { categories, categoryMapping } from './categories.js';
 import { openStatesApi } from './openstates-api.js';
+import { mapBoxApi } from './mapbox-api.js';
 
 // Create Express server
 const host = '0.0.0.0';
@@ -65,6 +66,11 @@ app.get('/api/v1/bills/:year/search', async (req, res, next) => {
 // Mapping from bill id to category
 app.get('/api/v1/bills/category-mappings', async (_, res) => {
   res.json(categoryMapping());
+});
+
+// TODO: rename endpoint something more appropriate
+app.get('/api/v1/bills/airtable-bills', async (_, res) => {
+  res.json(await fetchSunriseBills());
 });
 
 // Endpoint to get a single bill
@@ -160,6 +166,36 @@ app.get('/api/v1/legislators/search/offices', async (req, res, next) => {
     res.json(legislator.offices);
   }
 });
+
+app.get(
+  '/api/v1/geocoding/:loc',
+  async (req, res, next) => {
+    const url = mapBoxApi(
+      `geocoding/v5/mapbox.places/${req.params.loc}.json`,
+      {
+        country: 'US',
+        fuzzyMatch: true
+      }
+    );
+
+    const apiResponse = await fetch(url);
+    console.log(apiResponse);
+    const out = await apiResponse.json();
+    console.log(out);
+    if (!out) {
+      // TODO: upgrade expressJS when v5 is stable
+      // https://expressjs.com/en/guide/error-handling.html
+      console.log('Failed geocode request:');
+      console.log(out.message);
+      console.log(url);
+      next(
+        'Did not successfully retrieve lat/long from Mapbox'
+      );
+    } else {
+      res.json(out);
+    }
+  }
+);
 
 // Listen
 app.listen(port, host, () => {

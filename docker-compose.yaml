@@ -16,8 +16,10 @@ services:
     build: 'backend'
     environment:
       DEBUG: 'app'
+      AIRTABLE_API_KEY: ${AIRTABLE_API_KEY}
       OPEN_LEGISLATION_KEY: ${OPEN_LEGISLATION_KEY}
       OPEN_STATES_KEY: ${OPEN_STATES_KEY}
+      MAPBOX_KEY: ${MAPBOX_KEY}
       # DEBUG: express:*
     volumes:
       - './backend/src:/srv/src'
