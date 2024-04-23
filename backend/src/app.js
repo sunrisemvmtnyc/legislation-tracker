@@ -157,7 +157,6 @@ app.get('/api/v1/legislators/search/offices', async (req, res, next) => {
       apiResponse.status,
       out.detail || out.pagination?.total_items
     );
-    console.log(url);
     next(
       'Did not successfully retrieve legislator from openstates.org. Response from API was marked as a failure.'
     );
@@ -178,17 +177,12 @@ app.get(
         fuzzyMatch: true
       }
     );
-
     const apiResponse = await fetch(url);
-    console.log(apiResponse);
     const out = await apiResponse.json();
-    console.log(out);
     if (!out) {
       // TODO: upgrade expressJS when v5 is stable
       // https://expressjs.com/en/guide/error-handling.html
       console.log('Failed geocode request:');
-      console.log(out.message);
-      console.log(url);
       next(
         'Did not successfully retrieve lat/long from Mapbox'
       );
