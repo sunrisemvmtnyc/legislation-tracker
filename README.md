@@ -35,3 +35,14 @@ OPEN_STATES_KEY=my-openstates-key
 3. In the `.env` file, add the required API keys (see below).
 4. At the root of this project, in your Terminal or Powershell, run `docker compose build && docker compose up`
 5. Visit http://localhost:5173/
+
+### File formatting
+Install [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) to format your code. You can use this in your workspace settings JSON:
+```json
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+    },
+```
+
+If you install [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), you will see errors highlighted in VSCode.

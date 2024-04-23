@@ -7,6 +7,7 @@ import { legApi, membersFromYear } from './nysenate-api.js';
 import { categories, categoryMapping } from './categories.js';
 import { openStatesApi } from './openstates-api.js';
 import { mapBoxApi } from './mapbox-api.js';
+import { fetchSunriseBills } from './airtable-api.js';
 
 // Create Express server
 const host = '0.0.0.0';
