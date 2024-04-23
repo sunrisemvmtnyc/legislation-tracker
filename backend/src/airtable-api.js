@@ -60,8 +60,8 @@ const sunriseBills = async () => {
   records.forEach((record) => {
     const senateId = record.get(BILL_SENATE_FIELD_ID);
     const assemblyId = record.get(BILL_ASSEMBLY_ID_FIELD_ID);
-    const campaignId = record.get(BILL_CAMPAIGN_FIELD_ID);
-    if (!campaignId) return;
+    const campaignIds = record.get(BILL_CAMPAIGN_FIELD_ID);
+    if (!campaignIds || campaignIds.length === 0) return;
 
     // Add campaign to the senate bill
     if (senateId) {
@@ -69,7 +69,7 @@ const sunriseBills = async () => {
         if (!mapping[senateId]) {
           mapping[senateId] = [];
         }
-        mapping[senateId].push(campaignId);
+        mapping[senateId] = mapping[senateId].concat(campaignIds);
       } else console.log('Senate ID not properly formatted:', senateId);
     }
 
@@ -79,7 +79,7 @@ const sunriseBills = async () => {
         if (!mapping[assemblyId]) {
           mapping[assemblyId] = [];
         }
-        mapping[assemblyId].push(campaignId);
+        mapping[assemblyId] = mapping[assemblyId].concat(campaignIds);
       } else console.log('Assembly ID not properly formatted:', assemblyId);
     }
   });
