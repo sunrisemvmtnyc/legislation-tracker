@@ -63,13 +63,14 @@ const sunriseBills = async () => {
     const campaignIds = record.get(BILL_CAMPAIGN_FIELD_ID);
     if (!campaignIds || campaignIds.length === 0) return;
 
-    // NOTE: remove leading zeros in bill id - 'basePrintNo' search expects no leading zeros
+    // NOTE: remove leading zeros and trailing letters in bill id. Makes it easier to search.
+    // Trailing letters are the amendment version, but the search api doesn't work well with them.
     // Examples:
     // S01001 -> S1001
     // S101 -> S101
     // S00101 -> S101
-    senateId = senateId.replace(/(S)(0*)([1-9][0-9]*)/, '$1$3');
-    assemblyId = assemblyId.replace(/(A)(0*)([1-9][0-9]*)/, '$1$3');
+    senateId = senateId.replace(/(S)(0*)([1-9][0-9]*)([A-Z]*)/, '$1$3');
+    assemblyId = assemblyId.replace(/(A)(0*)([1-9][0-9]*)([A-Z]*)/, '$1$3');
 
     // Add campaign to the senate bill
     if (senateId) {
