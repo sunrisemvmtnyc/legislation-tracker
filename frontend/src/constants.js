@@ -14,6 +14,6 @@ export const BILL_STATUSES = [
 ];
 
 export const SEARCH_QUERY_KEY_MAP = {
-  STATUS: 'status.statusdesc',
+  STATUS: 'status.statusDesc',
   SPONSOR_NAME: 'sponsor.member.fullName',
 };
