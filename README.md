@@ -26,6 +26,10 @@ AIRTABLE_API_KEY=my.airtable.api.key
 # OPTIONAL - needed for `legislators/search/offices`
 # How to get key: https://docs.openstates.org/api-v3/#api-basics
 OPEN_STATES_KEY=my-openstates-key
+
+# OPTIONAL - needed for mapbox geocoding
+# How to get key: https://docs.mapbox.com/help/getting-started/access-tokens/
+MAPBOX_KEY=my-mapbox-key
 ```
 
 ## Local development
