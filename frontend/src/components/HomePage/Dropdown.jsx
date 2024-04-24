@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Select, MenuItem } from "@mui/material";
+import { Select, MenuItem } from '@mui/material';
 
-import "./Dropdown.css";
+import './Dropdown.css';
 
 const Dropdown = ({ id, label, options, updateFilter }) => {
   const [selected, setSelected] = useState([]);
@@ -37,10 +37,12 @@ const Dropdown = ({ id, label, options, updateFilter }) => {
 Dropdown.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    displayName: PropTypes.string,
-    value: PropTypes.string,
-  })),
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      displayName: PropTypes.string,
+      value: PropTypes.string,
+    })
+  ),
   updateFilter: PropTypes.func,
 };
 

@@ -1,16 +1,17 @@
 .dropdown {
-    display: inline-flex;
-    flex-direction: column;
-    margin-right: 24px;
+  display: inline-flex;
+  flex-direction: column;
+  margin-right: 24px;
 }
 
 .dropdown-options {
-    width: 150px;
-    height: 40px;
+  width: 150px;
+  height: 40px;
 }
 
 /* override selected options preview styling */
-.MuiSelect-select, .dropdown-option {
-    font-family: var(--text-font);
-    font-size: 1em;
+.MuiSelect-select,
+.dropdown-option {
+  font-family: var(--text-font);
+  font-size: 1em;
 }

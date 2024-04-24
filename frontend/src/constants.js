@@ -1,4 +1,4 @@
-export const TAGS = ["Climate", "Social Justice", "Education", "LGBTQ"];
+export const TAGS = ['Climate', 'Social Justice', 'Education', 'LGBTQ'];
 
 export const BILL_STATUSES = [
   'Introduced',
@@ -13,7 +13,7 @@ export const BILL_STATUSES = [
   'Vetoed',
 ];
 
-export const SEARCH_QUERY_KEY_MAP =  {
+export const SEARCH_QUERY_KEY_MAP = {
   STATUS: 'status.statusdesc',
   SPONSOR_NAME: 'sponsor.member.fullName',
-}; 
+};

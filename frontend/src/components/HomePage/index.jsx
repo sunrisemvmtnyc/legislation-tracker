@@ -25,12 +25,9 @@ const HomePage = () => {
       while (!done) {
         try {
           const queryStr = createQueryStr({ offset, term: searchTerm });
-          const res = await fetch(
-            `/api/v1/bills/2023/search?${queryStr}`,
-            {
-              signal: abortController.signal,
-            }
-          );
+          const res = await fetch(`/api/v1/bills/2023/search?${queryStr}`, {
+            signal: abortController.signal,
+          });
           const out = await res.json();
           await setBills((prevBills) =>
             [...prevBills].concat(out.result.items.map((item) => item.result))
@@ -94,7 +91,7 @@ const HomePage = () => {
       <Banner />
       <div id="home-page">
         <h1>Sunrise featured bills</h1>
-        <Filters setSearchTerm={setSearchTerm}/>
+        <Filters setSearchTerm={setSearchTerm} />
         <div id="home-bill-grid">
           {bills.map((bill) => (
             <Card
