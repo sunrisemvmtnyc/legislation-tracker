@@ -1,24 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from '@mui/material/Button';
 import './LocForm.css';
 
 const LocForm = () => {
   const [loading, setLoading] = useState(false);
   const [loc, setLoc] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
   const [placeName, setPlaceName] = useState("");
 
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
 
+  useEffect(() => {
+    const sessionPlaceName = window.sessionStorage.getItem("placeName");
+    if (sessionPlaceName) {
+      setPlaceName(sessionPlaceName);
+    }
+    const sessionLatitude = window.sessionStorage.getItem("latitude");
+    if (sessionLatitude) {
+      setLatitude(JSON.parse(sessionLatitude));
+    }
+    const sessionLongitude = window.sessionStorage.getItem("longitude");
+    if (sessionLongitude) {
+      setLongitude(JSON.parse(sessionLongitude));
+    }
+  }, []);
+
   const reset = () => {
     setLoc("");
-    setCity("");
-    setState("");
     setPlaceName("");
     setLatitude("");
     setLongitude("");
+    window.sessionStorage.setItem("placeName", "");
+    window.sessionStorage.setItem("latitude", "");
+    window.sessionStorage.setItem("longitude","");
+    window.dispatchEvent(new StorageEvent('storage'));
   };
 
   const handleInputChange = (event) => {
@@ -37,15 +52,14 @@ const LocForm = () => {
         const coordinates = data.features[0].center;
         setLatitude(coordinates[1]);
         setLongitude(coordinates[0]);
-        if (data.features[0].properties.city) {
-          setCity(data.features[0].properties.city);
+        window.sessionStorage.setItem("latitude", JSON.stringify(coordinates[1]));
+        window.sessionStorage.setItem("longitude", JSON.stringify(coordinates[0]));
+        const dataPlaceName = data.features[0].place_name;
+        if (dataPlaceName) {
+          setPlaceName(dataPlaceName);
+          window.sessionStorage.setItem("placeName", dataPlaceName);
         }
-        if (data.features[0].properties.state) {
-          setState(data.features[0].properties.city);
-        }
-        if (data.features[0].place_name) {
-          setPlaceName(data.features[0].place_name);
-        }
+        window.dispatchEvent(new StorageEvent('storage'));
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -57,15 +71,9 @@ const LocForm = () => {
 
   const locationFound = Boolean(latitude && longitude);
   if (locationFound) {
-    const locationToDisplay = city && state
-      ? `City: ${city}, State: ${state}`
-      : placeName
-        ? placeName
-        : `Lat: ${latitude}, Lon: ${longitude}`;
-
     content = (
       <>
-        Now displaying sponsors related to <b>{locationToDisplay}</b>.
+        Now displaying sponsors related to <b>{placeName}</b>.
         <br />
         <Button variant="text" className="change-location" onClick={reset}>Change location</Button>
       </>

@@ -72,6 +72,7 @@ export const Bill = () => {
   const { sessionYear, printNo } = useParams();
   const [bill, setBill] = useState();
   const [committee, setCommittee] = useState();
+  const [placeName, setPlaceName] = useState("");
 
   const fetched = !!bill;
   const isSenate = bill?.billType?.chamber?.toLowerCase() === 'senate';
@@ -101,6 +102,17 @@ export const Bill = () => {
 
     fetchCommittee();
   }, [bill, sessionYear]);
+
+  useEffect(() => {
+    const setPlaceNameFromStorage = () => {
+      setPlaceName(window.sessionStorage.getItem("placeName") || "[CITY, ZIP]");
+    };
+    setPlaceNameFromStorage();
+    window.addEventListener('storage', setPlaceNameFromStorage);
+    return () => {
+      window.removeEventListener('storage', setPlaceNameFromStorage);
+    }
+  }, []);
 
   if (!bill)
     return (
@@ -160,7 +172,7 @@ export const Bill = () => {
         <h4>Script when calling your representative:</h4>
         <div className="script">
           <p>
-            Hi, my name is [NAME] and I&#39;m a constituent from [CITY, ZIP].
+            Hi, my name is [NAME] and I&#39;m a constituent from {placeName}.
             <br />
             <br />
             I&#39;m calling to ask that [REP/SEN NAME] support {printNo}.
