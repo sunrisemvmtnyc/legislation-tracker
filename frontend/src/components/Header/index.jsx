@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 import "./Header.css";
 import sunriseImage from "../../assets/logo-sunrise-movement-black-300x86.png";
-import LocForm from "./LocForm";
 
 function Header() {
   return (
@@ -13,7 +12,6 @@ function Header() {
           NY state<br />legislative tracker
         </div>
       </Link>
-      <LocForm />
       <div className="header-actions">
         <a className="header-get-involved" href="https://sunrisenyc.org/get-involved" target="_blank" rel="noreferrer">Get involved</a>
         <div className="header-navbar">

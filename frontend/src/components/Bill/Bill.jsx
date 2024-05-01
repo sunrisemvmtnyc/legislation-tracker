@@ -1,6 +1,7 @@
 import { PropTypes } from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import LocForm from "./LocForm";
 import './Bill.css';
 
 function getSponsorNumber(billData) {
@@ -119,6 +120,7 @@ export const Bill = () => {
   return (
     <div className="bill-content">
       <div className="summary">
+        <LocForm />
         <h2>{title}</h2>
         <p>{summary}</p>
         <div className="category">
