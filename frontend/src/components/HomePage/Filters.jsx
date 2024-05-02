@@ -45,6 +45,7 @@ const Filters = ({ setSearchTerm }) => {
       <Dropdown
         id="legislator-select"
         label="Legislator Name"
+        // TODO: populate with actual legislator names
         options={[
           {
             displayName: 'Pete Harckham',
@@ -79,7 +80,7 @@ const Filters = ({ setSearchTerm }) => {
 };
 
 Filters.propTypes = {
-  setSearchTerm: PropTypes.func,
+  setSearchTerm: PropTypes.func.isRequired,
 };
 
 export default Filters;

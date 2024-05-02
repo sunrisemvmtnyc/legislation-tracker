@@ -4,11 +4,10 @@ import './HomePage.css';
 import Card from './Card';
 import Banner from './Banner';
 import Filters from './Filters';
-import { createQueryStr } from '../../utils';
 
 const HomePage = () => {
   const [bills, setBills] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('*');
   const [categoryMappings, setCategoryMappings] = useState({});
   const [categories, setCategories] = useState({});
 
@@ -24,7 +23,10 @@ const HomePage = () => {
       let done = false;
       while (!done) {
         try {
-          const queryStr = createQueryStr({ offset, term: searchTerm });
+          const queryStr = new URLSearchParams({
+            offset,
+            term: searchTerm,
+          }).toString();
           const res = await fetch(`/api/v1/bills/2023/search?${queryStr}`, {
             signal: abortController.signal,
           });

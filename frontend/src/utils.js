@@ -9,7 +9,3 @@ export function getSponsorMembers(billsResult) {
     coSponsors: coSponsorMembers,
   };
 }
-
-export function createQueryStr(params) {
-  return new URLSearchParams(params).toString();
-}
