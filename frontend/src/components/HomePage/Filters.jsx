@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { TAGS, BILL_STATUSES, SEARCH_QUERY_KEY_MAP } from '../../constants';
+import { BILL_STATUSES, SEARCH_QUERY_KEY_MAP } from '../../constants';
 import Dropdown from './Dropdown';
 import './Filters.css';
 
-const Filters = ({ setSearchTerm }) => {
+const Filters = ({ categoryList, setSearchTerm, setCategoryFilter }) => {
   // creates ElasticSearch query string
   const [searchTermsObj, setSearchTermsObj] = useState({});
 
@@ -70,16 +70,19 @@ const Filters = ({ setSearchTerm }) => {
       <Dropdown
         id="category-select"
         label="Bill Category"
-        options={TAGS.map((tag) => ({
-          displayName: tag,
-          value: tag,
+        options={categoryList.map((category) => ({
+          displayName: category,
+          value: category,
         }))}
+        updateFilter={setCategoryFilter}
       />
     </div>
   );
 };
 
 Filters.propTypes = {
+  categoryList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setCategoryFilter: PropTypes.func.isRequired,
   setSearchTerm: PropTypes.func.isRequired,
 };
 

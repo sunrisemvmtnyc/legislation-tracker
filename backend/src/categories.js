@@ -57,6 +57,8 @@ export const categoryMapping = () => {
   // However, there is no leading zero from the api
   // eg, https://legislation.nysenate.gov/bills/2023/S2016
   return {
+    // TODO: REMOVE BEFORE MERGING
+    A2229: ['renews'],
     S2016: ['renews'],
     S2935B: ['renews'],
     S2129: ['renews'],

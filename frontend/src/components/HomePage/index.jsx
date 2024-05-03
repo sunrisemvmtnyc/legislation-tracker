@@ -10,6 +10,9 @@ const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('*');
   const [categoryMappings, setCategoryMappings] = useState({});
   const [categories, setCategories] = useState({});
+  const [categoryFilter, setCategoryFilter] = useState([]);
+
+  const categoryList = Object.keys(categories);
 
   // fetch bills
   useEffect(() => {
@@ -26,6 +29,7 @@ const HomePage = () => {
           const queryStr = new URLSearchParams({
             offset,
             term: searchTerm,
+            categories: categoryFilter?.join(','),
           }).toString();
           const res = await fetch(`/api/v1/bills/2023/search?${queryStr}`, {
             signal: abortController.signal,
@@ -49,7 +53,7 @@ const HomePage = () => {
       abortController.abort();
       setBills([]);
     };
-  }, [searchTerm]);
+  }, [categoryFilter, searchTerm]);
 
   // fetch category mappings and categories
   useEffect(() => {
@@ -93,7 +97,11 @@ const HomePage = () => {
       <Banner />
       <div id="home-page">
         <h1>Sunrise featured bills</h1>
-        <Filters setSearchTerm={setSearchTerm} />
+        <Filters
+          categoryList={categoryList}
+          setCategoryFilter={setCategoryFilter}
+          setSearchTerm={setSearchTerm}
+        />
         <div id="home-bill-grid">
           {bills.map((bill) => (
             <Card
