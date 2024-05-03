@@ -43,6 +43,7 @@ app.get('/api/v1/bills/:year/search', async (req, res, next) => {
   const offset = req.query.offset || 1;
   const sort = '_score:desc,session:desc'; // taken from leg-API sample app
   const term = req.query.term || '*';
+  const categories = req.query.categories; // comma-separated list of strings (e.g. 'fix-mta,renews,ofw')
 
   if (process.env.MOCK_DATA === 'true') {
     const file = fs.readFileSync(`mock/search.json`).toString();
@@ -69,6 +70,18 @@ app.get('/api/v1/bills/:year/search', async (req, res, next) => {
       'Did not successfully retrieve bills from legislation.nysenate.gov. Response from API was marked as a failure.'
     );
   } else {
+    // filter bills by category
+    if (categories) {
+      const categoryFilters = categories.split(',')
+      // TODO: ensure resultant size matches limit, if enough bills across all pages match
+      out.result.items = out.result.items.filter((bill) =>
+      categoryFilters.some((categoryToFilter) =>
+          categoryMapping()[bill.result.basePrintNo]?.includes(categoryToFilter)
+        )
+      );
+      out.result.size = out.result.items.length;
+      out.total = out.result.items.length;
+    }
     res.json(out);
   }
 });

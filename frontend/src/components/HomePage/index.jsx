@@ -37,6 +37,7 @@ const HomePage = () => {
           const queryStr = new URLSearchParams({
             offset,
             term: searchTerm,
+            categories: categoryFilter?.join(','),
           }).toString();
           const res = await fetch(`/api/v1/bills/2023/search?${queryStr}`, {
             signal: abortController.signal,
@@ -60,7 +61,7 @@ const HomePage = () => {
       abortController.abort();
       setBills([]);
     };
-  }, [searchTerm]);
+  }, [categoryFilter, searchTerm]);
 
   // Fetch campaign mappings and campaigns
   useEffect(() => {
