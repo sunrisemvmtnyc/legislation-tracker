@@ -23,3 +23,14 @@ export const openStatesApi = (path, params = {}) => {
 
   return `${URL_BASE}/${path}?` + new URLSearchParams(params).toString();
 };
+
+export const openStatesGeoApi = (path, params = {}) => {
+  // Add API key to all requests
+  params.apikey = process.env.OPEN_STATES_KEY;
+  // params.lat
+  // params.lon
+
+  params.include = 'offices';
+
+  return `${URL_BASE}/${path}?` + new URLSearchParams(params).toString();
+};

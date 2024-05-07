@@ -1,6 +1,7 @@
 import { PropTypes } from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import LocForm from "./LocForm";
 import './Bill.css';
 
 function getSponsorNumber(billData) {
@@ -71,6 +72,7 @@ export const Bill = () => {
   const { sessionYear, printNo } = useParams();
   const [bill, setBill] = useState();
   const [committee, setCommittee] = useState();
+  const [placeName, setPlaceName] = useState("");
 
   const fetched = !!bill;
   const isSenate = bill?.billType?.chamber?.toLowerCase() === 'senate';
@@ -101,6 +103,17 @@ export const Bill = () => {
     fetchCommittee();
   }, [bill, sessionYear]);
 
+  useEffect(() => {
+    const setPlaceNameFromStorage = () => {
+      setPlaceName(window.sessionStorage.getItem("placeName") || "[CITY, ZIP]");
+    };
+    setPlaceNameFromStorage();
+    window.addEventListener('storage', setPlaceNameFromStorage);
+    return () => {
+      window.removeEventListener('storage', setPlaceNameFromStorage);
+    }
+  }, []);
+
   if (!bill)
     return (
       <div>
@@ -119,6 +132,7 @@ export const Bill = () => {
   return (
     <div className="bill-content">
       <div className="summary">
+        <LocForm />
         <h2>{title}</h2>
         <p>{summary}</p>
         <div className="category">
@@ -158,7 +172,7 @@ export const Bill = () => {
         <h4>Script when calling your representative:</h4>
         <div className="script">
           <p>
-            Hi, my name is [NAME] and I&#39;m a constituent from [CITY, ZIP].
+            Hi, my name is [NAME] and I&#39;m a constituent from {placeName}.
             <br />
             <br />
             I&#39;m calling to ask that [REP/SEN NAME] support {printNo}.
