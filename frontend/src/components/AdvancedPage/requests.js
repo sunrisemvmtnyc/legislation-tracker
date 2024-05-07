@@ -59,11 +59,11 @@ export const fetchBillsBlocks = async (
   setAssemblyBills
 ) => {
   const billIds = Object.keys(billCampaignMapping);
-  const pages = billIds
-    .map((_, i) => {
-      return i % PAGE_SIZE === 0 ? billIds.slice(i, i + PAGE_SIZE) : null;
-    })
-    .filter((p) => p);
+
+  const pages = [];
+  for (let i = 0; i < billIds.length; i += PAGE_SIZE) {
+    pages.push(billIds.slice(i, i + PAGE_SIZE));
+  }
 
   for (let i = 0; i < pages.length; i++) {
     const page = pages[i];
