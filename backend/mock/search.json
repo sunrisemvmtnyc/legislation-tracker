@@ -1,0 +1,3536 @@
+{
+    "success": true,
+    "message": "",
+    "responseType": "search-results list",
+    "total": 22342,
+    "offsetStart": 1,
+    "offsetEnd": 100,
+    "limit": 100,
+    "result": {
+        "items": [
+            {
+                "result": {
+                    "basePrintNo": "A2229",
+                    "session": 2023,
+                    "basePrintNoStr": "A2229-2023",
+                    "printNo": "A2229",
+                    "billType": {
+                        "chamber": "ASSEMBLY",
+                        "desc": "Assembly",
+                        "resolution": false
+                    },
+                    "title": "Relates to creating annual reporting obligations by municipal housing authorities to the authorities budget office with respect to state-funded activities of such municipal housing authorities",
+                    "activeVersion": "",
+                    "year": 2024,
+                    "publishedDateTime": "2023-01-25T14:51:40.023057",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 1089,
+                            "chamber": "ASSEMBLY",
+                            "incumbent": true,
+                            "fullName": "Alicia Hyndman",
+                            "shortName": "HYNDMAN",
+                            "imgName": "no_image.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 2140,
+                            "sessionYear": 2023,
+                            "districtCode": 29
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Relates to creating annual reporting obligations by municipal housing authorities to the authorities budget office with respect to state-funded activities of such municipal housing authorities.",
+                    "signed": false,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "IN_ASSEMBLY_COMM",
+                        "statusDesc": "In Assembly Committee",
+                        "actionDate": "2024-01-03",
+                        "committeeName": "Corporations, Authorities And Commissions",
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_ASSEMBLY_COMM",
+                                "statusDesc": "In Assembly Committee",
+                                "actionDate": "2024-01-03",
+                                "committeeName": "Corporations, Authorities And Commissions",
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 1
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "A2229",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A2229-2023",
+                                    "printNo": "A2229",
+                                    "version": ""
+                                },
+                                "date": "2023-01-25",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO CORPORATIONS, AUTHORITIES AND COMMISSIONS"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A2229",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A2229-2023",
+                                    "printNo": "A2229",
+                                    "version": ""
+                                },
+                                "date": "2024-01-03",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 2,
+                                "text": "REFERRED TO CORPORATIONS, AUTHORITIES AND COMMISSIONS"
+                            }
+                        ],
+                        "size": 2
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2023-01-25T15:25:45.637346"
+                            }
+                        },
+                        "size": 1
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            },
+            {
+                "result": {
+                    "basePrintNo": "S8064",
+                    "session": 2023,
+                    "basePrintNoStr": "S8064-2023",
+                    "printNo": "S8064",
+                    "billType": {
+                        "chamber": "SENATE",
+                        "desc": "Senate",
+                        "resolution": false
+                    },
+                    "title": "Relates to access to certain restroom facilities by employees of a utility entity",
+                    "activeVersion": "",
+                    "year": 2024,
+                    "publishedDateTime": "2024-01-05T13:30:09.332596",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 1512,
+                            "chamber": "SENATE",
+                            "incumbent": true,
+                            "fullName": "Jessica Scarcella-Spanton",
+                            "shortName": "SCARCELLA-SPANTON",
+                            "imgName": "1329_Jessica_Scarcella-Spanton.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 1875,
+                            "sessionYear": 2023,
+                            "districtCode": 23
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Relates to access to certain restroom facilities by employees of a utility entity who is on duty providing utility-related services; provides that a place of business shall not be immune from certain liabilities resulting from such use; defines \"employee of a utility entity\".",
+                    "signed": true,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "SIGNED_BY_GOV",
+                        "statusDesc": "Signed by Governor",
+                        "actionDate": "2024-02-07",
+                        "committeeName": null,
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_SENATE_COMM",
+                                "statusDesc": "In Senate Committee",
+                                "actionDate": "2024-01-05",
+                                "committeeName": "Rules",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SENATE_FLOOR",
+                                "statusDesc": "Senate Floor Calendar",
+                                "actionDate": "2024-01-08",
+                                "committeeName": null,
+                                "billCalNo": 51
+                            },
+                            {
+                                "statusType": "PASSED_SENATE",
+                                "statusDesc": "Passed Senate",
+                                "actionDate": "2024-01-17",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "IN_ASSEMBLY_COMM",
+                                "statusDesc": "In Assembly Committee",
+                                "actionDate": "2024-01-17",
+                                "committeeName": "Codes",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "ASSEMBLY_FLOOR",
+                                "statusDesc": "Assembly Floor Calendar",
+                                "actionDate": "2024-01-29",
+                                "committeeName": null,
+                                "billCalNo": 281
+                            },
+                            {
+                                "statusType": "PASSED_ASSEMBLY",
+                                "statusDesc": "Passed Assembly",
+                                "actionDate": "2024-01-30",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "DELIVERED_TO_GOV",
+                                "statusDesc": "Delivered to Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SIGNED_BY_GOV",
+                                "statusDesc": "Signed by Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 8
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8064",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8064-2023",
+                                    "printNo": "S8064",
+                                    "version": ""
+                                },
+                                "date": "2024-01-05",
+                                "chamber": "SENATE",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO RULES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8064",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8064-2023",
+                                    "printNo": "S8064",
+                                    "version": ""
+                                },
+                                "date": "2024-01-08",
+                                "chamber": "SENATE",
+                                "sequenceNo": 2,
+                                "text": "ORDERED TO THIRD READING CAL.51"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8064",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8064-2023",
+                                    "printNo": "S8064",
+                                    "version": ""
+                                },
+                                "date": "2024-01-17",
+                                "chamber": "SENATE",
+                                "sequenceNo": 3,
+                                "text": "PASSED SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8064",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8064-2023",
+                                    "printNo": "S8064",
+                                    "version": ""
+                                },
+                                "date": "2024-01-17",
+                                "chamber": "SENATE",
+                                "sequenceNo": 4,
+                                "text": "DELIVERED TO ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8064",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8064-2023",
+                                    "printNo": "S8064",
+                                    "version": ""
+                                },
+                                "date": "2024-01-17",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 5,
+                                "text": "REFERRED TO CODES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8064",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8064-2023",
+                                    "printNo": "S8064",
+                                    "version": ""
+                                },
+                                "date": "2024-01-29",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 6,
+                                "text": "SUBSTITUTED FOR A8541"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8064",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8064-2023",
+                                    "printNo": "S8064",
+                                    "version": ""
+                                },
+                                "date": "2024-01-29",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 7,
+                                "text": "ORDERED TO THIRD READING CAL.281"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8064",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8064-2023",
+                                    "printNo": "S8064",
+                                    "version": ""
+                                },
+                                "date": "2024-01-30",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 8,
+                                "text": "PASSED ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8064",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8064-2023",
+                                    "printNo": "S8064",
+                                    "version": ""
+                                },
+                                "date": "2024-01-30",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 9,
+                                "text": "RETURNED TO SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8064",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8064-2023",
+                                    "printNo": "S8064",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "SENATE",
+                                "sequenceNo": 10,
+                                "text": "DELIVERED TO GOVERNOR"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8064",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8064-2023",
+                                    "printNo": "S8064",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "SENATE",
+                                "sequenceNo": 11,
+                                "text": "SIGNED CHAP.72"
+                            }
+                        ],
+                        "size": 11
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2024-01-05T13:30:09.332596"
+                            }
+                        },
+                        "size": 1
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            },
+            {
+                "result": {
+                    "basePrintNo": "S8089",
+                    "session": 2023,
+                    "basePrintNoStr": "S8089-2023",
+                    "printNo": "S8089",
+                    "billType": {
+                        "chamber": "SENATE",
+                        "desc": "Senate",
+                        "resolution": false
+                    },
+                    "title": "Establishes a dyslexia and dysgraphia task force and implementing the findings of such task force",
+                    "activeVersion": "",
+                    "year": 2024,
+                    "publishedDateTime": "2024-01-05T14:13:55.5054",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 438,
+                            "chamber": "SENATE",
+                            "incumbent": true,
+                            "fullName": "Brad Hoylman-Sigal",
+                            "shortName": "HOYLMAN-SIGAL",
+                            "imgName": "438_brad_hoylman.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 2313,
+                            "sessionYear": 2023,
+                            "districtCode": 47
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Establishes a dyslexia and dysgraphia task force; implements the findings of such task force.",
+                    "signed": true,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "SIGNED_BY_GOV",
+                        "statusDesc": "Signed by Governor",
+                        "actionDate": "2024-02-07",
+                        "committeeName": null,
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_SENATE_COMM",
+                                "statusDesc": "In Senate Committee",
+                                "actionDate": "2024-01-05",
+                                "committeeName": "Rules",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SENATE_FLOOR",
+                                "statusDesc": "Senate Floor Calendar",
+                                "actionDate": "2024-01-08",
+                                "committeeName": null,
+                                "billCalNo": 69
+                            },
+                            {
+                                "statusType": "PASSED_SENATE",
+                                "statusDesc": "Passed Senate",
+                                "actionDate": "2024-01-16",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "IN_ASSEMBLY_COMM",
+                                "statusDesc": "In Assembly Committee",
+                                "actionDate": "2024-01-16",
+                                "committeeName": "Education",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "ASSEMBLY_FLOOR",
+                                "statusDesc": "Assembly Floor Calendar",
+                                "actionDate": "2024-02-05",
+                                "committeeName": null,
+                                "billCalNo": 292
+                            },
+                            {
+                                "statusType": "PASSED_ASSEMBLY",
+                                "statusDesc": "Passed Assembly",
+                                "actionDate": "2024-02-05",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "DELIVERED_TO_GOV",
+                                "statusDesc": "Delivered to Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SIGNED_BY_GOV",
+                                "statusDesc": "Signed by Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 8
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8089",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8089-2023",
+                                    "printNo": "S8089",
+                                    "version": ""
+                                },
+                                "date": "2024-01-05",
+                                "chamber": "SENATE",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO RULES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8089",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8089-2023",
+                                    "printNo": "S8089",
+                                    "version": ""
+                                },
+                                "date": "2024-01-08",
+                                "chamber": "SENATE",
+                                "sequenceNo": 2,
+                                "text": "ORDERED TO THIRD READING CAL.69"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8089",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8089-2023",
+                                    "printNo": "S8089",
+                                    "version": ""
+                                },
+                                "date": "2024-01-16",
+                                "chamber": "SENATE",
+                                "sequenceNo": 3,
+                                "text": "PASSED SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8089",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8089-2023",
+                                    "printNo": "S8089",
+                                    "version": ""
+                                },
+                                "date": "2024-01-16",
+                                "chamber": "SENATE",
+                                "sequenceNo": 4,
+                                "text": "DELIVERED TO ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8089",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8089-2023",
+                                    "printNo": "S8089",
+                                    "version": ""
+                                },
+                                "date": "2024-01-16",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 5,
+                                "text": "REFERRED TO EDUCATION"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8089",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8089-2023",
+                                    "printNo": "S8089",
+                                    "version": ""
+                                },
+                                "date": "2024-02-05",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 6,
+                                "text": "SUBSTITUTED FOR A8492"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8089",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8089-2023",
+                                    "printNo": "S8089",
+                                    "version": ""
+                                },
+                                "date": "2024-02-05",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 7,
+                                "text": "ORDERED TO THIRD READING CAL.292"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8089",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8089-2023",
+                                    "printNo": "S8089",
+                                    "version": ""
+                                },
+                                "date": "2024-02-05",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 8,
+                                "text": "PASSED ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8089",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8089-2023",
+                                    "printNo": "S8089",
+                                    "version": ""
+                                },
+                                "date": "2024-02-05",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 9,
+                                "text": "RETURNED TO SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8089",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8089-2023",
+                                    "printNo": "S8089",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "SENATE",
+                                "sequenceNo": 10,
+                                "text": "DELIVERED TO GOVERNOR"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8089",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8089-2023",
+                                    "printNo": "S8089",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "SENATE",
+                                "sequenceNo": 11,
+                                "text": "SIGNED CHAP.76"
+                            }
+                        ],
+                        "size": 11
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2024-01-05T14:13:55.505400"
+                            }
+                        },
+                        "size": 1
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            },
+            {
+                "result": {
+                    "basePrintNo": "S8006",
+                    "session": 2023,
+                    "basePrintNoStr": "S8006-2023",
+                    "printNo": "S8006",
+                    "billType": {
+                        "chamber": "SENATE",
+                        "desc": "Senate",
+                        "resolution": false
+                    },
+                    "title": "Relates to the collection of certain demographic information by certain state agencies, boards and commissions",
+                    "activeVersion": "",
+                    "year": 2024,
+                    "publishedDateTime": "2024-01-05T12:30:51.714051",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 438,
+                            "chamber": "SENATE",
+                            "incumbent": true,
+                            "fullName": "Brad Hoylman-Sigal",
+                            "shortName": "HOYLMAN-SIGAL",
+                            "imgName": "438_brad_hoylman.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 2313,
+                            "sessionYear": 2023,
+                            "districtCode": 47
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Relates to the collection of certain demographic information about the sexual orientation and gender identity or expression of residents by certain state agencies, boards and commissions; requires a progress report by all agencies, boards and commissions who are unable to comply.",
+                    "signed": true,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "SIGNED_BY_GOV",
+                        "statusDesc": "Signed by Governor",
+                        "actionDate": "2024-02-07",
+                        "committeeName": null,
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_SENATE_COMM",
+                                "statusDesc": "In Senate Committee",
+                                "actionDate": "2024-01-05",
+                                "committeeName": "Rules",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SENATE_FLOOR",
+                                "statusDesc": "Senate Floor Calendar",
+                                "actionDate": "2024-01-08",
+                                "committeeName": null,
+                                "billCalNo": 15
+                            },
+                            {
+                                "statusType": "PASSED_SENATE",
+                                "statusDesc": "Passed Senate",
+                                "actionDate": "2024-01-24",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "IN_ASSEMBLY_COMM",
+                                "statusDesc": "In Assembly Committee",
+                                "actionDate": "2024-01-24",
+                                "committeeName": "Governmental Operations",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "ASSEMBLY_FLOOR",
+                                "statusDesc": "Assembly Floor Calendar",
+                                "actionDate": "2024-02-05",
+                                "committeeName": null,
+                                "billCalNo": 256
+                            },
+                            {
+                                "statusType": "PASSED_ASSEMBLY",
+                                "statusDesc": "Passed Assembly",
+                                "actionDate": "2024-02-05",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "DELIVERED_TO_GOV",
+                                "statusDesc": "Delivered to Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SIGNED_BY_GOV",
+                                "statusDesc": "Signed by Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 8
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8006",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8006-2023",
+                                    "printNo": "S8006",
+                                    "version": ""
+                                },
+                                "date": "2024-01-05",
+                                "chamber": "SENATE",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO RULES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8006",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8006-2023",
+                                    "printNo": "S8006",
+                                    "version": ""
+                                },
+                                "date": "2024-01-08",
+                                "chamber": "SENATE",
+                                "sequenceNo": 2,
+                                "text": "ORDERED TO THIRD READING CAL.15"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8006",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8006-2023",
+                                    "printNo": "S8006",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 3,
+                                "text": "PASSED SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8006",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8006-2023",
+                                    "printNo": "S8006",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 4,
+                                "text": "DELIVERED TO ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8006",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8006-2023",
+                                    "printNo": "S8006",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 5,
+                                "text": "REFERRED TO GOVERNMENTAL OPERATIONS"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8006",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8006-2023",
+                                    "printNo": "S8006",
+                                    "version": ""
+                                },
+                                "date": "2024-02-05",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 6,
+                                "text": "SUBSTITUTED FOR A8548"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8006",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8006-2023",
+                                    "printNo": "S8006",
+                                    "version": ""
+                                },
+                                "date": "2024-02-05",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 7,
+                                "text": "ORDERED TO THIRD READING CAL.256"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8006",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8006-2023",
+                                    "printNo": "S8006",
+                                    "version": ""
+                                },
+                                "date": "2024-02-05",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 8,
+                                "text": "PASSED ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8006",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8006-2023",
+                                    "printNo": "S8006",
+                                    "version": ""
+                                },
+                                "date": "2024-02-05",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 9,
+                                "text": "RETURNED TO SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8006",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8006-2023",
+                                    "printNo": "S8006",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "SENATE",
+                                "sequenceNo": 10,
+                                "text": "DELIVERED TO GOVERNOR"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8006",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8006-2023",
+                                    "printNo": "S8006",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "SENATE",
+                                "sequenceNo": 11,
+                                "text": "SIGNED CHAP.61"
+                            }
+                        ],
+                        "size": 11
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2024-01-05T12:30:51.714051"
+                            }
+                        },
+                        "size": 1
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            },
+            {
+                "result": {
+                    "basePrintNo": "S8013",
+                    "session": 2023,
+                    "basePrintNoStr": "S8013-2023",
+                    "printNo": "S8013",
+                    "billType": {
+                        "chamber": "SENATE",
+                        "desc": "Senate",
+                        "resolution": false
+                    },
+                    "title": "Establishes a registry for children's non-regulated camps; repealer",
+                    "activeVersion": "",
+                    "year": 2024,
+                    "publishedDateTime": "2024-01-05T12:33:03.872714",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 1223,
+                            "chamber": "SENATE",
+                            "incumbent": true,
+                            "fullName": "Kevin Thomas",
+                            "shortName": "THOMAS",
+                            "imgName": "1043_Kevin_Thomas.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 2040,
+                            "sessionYear": 2023,
+                            "districtCode": 6
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Requires the department of health to establish and maintain a registry for the purpose of providing education and outreach to children's non-regulated camps.",
+                    "signed": true,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "SIGNED_BY_GOV",
+                        "statusDesc": "Signed by Governor",
+                        "actionDate": "2024-02-07",
+                        "committeeName": null,
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_SENATE_COMM",
+                                "statusDesc": "In Senate Committee",
+                                "actionDate": "2024-01-05",
+                                "committeeName": "Rules",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SENATE_FLOOR",
+                                "statusDesc": "Senate Floor Calendar",
+                                "actionDate": "2024-01-08",
+                                "committeeName": null,
+                                "billCalNo": 22
+                            },
+                            {
+                                "statusType": "PASSED_SENATE",
+                                "statusDesc": "Passed Senate",
+                                "actionDate": "2024-01-29",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "IN_ASSEMBLY_COMM",
+                                "statusDesc": "In Assembly Committee",
+                                "actionDate": "2024-01-29",
+                                "committeeName": "Consumer Affairs And Protection",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "ASSEMBLY_FLOOR",
+                                "statusDesc": "Assembly Floor Calendar",
+                                "actionDate": "2024-01-30",
+                                "committeeName": null,
+                                "billCalNo": 259
+                            },
+                            {
+                                "statusType": "PASSED_ASSEMBLY",
+                                "statusDesc": "Passed Assembly",
+                                "actionDate": "2024-01-30",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "DELIVERED_TO_GOV",
+                                "statusDesc": "Delivered to Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SIGNED_BY_GOV",
+                                "statusDesc": "Signed by Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 8
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8013",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8013-2023",
+                                    "printNo": "S8013",
+                                    "version": ""
+                                },
+                                "date": "2024-01-05",
+                                "chamber": "SENATE",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO RULES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8013",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8013-2023",
+                                    "printNo": "S8013",
+                                    "version": ""
+                                },
+                                "date": "2024-01-08",
+                                "chamber": "SENATE",
+                                "sequenceNo": 2,
+                                "text": "ORDERED TO THIRD READING CAL.22"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8013",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8013-2023",
+                                    "printNo": "S8013",
+                                    "version": ""
+                                },
+                                "date": "2024-01-29",
+                                "chamber": "SENATE",
+                                "sequenceNo": 3,
+                                "text": "PASSED SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8013",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8013-2023",
+                                    "printNo": "S8013",
+                                    "version": ""
+                                },
+                                "date": "2024-01-29",
+                                "chamber": "SENATE",
+                                "sequenceNo": 4,
+                                "text": "DELIVERED TO ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8013",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8013-2023",
+                                    "printNo": "S8013",
+                                    "version": ""
+                                },
+                                "date": "2024-01-29",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 5,
+                                "text": "REFERRED TO CONSUMER AFFAIRS AND PROTECTION"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8013",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8013-2023",
+                                    "printNo": "S8013",
+                                    "version": ""
+                                },
+                                "date": "2024-01-30",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 6,
+                                "text": "SUBSTITUTED FOR A8552"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8013",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8013-2023",
+                                    "printNo": "S8013",
+                                    "version": ""
+                                },
+                                "date": "2024-01-30",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 7,
+                                "text": "ORDERED TO THIRD READING CAL.259"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8013",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8013-2023",
+                                    "printNo": "S8013",
+                                    "version": ""
+                                },
+                                "date": "2024-01-30",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 8,
+                                "text": "PASSED ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8013",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8013-2023",
+                                    "printNo": "S8013",
+                                    "version": ""
+                                },
+                                "date": "2024-01-30",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 9,
+                                "text": "RETURNED TO SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8013",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8013-2023",
+                                    "printNo": "S8013",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "SENATE",
+                                "sequenceNo": 10,
+                                "text": "DELIVERED TO GOVERNOR"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S8013",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S8013-2023",
+                                    "printNo": "S8013",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "SENATE",
+                                "sequenceNo": 11,
+                                "text": "SIGNED CHAP.63"
+                            }
+                        ],
+                        "size": 11
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2024-01-05T12:33:03.872714"
+                            }
+                        },
+                        "size": 1
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            },
+            {
+                "result": {
+                    "basePrintNo": "S7044",
+                    "session": 2023,
+                    "basePrintNoStr": "S7044-2023",
+                    "printNo": "S7044A",
+                    "billType": {
+                        "chamber": "SENATE",
+                        "desc": "Senate",
+                        "resolution": false
+                    },
+                    "title": "Establishes the mental health educational opportunity program and the mental health higher educational opportunity program",
+                    "activeVersion": "A",
+                    "year": 2024,
+                    "publishedDateTime": "2023-05-17T11:09:08.998677",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 1515,
+                            "chamber": "SENATE",
+                            "incumbent": true,
+                            "fullName": "Lea Webb",
+                            "shortName": "WEBB",
+                            "imgName": "1332_Lea_Webb.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 1878,
+                            "sessionYear": 2023,
+                            "districtCode": 52
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Establishes the mental health educational opportunity program and the mental health higher educational opportunity program to provide additional educational opportunities for students at certain universities and colleges in the state to enroll in academic programs that lead to a degree or degrees required for licensure in any of the mental health professions.",
+                    "signed": false,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "IN_SENATE_COMM",
+                        "statusDesc": "In Senate Committee",
+                        "actionDate": "2024-01-26",
+                        "committeeName": "Higher Education",
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_SENATE_COMM",
+                                "statusDesc": "In Senate Committee",
+                                "actionDate": "2024-01-26",
+                                "committeeName": "Higher Education",
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 1
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "S7044",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S7044-2023",
+                                    "printNo": "S7044",
+                                    "version": ""
+                                },
+                                "date": "2023-05-17",
+                                "chamber": "SENATE",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO HIGHER EDUCATION"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S7044",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S7044-2023",
+                                    "printNo": "S7044",
+                                    "version": ""
+                                },
+                                "date": "2024-01-03",
+                                "chamber": "SENATE",
+                                "sequenceNo": 2,
+                                "text": "REFERRED TO HIGHER EDUCATION"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S7044",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S7044-2023",
+                                    "printNo": "S7044",
+                                    "version": ""
+                                },
+                                "date": "2024-01-26",
+                                "chamber": "SENATE",
+                                "sequenceNo": 3,
+                                "text": "AMEND (T) AND RECOMMIT TO HIGHER EDUCATION"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S7044",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S7044-2023",
+                                    "printNo": "S7044A",
+                                    "version": "A"
+                                },
+                                "date": "2024-01-26",
+                                "chamber": "SENATE",
+                                "sequenceNo": 4,
+                                "text": "PRINT NUMBER 7044A"
+                            }
+                        ],
+                        "size": 4
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2023-05-17T11:09:08.998677"
+                            },
+                            "A": {
+                                "version": "A",
+                                "published": true,
+                                "effectDateTime": "2024-01-26T00:00"
+                            }
+                        },
+                        "size": 2
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            },
+            {
+                "result": {
+                    "basePrintNo": "A3981",
+                    "session": 2023,
+                    "basePrintNoStr": "A3981-2023",
+                    "printNo": "A3981",
+                    "billType": {
+                        "chamber": "ASSEMBLY",
+                        "desc": "Assembly",
+                        "resolution": false
+                    },
+                    "title": "Relates to hospital care for mastectomy, lumpectomy, and lymph node dissection patients",
+                    "activeVersion": "",
+                    "year": 2024,
+                    "publishedDateTime": "2023-02-08T14:19:13.761524",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 1476,
+                            "chamber": "ASSEMBLY",
+                            "incumbent": true,
+                            "fullName": "Chantel Jackson",
+                            "shortName": "JACKSON",
+                            "imgName": "no_image.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 2205,
+                            "sessionYear": 2023,
+                            "districtCode": 79
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Requires mastectomy surgery, lymph node dissection or lumpectomy counseling include information on going breastless or flat.",
+                    "signed": false,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "IN_SENATE_COMM",
+                        "statusDesc": "In Senate Committee",
+                        "actionDate": "2024-02-07",
+                        "committeeName": "Women's Issues",
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_ASSEMBLY_COMM",
+                                "statusDesc": "In Assembly Committee",
+                                "actionDate": "2023-05-23",
+                                "committeeName": "Rules",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "ASSEMBLY_FLOOR",
+                                "statusDesc": "Assembly Floor Calendar",
+                                "actionDate": "2024-01-03",
+                                "committeeName": null,
+                                "billCalNo": 105
+                            },
+                            {
+                                "statusType": "PASSED_ASSEMBLY",
+                                "statusDesc": "Passed Assembly",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "IN_SENATE_COMM",
+                                "statusDesc": "In Senate Committee",
+                                "actionDate": "2024-02-07",
+                                "committeeName": "Women's Issues",
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 4
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "A3981",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A3981-2023",
+                                    "printNo": "A3981",
+                                    "version": ""
+                                },
+                                "date": "2023-02-08",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO HEALTH"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A3981",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A3981-2023",
+                                    "printNo": "A3981",
+                                    "version": ""
+                                },
+                                "date": "2023-05-23",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 2,
+                                "text": "REPORTED REFERRED TO RULES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A3981",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A3981-2023",
+                                    "printNo": "A3981",
+                                    "version": ""
+                                },
+                                "date": "2023-05-24",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 3,
+                                "text": "REPORTED"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A3981",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A3981-2023",
+                                    "printNo": "A3981",
+                                    "version": ""
+                                },
+                                "date": "2023-05-24",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 4,
+                                "text": "RULES REPORT CAL.218"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A3981",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A3981-2023",
+                                    "printNo": "A3981",
+                                    "version": ""
+                                },
+                                "date": "2023-05-24",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 5,
+                                "text": "ORDERED TO THIRD READING RULES CAL.218"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A3981",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A3981-2023",
+                                    "printNo": "A3981",
+                                    "version": ""
+                                },
+                                "date": "2023-05-24",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 6,
+                                "text": "PASSED ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A3981",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A3981-2023",
+                                    "printNo": "A3981",
+                                    "version": ""
+                                },
+                                "date": "2023-05-24",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 7,
+                                "text": "DELIVERED TO SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A3981",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A3981-2023",
+                                    "printNo": "A3981",
+                                    "version": ""
+                                },
+                                "date": "2023-05-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 8,
+                                "text": "REFERRED TO WOMEN'S ISSUES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A3981",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A3981-2023",
+                                    "printNo": "A3981",
+                                    "version": ""
+                                },
+                                "date": "2024-01-03",
+                                "chamber": "SENATE",
+                                "sequenceNo": 9,
+                                "text": "DIED IN SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A3981",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A3981-2023",
+                                    "printNo": "A3981",
+                                    "version": ""
+                                },
+                                "date": "2024-01-03",
+                                "chamber": "SENATE",
+                                "sequenceNo": 10,
+                                "text": "RETURNED TO ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A3981",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A3981-2023",
+                                    "printNo": "A3981",
+                                    "version": ""
+                                },
+                                "date": "2024-01-03",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 11,
+                                "text": "ORDERED TO THIRD READING CAL.105"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A3981",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A3981-2023",
+                                    "printNo": "A3981",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 12,
+                                "text": "PASSED ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A3981",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A3981-2023",
+                                    "printNo": "A3981",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 13,
+                                "text": "DELIVERED TO SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A3981",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A3981-2023",
+                                    "printNo": "A3981",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "SENATE",
+                                "sequenceNo": 14,
+                                "text": "REFERRED TO WOMEN'S ISSUES"
+                            }
+                        ],
+                        "size": 14
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2023-02-08T15:13:52.245313"
+                            }
+                        },
+                        "size": 1
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            },
+            {
+                "result": {
+                    "basePrintNo": "A8524",
+                    "session": 2023,
+                    "basePrintNoStr": "A8524-2023",
+                    "printNo": "A8524",
+                    "billType": {
+                        "chamber": "ASSEMBLY",
+                        "desc": "Assembly",
+                        "resolution": false
+                    },
+                    "title": "Relates to licensure requirements and reimbursements for certain home health services; repealer",
+                    "activeVersion": "",
+                    "year": 2024,
+                    "publishedDateTime": "2024-01-05T12:41:31.798344",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 540,
+                            "chamber": "ASSEMBLY",
+                            "incumbent": true,
+                            "fullName": "Amy Paulin",
+                            "shortName": "PAULIN",
+                            "imgName": "540_amy_paulin.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 2160,
+                            "sessionYear": 2023,
+                            "districtCode": 88
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Authorizes certain core public health services to be provided in the home by local health departments without need for licensure; authorizes such services to be eligible to receive reimbursement under title XIX of the federal Social Security Act.",
+                    "signed": true,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "SIGNED_BY_GOV",
+                        "statusDesc": "Signed by Governor",
+                        "actionDate": "2024-02-07",
+                        "committeeName": null,
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_ASSEMBLY_COMM",
+                                "statusDesc": "In Assembly Committee",
+                                "actionDate": "2024-01-05",
+                                "committeeName": "Health",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "ASSEMBLY_FLOOR",
+                                "statusDesc": "Assembly Floor Calendar",
+                                "actionDate": "2024-01-18",
+                                "committeeName": null,
+                                "billCalNo": 244
+                            },
+                            {
+                                "statusType": "PASSED_ASSEMBLY",
+                                "statusDesc": "Passed Assembly",
+                                "actionDate": "2024-01-23",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "IN_SENATE_COMM",
+                                "statusDesc": "In Senate Committee",
+                                "actionDate": "2024-01-23",
+                                "committeeName": "Rules",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SENATE_FLOOR",
+                                "statusDesc": "Senate Floor Calendar",
+                                "actionDate": "2024-01-24",
+                                "committeeName": null,
+                                "billCalNo": 33
+                            },
+                            {
+                                "statusType": "PASSED_SENATE",
+                                "statusDesc": "Passed Senate",
+                                "actionDate": "2024-01-24",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "DELIVERED_TO_GOV",
+                                "statusDesc": "Delivered to Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SIGNED_BY_GOV",
+                                "statusDesc": "Signed by Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 8
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8524",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8524-2023",
+                                    "printNo": "A8524",
+                                    "version": ""
+                                },
+                                "date": "2024-01-05",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO HEALTH"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8524",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8524-2023",
+                                    "printNo": "A8524",
+                                    "version": ""
+                                },
+                                "date": "2024-01-17",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 2,
+                                "text": "REPORTED"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8524",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8524-2023",
+                                    "printNo": "A8524",
+                                    "version": ""
+                                },
+                                "date": "2024-01-18",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 3,
+                                "text": "ADVANCED TO THIRD READING CAL.244"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8524",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8524-2023",
+                                    "printNo": "A8524",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 4,
+                                "text": "PASSED ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8524",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8524-2023",
+                                    "printNo": "A8524",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 5,
+                                "text": "DELIVERED TO SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8524",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8524-2023",
+                                    "printNo": "A8524",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "SENATE",
+                                "sequenceNo": 6,
+                                "text": "REFERRED TO RULES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8524",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8524-2023",
+                                    "printNo": "A8524",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 7,
+                                "text": "SUBSTITUTED FOR S8033"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8524",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8524-2023",
+                                    "printNo": "A8524",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 8,
+                                "text": "3RD READING CAL.33"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8524",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8524-2023",
+                                    "printNo": "A8524",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 9,
+                                "text": "PASSED SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8524",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8524-2023",
+                                    "printNo": "A8524",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 10,
+                                "text": "RETURNED TO ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8524",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8524-2023",
+                                    "printNo": "A8524",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 11,
+                                "text": "DELIVERED TO GOVERNOR"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8524",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8524-2023",
+                                    "printNo": "A8524",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 12,
+                                "text": "SIGNED CHAP.36"
+                            }
+                        ],
+                        "size": 12
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2024-01-05T12:47:26.487192"
+                            }
+                        },
+                        "size": 1
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            },
+            {
+                "result": {
+                    "basePrintNo": "A8531",
+                    "session": 2023,
+                    "basePrintNoStr": "A8531-2023",
+                    "printNo": "A8531",
+                    "billType": {
+                        "chamber": "ASSEMBLY",
+                        "desc": "Assembly",
+                        "resolution": false
+                    },
+                    "title": "Relates to emergency response plans relating to downed wires",
+                    "activeVersion": "",
+                    "year": 2024,
+                    "publishedDateTime": "2024-01-05T16:23:26.018728",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 1258,
+                            "chamber": "ASSEMBLY",
+                            "incumbent": true,
+                            "fullName": "Nader Sayegh",
+                            "shortName": "SAYEGH",
+                            "imgName": "no_image.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 2172,
+                            "sessionYear": 2023,
+                            "districtCode": 90
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Relates to emergency response plans relating to the notification of location of downed wires from a municipal emergency official and to plans to prioritize the securing of downed wires over routine maintenance or other work unrelated to a response to an emergency event.",
+                    "signed": true,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "SIGNED_BY_GOV",
+                        "statusDesc": "Signed by Governor",
+                        "actionDate": "2024-02-07",
+                        "committeeName": null,
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_ASSEMBLY_COMM",
+                                "statusDesc": "In Assembly Committee",
+                                "actionDate": "2024-01-05",
+                                "committeeName": "Corporations, Authorities And Commissions",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "ASSEMBLY_FLOOR",
+                                "statusDesc": "Assembly Floor Calendar",
+                                "actionDate": "2024-01-18",
+                                "committeeName": null,
+                                "billCalNo": 247
+                            },
+                            {
+                                "statusType": "PASSED_ASSEMBLY",
+                                "statusDesc": "Passed Assembly",
+                                "actionDate": "2024-01-23",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "IN_SENATE_COMM",
+                                "statusDesc": "In Senate Committee",
+                                "actionDate": "2024-01-23",
+                                "committeeName": "Rules",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SENATE_FLOOR",
+                                "statusDesc": "Senate Floor Calendar",
+                                "actionDate": "2024-01-24",
+                                "committeeName": null,
+                                "billCalNo": 34
+                            },
+                            {
+                                "statusType": "PASSED_SENATE",
+                                "statusDesc": "Passed Senate",
+                                "actionDate": "2024-01-24",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "DELIVERED_TO_GOV",
+                                "statusDesc": "Delivered to Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SIGNED_BY_GOV",
+                                "statusDesc": "Signed by Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 8
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8531",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8531-2023",
+                                    "printNo": "A8531",
+                                    "version": ""
+                                },
+                                "date": "2024-01-05",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO CORPORATIONS, AUTHORITIES AND COMMISSIONS"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8531",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8531-2023",
+                                    "printNo": "A8531",
+                                    "version": ""
+                                },
+                                "date": "2024-01-17",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 2,
+                                "text": "REPORTED"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8531",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8531-2023",
+                                    "printNo": "A8531",
+                                    "version": ""
+                                },
+                                "date": "2024-01-18",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 3,
+                                "text": "ADVANCED TO THIRD READING CAL.247"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8531",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8531-2023",
+                                    "printNo": "A8531",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 4,
+                                "text": "PASSED ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8531",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8531-2023",
+                                    "printNo": "A8531",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 5,
+                                "text": "DELIVERED TO SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8531",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8531-2023",
+                                    "printNo": "A8531",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "SENATE",
+                                "sequenceNo": 6,
+                                "text": "REFERRED TO RULES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8531",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8531-2023",
+                                    "printNo": "A8531",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 7,
+                                "text": "SUBSTITUTED FOR S8034"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8531",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8531-2023",
+                                    "printNo": "A8531",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 8,
+                                "text": "3RD READING CAL.34"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8531",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8531-2023",
+                                    "printNo": "A8531",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 9,
+                                "text": "PASSED SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8531",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8531-2023",
+                                    "printNo": "A8531",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 10,
+                                "text": "RETURNED TO ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8531",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8531-2023",
+                                    "printNo": "A8531",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 11,
+                                "text": "DELIVERED TO GOVERNOR"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8531",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8531-2023",
+                                    "printNo": "A8531",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 12,
+                                "text": "SIGNED CHAP.38"
+                            }
+                        ],
+                        "size": 12
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2024-01-05T16:31:31.823853"
+                            }
+                        },
+                        "size": 1
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            },
+            {
+                "result": {
+                    "basePrintNo": "A8536",
+                    "session": 2023,
+                    "basePrintNoStr": "A8536-2023",
+                    "printNo": "A8536",
+                    "billType": {
+                        "chamber": "ASSEMBLY",
+                        "desc": "Assembly",
+                        "resolution": false
+                    },
+                    "title": "Relates to orders not to resuscitate",
+                    "activeVersion": "",
+                    "year": 2024,
+                    "publishedDateTime": "2024-01-08T11:32:08.937894",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 549,
+                            "chamber": "ASSEMBLY",
+                            "incumbent": true,
+                            "fullName": "Aileen Gunther",
+                            "shortName": "GUNTHER",
+                            "imgName": "549_aileen_gunther.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 2135,
+                            "sessionYear": 2023,
+                            "districtCode": 100
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Changes the controlling law for orders not to resuscitate for residents of mental hygiene facilities.",
+                    "signed": true,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "SIGNED_BY_GOV",
+                        "statusDesc": "Signed by Governor",
+                        "actionDate": "2024-02-07",
+                        "committeeName": null,
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_ASSEMBLY_COMM",
+                                "statusDesc": "In Assembly Committee",
+                                "actionDate": "2024-01-08",
+                                "committeeName": "Health",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "ASSEMBLY_FLOOR",
+                                "statusDesc": "Assembly Floor Calendar",
+                                "actionDate": "2024-01-18",
+                                "committeeName": null,
+                                "billCalNo": 248
+                            },
+                            {
+                                "statusType": "PASSED_ASSEMBLY",
+                                "statusDesc": "Passed Assembly",
+                                "actionDate": "2024-01-23",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "IN_SENATE_COMM",
+                                "statusDesc": "In Senate Committee",
+                                "actionDate": "2024-01-23",
+                                "committeeName": "Rules",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SENATE_FLOOR",
+                                "statusDesc": "Senate Floor Calendar",
+                                "actionDate": "2024-01-24",
+                                "committeeName": null,
+                                "billCalNo": 18
+                            },
+                            {
+                                "statusType": "PASSED_SENATE",
+                                "statusDesc": "Passed Senate",
+                                "actionDate": "2024-01-24",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "DELIVERED_TO_GOV",
+                                "statusDesc": "Delivered to Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SIGNED_BY_GOV",
+                                "statusDesc": "Signed by Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 8
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8536",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8536-2023",
+                                    "printNo": "A8536",
+                                    "version": ""
+                                },
+                                "date": "2024-01-08",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO HEALTH"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8536",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8536-2023",
+                                    "printNo": "A8536",
+                                    "version": ""
+                                },
+                                "date": "2024-01-17",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 2,
+                                "text": "REPORTED"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8536",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8536-2023",
+                                    "printNo": "A8536",
+                                    "version": ""
+                                },
+                                "date": "2024-01-18",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 3,
+                                "text": "ADVANCED TO THIRD READING CAL.248"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8536",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8536-2023",
+                                    "printNo": "A8536",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 4,
+                                "text": "PASSED ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8536",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8536-2023",
+                                    "printNo": "A8536",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 5,
+                                "text": "DELIVERED TO SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8536",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8536-2023",
+                                    "printNo": "A8536",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "SENATE",
+                                "sequenceNo": 6,
+                                "text": "REFERRED TO RULES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8536",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8536-2023",
+                                    "printNo": "A8536",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 7,
+                                "text": "SUBSTITUTED FOR S8009"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8536",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8536-2023",
+                                    "printNo": "A8536",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 8,
+                                "text": "3RD READING CAL.18"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8536",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8536-2023",
+                                    "printNo": "A8536",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 9,
+                                "text": "PASSED SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8536",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8536-2023",
+                                    "printNo": "A8536",
+                                    "version": ""
+                                },
+                                "date": "2024-01-24",
+                                "chamber": "SENATE",
+                                "sequenceNo": 10,
+                                "text": "RETURNED TO ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8536",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8536-2023",
+                                    "printNo": "A8536",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 11,
+                                "text": "DELIVERED TO GOVERNOR"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8536",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8536-2023",
+                                    "printNo": "A8536",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 12,
+                                "text": "SIGNED CHAP.40"
+                            }
+                        ],
+                        "size": 12
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2024-01-08T12:10:38.908576"
+                            }
+                        },
+                        "size": 1
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            },
+            {
+                "result": {
+                    "basePrintNo": "A8563",
+                    "session": 2023,
+                    "basePrintNoStr": "A8563-2023",
+                    "printNo": "A8563",
+                    "billType": {
+                        "chamber": "ASSEMBLY",
+                        "desc": "Assembly",
+                        "resolution": false
+                    },
+                    "title": "Relates to the maximum number of employees that a minority and women-owned business enterprise may have during a declared state disaster emergency; limits such provisions to declared state disasters",
+                    "activeVersion": "",
+                    "year": 2024,
+                    "publishedDateTime": "2024-01-09T16:27:34.942934",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 898,
+                            "chamber": "ASSEMBLY",
+                            "incumbent": true,
+                            "fullName": "Rodneyse Bichotte Hermelyn",
+                            "shortName": "BICHOTTE HERMELYN",
+                            "imgName": "898_rodneyse_bichotte.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 2217,
+                            "sessionYear": 2023,
+                            "districtCode": 42
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Makes technical changes to provisions relating to maximum number of employees that a minority and women-owned business enterprise may have during a declared state disaster emergency.",
+                    "signed": true,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "SIGNED_BY_GOV",
+                        "statusDesc": "Signed by Governor",
+                        "actionDate": "2024-02-07",
+                        "committeeName": null,
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_ASSEMBLY_COMM",
+                                "statusDesc": "In Assembly Committee",
+                                "actionDate": "2024-01-09",
+                                "committeeName": "Governmental Operations",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "ASSEMBLY_FLOOR",
+                                "statusDesc": "Assembly Floor Calendar",
+                                "actionDate": "2024-01-18",
+                                "committeeName": null,
+                                "billCalNo": 263
+                            },
+                            {
+                                "statusType": "PASSED_ASSEMBLY",
+                                "statusDesc": "Passed Assembly",
+                                "actionDate": "2024-01-23",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "IN_SENATE_COMM",
+                                "statusDesc": "In Senate Committee",
+                                "actionDate": "2024-01-23",
+                                "committeeName": "Rules",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SENATE_FLOOR",
+                                "statusDesc": "Senate Floor Calendar",
+                                "actionDate": "2024-01-31",
+                                "committeeName": null,
+                                "billCalNo": 178
+                            },
+                            {
+                                "statusType": "PASSED_SENATE",
+                                "statusDesc": "Passed Senate",
+                                "actionDate": "2024-01-31",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "DELIVERED_TO_GOV",
+                                "statusDesc": "Delivered to Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SIGNED_BY_GOV",
+                                "statusDesc": "Signed by Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 8
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8563",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8563-2023",
+                                    "printNo": "A8563",
+                                    "version": ""
+                                },
+                                "date": "2024-01-09",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO GOVERNMENTAL OPERATIONS"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8563",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8563-2023",
+                                    "printNo": "A8563",
+                                    "version": ""
+                                },
+                                "date": "2024-01-17",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 2,
+                                "text": "REPORTED"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8563",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8563-2023",
+                                    "printNo": "A8563",
+                                    "version": ""
+                                },
+                                "date": "2024-01-18",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 3,
+                                "text": "ADVANCED TO THIRD READING CAL.263"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8563",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8563-2023",
+                                    "printNo": "A8563",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 4,
+                                "text": "PASSED ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8563",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8563-2023",
+                                    "printNo": "A8563",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 5,
+                                "text": "DELIVERED TO SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8563",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8563-2023",
+                                    "printNo": "A8563",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "SENATE",
+                                "sequenceNo": 6,
+                                "text": "REFERRED TO RULES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8563",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8563-2023",
+                                    "printNo": "A8563",
+                                    "version": ""
+                                },
+                                "date": "2024-01-31",
+                                "chamber": "SENATE",
+                                "sequenceNo": 7,
+                                "text": "SUBSTITUTED FOR S8027"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8563",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8563-2023",
+                                    "printNo": "A8563",
+                                    "version": ""
+                                },
+                                "date": "2024-01-31",
+                                "chamber": "SENATE",
+                                "sequenceNo": 8,
+                                "text": "3RD READING CAL.178"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8563",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8563-2023",
+                                    "printNo": "A8563",
+                                    "version": ""
+                                },
+                                "date": "2024-01-31",
+                                "chamber": "SENATE",
+                                "sequenceNo": 9,
+                                "text": "PASSED SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8563",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8563-2023",
+                                    "printNo": "A8563",
+                                    "version": ""
+                                },
+                                "date": "2024-01-31",
+                                "chamber": "SENATE",
+                                "sequenceNo": 10,
+                                "text": "RETURNED TO ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8563",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8563-2023",
+                                    "printNo": "A8563",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 11,
+                                "text": "DELIVERED TO GOVERNOR"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8563",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8563-2023",
+                                    "printNo": "A8563",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 12,
+                                "text": "SIGNED CHAP.44"
+                            }
+                        ],
+                        "size": 12
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2024-01-09T16:33:36.540508"
+                            }
+                        },
+                        "size": 1
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            },
+            {
+                "result": {
+                    "basePrintNo": "A8567",
+                    "session": 2023,
+                    "basePrintNoStr": "A8567-2023",
+                    "printNo": "A8567",
+                    "billType": {
+                        "chamber": "ASSEMBLY",
+                        "desc": "Assembly",
+                        "resolution": false
+                    },
+                    "title": "Relates to the metes and bounds of certain land to be conveyed by the state to the town of Romulus, county of Seneca",
+                    "activeVersion": "",
+                    "year": 2024,
+                    "publishedDateTime": "2024-01-10T11:46:23.130725",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 635,
+                            "chamber": "ASSEMBLY",
+                            "incumbent": true,
+                            "fullName": "Philip Palmesano",
+                            "shortName": "PALMESANO",
+                            "imgName": "635_philip_palmesano.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 2159,
+                            "sessionYear": 2023,
+                            "districtCode": 132
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Relates to the metes and bounds of certain land to be conveyed by the state to the town of Romulus, county of Seneca; provides that such land shall revert to the state if not used for specific purposes; provides for the repeal of such provisions upon expiration thereof.",
+                    "signed": true,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "SIGNED_BY_GOV",
+                        "statusDesc": "Signed by Governor",
+                        "actionDate": "2024-02-07",
+                        "committeeName": null,
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_ASSEMBLY_COMM",
+                                "statusDesc": "In Assembly Committee",
+                                "actionDate": "2024-01-10",
+                                "committeeName": "Governmental Operations",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "ASSEMBLY_FLOOR",
+                                "statusDesc": "Assembly Floor Calendar",
+                                "actionDate": "2024-01-18",
+                                "committeeName": null,
+                                "billCalNo": 266
+                            },
+                            {
+                                "statusType": "PASSED_ASSEMBLY",
+                                "statusDesc": "Passed Assembly",
+                                "actionDate": "2024-01-23",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "IN_SENATE_COMM",
+                                "statusDesc": "In Senate Committee",
+                                "actionDate": "2024-01-23",
+                                "committeeName": "Rules",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SENATE_FLOOR",
+                                "statusDesc": "Senate Floor Calendar",
+                                "actionDate": "2024-02-05",
+                                "committeeName": null,
+                                "billCalNo": 63
+                            },
+                            {
+                                "statusType": "PASSED_SENATE",
+                                "statusDesc": "Passed Senate",
+                                "actionDate": "2024-02-05",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "DELIVERED_TO_GOV",
+                                "statusDesc": "Delivered to Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SIGNED_BY_GOV",
+                                "statusDesc": "Signed by Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 8
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8567",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8567-2023",
+                                    "printNo": "A8567",
+                                    "version": ""
+                                },
+                                "date": "2024-01-10",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO GOVERNMENTAL OPERATIONS"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8567",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8567-2023",
+                                    "printNo": "A8567",
+                                    "version": ""
+                                },
+                                "date": "2024-01-17",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 2,
+                                "text": "REPORTED"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8567",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8567-2023",
+                                    "printNo": "A8567",
+                                    "version": ""
+                                },
+                                "date": "2024-01-18",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 3,
+                                "text": "ADVANCED TO THIRD READING CAL.266"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8567",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8567-2023",
+                                    "printNo": "A8567",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 4,
+                                "text": "PASSED ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8567",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8567-2023",
+                                    "printNo": "A8567",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 5,
+                                "text": "DELIVERED TO SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8567",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8567-2023",
+                                    "printNo": "A8567",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "SENATE",
+                                "sequenceNo": 6,
+                                "text": "REFERRED TO RULES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8567",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8567-2023",
+                                    "printNo": "A8567",
+                                    "version": ""
+                                },
+                                "date": "2024-02-05",
+                                "chamber": "SENATE",
+                                "sequenceNo": 7,
+                                "text": "SUBSTITUTED FOR S8081"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8567",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8567-2023",
+                                    "printNo": "A8567",
+                                    "version": ""
+                                },
+                                "date": "2024-02-05",
+                                "chamber": "SENATE",
+                                "sequenceNo": 8,
+                                "text": "3RD READING CAL.63"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8567",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8567-2023",
+                                    "printNo": "A8567",
+                                    "version": ""
+                                },
+                                "date": "2024-02-05",
+                                "chamber": "SENATE",
+                                "sequenceNo": 9,
+                                "text": "PASSED SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8567",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8567-2023",
+                                    "printNo": "A8567",
+                                    "version": ""
+                                },
+                                "date": "2024-02-05",
+                                "chamber": "SENATE",
+                                "sequenceNo": 10,
+                                "text": "RETURNED TO ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8567",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8567-2023",
+                                    "printNo": "A8567",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 11,
+                                "text": "DELIVERED TO GOVERNOR"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8567",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8567-2023",
+                                    "printNo": "A8567",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 12,
+                                "text": "SIGNED CHAP.46"
+                            }
+                        ],
+                        "size": 12
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2024-01-10T11:51:28.690484"
+                            }
+                        },
+                        "size": 1
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            },
+            {
+                "result": {
+                    "basePrintNo": "A8486",
+                    "session": 2023,
+                    "basePrintNoStr": "A8486-2023",
+                    "printNo": "A8486",
+                    "billType": {
+                        "chamber": "ASSEMBLY",
+                        "desc": "Assembly",
+                        "resolution": false
+                    },
+                    "title": "Extends time frame to two years to receive updated mandated reporter training",
+                    "activeVersion": "",
+                    "year": 2024,
+                    "publishedDateTime": "2024-01-04T12:15:30.735499",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 488,
+                            "chamber": "ASSEMBLY",
+                            "incumbent": true,
+                            "fullName": "Andrew Hevesi",
+                            "shortName": "HEVESI",
+                            "imgName": "488_andrew_hevesi.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 2138,
+                            "sessionYear": 2023,
+                            "districtCode": 28
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Extends time frame to two years to receive updated mandated reporter training to include guidance on identifying an abused or maltreated child when such child is an individual with an intellectual or developmental disability.",
+                    "signed": true,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "SIGNED_BY_GOV",
+                        "statusDesc": "Signed by Governor",
+                        "actionDate": "2024-02-07",
+                        "committeeName": null,
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_ASSEMBLY_COMM",
+                                "statusDesc": "In Assembly Committee",
+                                "actionDate": "2024-01-04",
+                                "committeeName": "Children And Families",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "ASSEMBLY_FLOOR",
+                                "statusDesc": "Assembly Floor Calendar",
+                                "actionDate": "2024-01-25",
+                                "committeeName": null,
+                                "billCalNo": 272
+                            },
+                            {
+                                "statusType": "PASSED_ASSEMBLY",
+                                "statusDesc": "Passed Assembly",
+                                "actionDate": "2024-01-29",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "IN_SENATE_COMM",
+                                "statusDesc": "In Senate Committee",
+                                "actionDate": "2024-01-29",
+                                "committeeName": "Rules",
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SENATE_FLOOR",
+                                "statusDesc": "Senate Floor Calendar",
+                                "actionDate": "2024-01-30",
+                                "committeeName": null,
+                                "billCalNo": 188
+                            },
+                            {
+                                "statusType": "PASSED_SENATE",
+                                "statusDesc": "Passed Senate",
+                                "actionDate": "2024-01-30",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "DELIVERED_TO_GOV",
+                                "statusDesc": "Delivered to Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            },
+                            {
+                                "statusType": "SIGNED_BY_GOV",
+                                "statusDesc": "Signed by Governor",
+                                "actionDate": "2024-02-07",
+                                "committeeName": null,
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 8
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8486",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8486-2023",
+                                    "printNo": "A8486",
+                                    "version": ""
+                                },
+                                "date": "2024-01-04",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO CHILDREN AND FAMILIES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8486",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8486-2023",
+                                    "printNo": "A8486",
+                                    "version": ""
+                                },
+                                "date": "2024-01-23",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 2,
+                                "text": "REPORTED"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8486",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8486-2023",
+                                    "printNo": "A8486",
+                                    "version": ""
+                                },
+                                "date": "2024-01-25",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 3,
+                                "text": "ADVANCED TO THIRD READING CAL.272"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8486",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8486-2023",
+                                    "printNo": "A8486",
+                                    "version": ""
+                                },
+                                "date": "2024-01-29",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 4,
+                                "text": "PASSED ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8486",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8486-2023",
+                                    "printNo": "A8486",
+                                    "version": ""
+                                },
+                                "date": "2024-01-29",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 5,
+                                "text": "DELIVERED TO SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8486",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8486-2023",
+                                    "printNo": "A8486",
+                                    "version": ""
+                                },
+                                "date": "2024-01-29",
+                                "chamber": "SENATE",
+                                "sequenceNo": 6,
+                                "text": "REFERRED TO RULES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8486",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8486-2023",
+                                    "printNo": "A8486",
+                                    "version": ""
+                                },
+                                "date": "2024-01-30",
+                                "chamber": "SENATE",
+                                "sequenceNo": 7,
+                                "text": "SUBSTITUTED FOR S8049"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8486",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8486-2023",
+                                    "printNo": "A8486",
+                                    "version": ""
+                                },
+                                "date": "2024-01-30",
+                                "chamber": "SENATE",
+                                "sequenceNo": 8,
+                                "text": "3RD READING CAL.188"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8486",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8486-2023",
+                                    "printNo": "A8486",
+                                    "version": ""
+                                },
+                                "date": "2024-01-30",
+                                "chamber": "SENATE",
+                                "sequenceNo": 9,
+                                "text": "PASSED SENATE"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8486",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8486-2023",
+                                    "printNo": "A8486",
+                                    "version": ""
+                                },
+                                "date": "2024-01-30",
+                                "chamber": "SENATE",
+                                "sequenceNo": 10,
+                                "text": "RETURNED TO ASSEMBLY"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8486",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8486-2023",
+                                    "printNo": "A8486",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 11,
+                                "text": "DELIVERED TO GOVERNOR"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8486",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8486-2023",
+                                    "printNo": "A8486",
+                                    "version": ""
+                                },
+                                "date": "2024-02-07",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 12,
+                                "text": "SIGNED CHAP.25"
+                            }
+                        ],
+                        "size": 12
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2024-01-04T12:27:11.257225"
+                            }
+                        },
+                        "size": 1
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            },
+            {
+                "result": {
+                    "basePrintNo": "A8240",
+                    "session": 2023,
+                    "basePrintNoStr": "A8240-2023",
+                    "printNo": "A8240",
+                    "billType": {
+                        "chamber": "ASSEMBLY",
+                        "desc": "Assembly",
+                        "resolution": false
+                    },
+                    "title": "Establishes law enforcement officer grant funds and firefighter grant funds",
+                    "activeVersion": "",
+                    "year": 2024,
+                    "publishedDateTime": "2023-11-06T13:12:43.950867",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 1120,
+                            "chamber": "ASSEMBLY",
+                            "incumbent": true,
+                            "fullName": "Billy Jones",
+                            "shortName": "JONES",
+                            "imgName": "no_image.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 2143,
+                            "sessionYear": 2023,
+                            "districtCode": 115
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Establishes law enforcement officer grant funds and firefighter grant funds to cover expenses related to hiring law enforcement officers and firefighters and equipment and resources for such officers and firefighters.",
+                    "signed": false,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "IN_ASSEMBLY_COMM",
+                        "statusDesc": "In Assembly Committee",
+                        "actionDate": "2024-01-03",
+                        "committeeName": "Codes",
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_ASSEMBLY_COMM",
+                                "statusDesc": "In Assembly Committee",
+                                "actionDate": "2024-01-03",
+                                "committeeName": "Codes",
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 1
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8240",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8240-2023",
+                                    "printNo": "A8240",
+                                    "version": ""
+                                },
+                                "date": "2023-11-06",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO CODES"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "A8240",
+                                    "session": 2023,
+                                    "basePrintNoStr": "A8240-2023",
+                                    "printNo": "A8240",
+                                    "version": ""
+                                },
+                                "date": "2024-01-03",
+                                "chamber": "ASSEMBLY",
+                                "sequenceNo": 2,
+                                "text": "REFERRED TO CODES"
+                            }
+                        ],
+                        "size": 2
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2023-11-06T14:40:58.032783"
+                            }
+                        },
+                        "size": 1
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            },
+            {
+                "result": {
+                    "basePrintNo": "S4191",
+                    "session": 2023,
+                    "basePrintNoStr": "S4191-2023",
+                    "printNo": "S4191A",
+                    "billType": {
+                        "chamber": "SENATE",
+                        "desc": "Senate",
+                        "resolution": false
+                    },
+                    "title": "Prohibits the diminution of health insurance benefits of certain public employee retirees",
+                    "activeVersion": "A",
+                    "year": 2024,
+                    "publishedDateTime": "2023-02-06T10:52:55.025025",
+                    "substitutedBy": null,
+                    "sponsor": {
+                        "member": {
+                            "memberId": 409,
+                            "chamber": "SENATE",
+                            "incumbent": true,
+                            "fullName": "Andrew J. Lanza",
+                            "shortName": "LANZA",
+                            "imgName": "409_andrew_j_lanza.jpg",
+                            "alternate": false,
+                            "sessionMemberId": 2021,
+                            "sessionYear": 2023,
+                            "districtCode": 24
+                        },
+                        "budget": false,
+                        "rules": false,
+                        "redistricting": false
+                    },
+                    "reprintOf": null,
+                    "summary": "Prohibits the diminution of health insurance benefits of public employee retirees and their dependents or reducing the employer's contributions for such insurance; defines employers to include the state, municipalities, school districts, and public authorities and commissions.",
+                    "signed": false,
+                    "adopted": false,
+                    "vetoed": false,
+                    "status": {
+                        "statusType": "IN_SENATE_COMM",
+                        "statusDesc": "In Senate Committee",
+                        "actionDate": "2024-01-03",
+                        "committeeName": "Civil Service And Pensions",
+                        "billCalNo": null
+                    },
+                    "milestones": {
+                        "items": [
+                            {
+                                "statusType": "IN_SENATE_COMM",
+                                "statusDesc": "In Senate Committee",
+                                "actionDate": "2024-01-03",
+                                "committeeName": "Civil Service And Pensions",
+                                "billCalNo": null
+                            }
+                        ],
+                        "size": 1
+                    },
+                    "actions": {
+                        "items": [
+                            {
+                                "billId": {
+                                    "basePrintNo": "S4191",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S4191-2023",
+                                    "printNo": "S4191",
+                                    "version": ""
+                                },
+                                "date": "2023-02-06",
+                                "chamber": "SENATE",
+                                "sequenceNo": 1,
+                                "text": "REFERRED TO CIVIL SERVICE AND PENSIONS"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S4191",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S4191-2023",
+                                    "printNo": "S4191",
+                                    "version": ""
+                                },
+                                "date": "2023-03-10",
+                                "chamber": "SENATE",
+                                "sequenceNo": 2,
+                                "text": "AMEND AND RECOMMIT TO CIVIL SERVICE AND PENSIONS"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S4191",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S4191-2023",
+                                    "printNo": "S4191A",
+                                    "version": "A"
+                                },
+                                "date": "2023-03-10",
+                                "chamber": "SENATE",
+                                "sequenceNo": 3,
+                                "text": "PRINT NUMBER 4191A"
+                            },
+                            {
+                                "billId": {
+                                    "basePrintNo": "S4191",
+                                    "session": 2023,
+                                    "basePrintNoStr": "S4191-2023",
+                                    "printNo": "S4191A",
+                                    "version": "A"
+                                },
+                                "date": "2024-01-03",
+                                "chamber": "SENATE",
+                                "sequenceNo": 4,
+                                "text": "REFERRED TO CIVIL SERVICE AND PENSIONS"
+                            }
+                        ],
+                        "size": 4
+                    },
+                    "publishStatusMap": {
+                        "items": {
+                            "": {
+                                "version": "",
+                                "published": true,
+                                "effectDateTime": "2023-02-06T10:52:55.025025"
+                            },
+                            "A": {
+                                "version": "A",
+                                "published": true,
+                                "effectDateTime": "2023-03-10T00:00"
+                            }
+                        },
+                        "size": 2
+                    },
+                    "programInfo": null
+                },
+                "rank": 1,
+                "highlights": {}
+            }
+       ],
+        "size": 15
+    }
+}
