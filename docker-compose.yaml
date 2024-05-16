@@ -20,6 +20,7 @@ services:
       OPEN_LEGISLATION_KEY: ${OPEN_LEGISLATION_KEY}
       OPEN_STATES_KEY: ${OPEN_STATES_KEY}
       MAPBOX_KEY: ${MAPBOX_KEY}
+      MOCK_DATA: ${MOCK_DATA}
       # DEBUG: express:*
     volumes:
       - './backend/src:/srv/src'
