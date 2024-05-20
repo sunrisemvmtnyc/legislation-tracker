@@ -8,11 +8,11 @@ import Filters from './Filters';
 const HomePage = () => {
   const [bills, setBills] = useState([]);
   const [searchTerm, setSearchTerm] = useState('*');
-  const [categoryMappings, setCategoryMappings] = useState({});
-  const [categories, setCategories] = useState({});
-  const [categoryFilter, setCategoryFilter] = useState([]);
+  const [campaignMappings, setCampaignMappings] = useState({});
+  const [campaigns, setCampaigns] = useState({});
+  const [campaignFilter, setCampaignFilter] = useState([]);
 
-  const categoryList = Object.keys(categories);
+  const campaignList = Object.values(campaigns);
 
   // fetch bills
   useEffect(() => {
@@ -29,7 +29,7 @@ const HomePage = () => {
           const queryStr = new URLSearchParams({
             offset,
             term: searchTerm,
-            categories: categoryFilter?.join(','),
+            // categories: campaignFilter?.join(','), // fixme
           }).toString();
           const res = await fetch(`/api/v1/bills/2023/search?${queryStr}`, {
             signal: abortController.signal,
@@ -53,42 +53,33 @@ const HomePage = () => {
       abortController.abort();
       setBills([]);
     };
-  }, [categoryFilter, searchTerm]);
+  }, [campaignFilter, searchTerm]);
 
-  // fetch category mappings and categories
+  // Fetch campaign mappings and campaigns
   useEffect(() => {
     // Correctly handle double-mount in dev/StrictMode
     // https://stackoverflow.com/a/72238236
     const abortController = new AbortController();
 
-    const billCategoryMappings = async () => {
+    const fetchCampaignsAndCampaignMappings = async () => {
       try {
-        const res = await fetch(`/api/v1/bills/category-mappings`, {
+        const res = await fetch(`/api/v1/bills/airtable-bills`, {
           signal: abortController.signal,
         });
-        setCategoryMappings(await res.json());
+        const data = await res.json();
+        const { bills, campaigns } = data;
+        setCampaignMappings(bills);
+        setCampaigns(campaigns);
       } catch (error) {
-        console.log('Home category mappings request aborted');
+        console.log('Sunrise campaign & bill request aborted');
       }
     };
 
-    const fetchCategories = async () => {
-      try {
-        const res = await fetch(`/api/v1/categories`, {
-          signal: abortController.signal,
-        });
-        setCategories(await res.json());
-      } catch (error) {
-        console.log('Home categories request aborted');
-      }
-    };
-
-    billCategoryMappings();
-    fetchCategories();
+    fetchCampaignsAndCampaignMappings();
     return () => {
       abortController.abort();
-      setCategories({});
-      setCategoryMappings({});
+      setCampaigns({});
+      setCampaignMappings({});
     };
   }, []); // Only run on initial page load
 
@@ -98,8 +89,8 @@ const HomePage = () => {
       <div id="home-page">
         <h1>Sunrise featured bills</h1>
         <Filters
-          categoryList={categoryList}
-          setCategoryFilter={setCategoryFilter}
+          campaignList={campaignList}
+          setCampaignFilter={setCampaignFilter}
           setSearchTerm={setSearchTerm}
         />
         <div id="home-bill-grid">
@@ -107,8 +98,8 @@ const HomePage = () => {
             <Card
               bill={bill}
               key={bill.basePrintNoStr}
-              billCategoryMappings={categoryMappings[bill.basePrintNo]}
-              allCategories={categories}
+              billCampaignMappings={campaignMappings[bill.basePrintNo] || []}
+              allCampaigns={campaigns}
             />
           ))}
         </div>

@@ -72,10 +72,10 @@ app.get('/api/v1/bills/:year/search', async (req, res, next) => {
   } else {
     // filter bills by category
     if (categories) {
-      const categoryFilters = categories.split(',')
+      const categoryFilters = categories.split(',');
       // TODO: ensure resultant size matches limit, if enough bills across all pages match
       out.result.items = out.result.items.filter((bill) =>
-      categoryFilters.some((categoryToFilter) =>
+        categoryFilters.some((categoryToFilter) =>
           categoryMapping()[bill.result.basePrintNo]?.includes(categoryToFilter)
         )
       );
@@ -86,10 +86,10 @@ app.get('/api/v1/bills/:year/search', async (req, res, next) => {
   }
 });
 
-// Mapping from bill id to category
-app.get('/api/v1/bills/category-mappings', async (_, res) => {
-  res.json(categoryMapping());
-});
+// todo: legacy, delete
+// app.get('/api/v1/bills/category-mappings', async (_, res) => {
+//   res.json(categoryMapping());
+// });
 
 // TODO: rename endpoint something more appropriate
 app.get('/api/v1/bills/airtable-bills', async (_, res) => {
