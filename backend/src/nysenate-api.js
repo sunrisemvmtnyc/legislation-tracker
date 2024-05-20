@@ -39,7 +39,10 @@ export const billsFromYear = async (year) => {
   return fetchAllPages(`bills/${year}`, firstResponseData);
 };
 
-export const membersFromYear = async (year, limit, offset = 1) => {
+export const membersFromYear = async (
+  year,
+  { offset = 1, limit = 1000, full = false } = {}
+) => {
   // Limit capped at 1000
   const MAX_LIMIT = 1000;
   limit = Math.min(limit, MAX_LIMIT);
@@ -47,6 +50,7 @@ export const membersFromYear = async (year, limit, offset = 1) => {
   const url = legApi(`members/${year}`, {
     limit: limit,
     offset: offset,
+    full: full,
   });
   let firstResponse = await fetch(url);
   let firstResponseData = await firstResponse.json();

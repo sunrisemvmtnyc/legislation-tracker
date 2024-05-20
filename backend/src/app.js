@@ -9,6 +9,8 @@ import { openStatesApi } from './openstates-api.js';
 import { mapBoxApi } from './mapbox-api.js';
 import { fetchSunriseBills } from './airtable-api.js';
 
+import fs from 'fs';
+
 // Create Express server
 const host = '0.0.0.0';
 const port = 3001;
@@ -42,6 +44,12 @@ app.get('/api/v1/bills/:year/search', async (req, res, next) => {
   const sort = '_score:desc,session:desc'; // taken from leg-API sample app
   const term = req.query.term || '*';
 
+  if (process.env.MOCK_DATA === 'true') {
+    const file = fs.readFileSync(`mock/search.json`).toString();
+    const data = JSON.parse(file);
+    res.json(data);
+    return;
+  }
   const url = legApi(`bills/${year}/search`, {
     year,
     offset,
@@ -76,6 +84,12 @@ app.get('/api/v1/bills/airtable-bills', async (_, res) => {
 
 // Endpoint to get a single bill
 app.get('/api/v1/bills/:year/:printNumber', async (req, res) => {
+  if (process.env.MOCK_DATA === 'true') {
+    const file = fs.readFileSync(`mock/bill.json`).toString();
+    const data = JSON.parse(file);
+    res.json(data);
+    return;
+  }
   const url = legApi(`bills/${req.params.year}/${req.params.printNumber}`, {
     view: 'with_refs',
   });
@@ -85,14 +99,12 @@ app.get('/api/v1/bills/:year/:printNumber', async (req, res) => {
 
 // Endpoint to get all the members in a year
 app.get('/api/v1/members/:year', async (req, res) => {
-  let offset = 1;
-  if (parseInt(req.query.start)) offset = parseInt(req.query.offset);
+  const options = { limit: MEMBER_PAGE_SIZE };
+  if (parseInt(req.query.offset)) options.offset = parseInt(req.query.offset);
+  if (parseInt(req.query.limit)) options.limit = parseInt(req.query.limit);
+  if (req.query.full !== undefined) options.full = req.query.full === 'true';
 
-  let members = await membersFromYear(
-    req.params.year,
-    MEMBER_PAGE_SIZE,
-    offset
-  );
+  let members = await membersFromYear(req.params.year, options);
 
   res.json(members);
 });
