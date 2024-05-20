@@ -99,14 +99,12 @@ app.get('/api/v1/bills/:year/:printNumber', async (req, res) => {
 
 // Endpoint to get all the members in a year
 app.get('/api/v1/members/:year', async (req, res) => {
-  let offset = 1;
-  if (parseInt(req.query.start)) offset = parseInt(req.query.offset);
+  const options = { limit: MEMBER_PAGE_SIZE };
+  if (parseInt(req.query.offset)) options.offset = parseInt(req.query.offset);
+  if (parseInt(req.query.limit)) options.limit = parseInt(req.query.limit);
+  if (req.query.full !== undefined) options.full = req.query.full === 'true';
 
-  let members = await membersFromYear(
-    req.params.year,
-    MEMBER_PAGE_SIZE,
-    offset
-  );
+  let members = await membersFromYear(req.params.year, options);
 
   res.json(members);
 });

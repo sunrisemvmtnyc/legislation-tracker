@@ -58,10 +58,19 @@ const sunriseBills = async () => {
   // Key campaign to assembly/senate bill id
   const mapping = {};
   records.forEach((record) => {
-    const senateId = record.get(BILL_SENATE_FIELD_ID);
-    const assemblyId = record.get(BILL_ASSEMBLY_ID_FIELD_ID);
-    const campaignId = record.get(BILL_CAMPAIGN_FIELD_ID);
-    if (!campaignId) return;
+    let senateId = record.get(BILL_SENATE_FIELD_ID);
+    let assemblyId = record.get(BILL_ASSEMBLY_ID_FIELD_ID);
+    const campaignIds = record.get(BILL_CAMPAIGN_FIELD_ID);
+    if (!campaignIds || campaignIds.length === 0) return;
+
+    // NOTE: remove leading zeros and trailing letters in bill id. Makes it easier to search.
+    // Trailing letters are the amendment version, but the search api doesn't work well with them.
+    // Examples:
+    // S01001 -> S1001
+    // S101 -> S101
+    // S00101 -> S101
+    senateId = senateId.replace(/(S)(0*)([1-9][0-9]*)([A-Z]*)/, '$1$3');
+    assemblyId = assemblyId.replace(/(A)(0*)([1-9][0-9]*)([A-Z]*)/, '$1$3');
 
     // Add campaign to the senate bill
     if (senateId) {
@@ -69,7 +78,7 @@ const sunriseBills = async () => {
         if (!mapping[senateId]) {
           mapping[senateId] = [];
         }
-        mapping[senateId].push(campaignId);
+        mapping[senateId] = mapping[senateId].concat(campaignIds);
       } else console.log('Senate ID not properly formatted:', senateId);
     }
 
@@ -79,7 +88,7 @@ const sunriseBills = async () => {
         if (!mapping[assemblyId]) {
           mapping[assemblyId] = [];
         }
-        mapping[assemblyId].push(campaignId);
+        mapping[assemblyId] = mapping[assemblyId].concat(campaignIds);
       } else console.log('Assembly ID not properly formatted:', assemblyId);
     }
   });
