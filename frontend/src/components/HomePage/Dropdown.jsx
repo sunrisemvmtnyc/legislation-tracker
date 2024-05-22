@@ -1,13 +1,15 @@
-import { useState } from "react";
-import { Select, MenuItem } from "@mui/material";
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Select, MenuItem } from '@mui/material';
 
-import "./Dropdown.css";
+import './Dropdown.css';
 
-const Dropdown = ({ id, label, options }) => {
+const Dropdown = ({ id, label, options, updateFilter }) => {
   const [selected, setSelected] = useState([]);
 
   const updateSelected = (event) => {
     setSelected(event.target.value);
+    updateFilter(event.target.value);
   };
 
   return (
@@ -22,14 +24,26 @@ const Dropdown = ({ id, label, options }) => {
         value={selected}
         onChange={updateSelected}
       >
-        {options.map((option) => (
-          <MenuItem className="dropdown-option" value={option} key={option}>
-            {option}
+        {options.map(({ displayName, value }) => (
+          <MenuItem className="dropdown-option" value={value} key={value}>
+            {displayName}
           </MenuItem>
         ))}
       </Select>
     </div>
   );
+};
+
+Dropdown.propTypes = {
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      displayName: PropTypes.string,
+      value: PropTypes.string,
+    })
+  ),
+  updateFilter: PropTypes.func,
 };
 
 export default Dropdown;

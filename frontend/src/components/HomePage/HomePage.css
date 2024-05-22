@@ -46,7 +46,7 @@
   transition: border 0.2s;
 }
 
-.home-bill-card>div:last-of-type {
+.home-bill-card > div:last-of-type {
   margin-top: auto;
 }
 
