@@ -12,7 +12,7 @@ const HomePage = () => {
   const [campaigns, setCampaigns] = useState({});
   const [campaignFilter, setCampaignFilter] = useState([]);
 
-  // TODO: remove after CR
+  // TODO: remove after review
   const campaignMappings = Object.keys(_campaignMappings).length
     ? {
         ..._campaignMappings,
