@@ -8,9 +8,17 @@ import Filters from './Filters';
 const HomePage = () => {
   const [bills, setBills] = useState([]);
   const [searchTerm, setSearchTerm] = useState('*');
-  const [campaignMappings, setCampaignMappings] = useState({});
+  const [_campaignMappings, setCampaignMappings] = useState({});
   const [campaigns, setCampaigns] = useState({});
   const [campaignFilter, setCampaignFilter] = useState([]);
+
+  // TODO: remove after CR
+  const campaignMappings = Object.keys(_campaignMappings).length
+    ? {
+        ..._campaignMappings,
+        A2229: ['recaKM8EyeUejwpBf'],
+      }
+    : _campaignMappings;
 
   const billsToDisplay = campaignFilter.length
     ? bills.filter((bill) =>
