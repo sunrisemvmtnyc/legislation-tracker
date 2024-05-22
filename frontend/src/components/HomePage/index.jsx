@@ -12,6 +12,14 @@ const HomePage = () => {
   const [campaigns, setCampaigns] = useState({});
   const [campaignFilter, setCampaignFilter] = useState([]);
 
+  const billsToDisplay = campaignFilter.length
+    ? bills.filter((bill) =>
+        campaignMappings[bill.basePrintNo]?.some((relatedCampaignId) =>
+          campaignFilter.includes(relatedCampaignId)
+        )
+      )
+    : bills;
+
   const campaignList = Object.values(campaigns);
 
   // fetch bills
@@ -29,7 +37,6 @@ const HomePage = () => {
           const queryStr = new URLSearchParams({
             offset,
             term: searchTerm,
-            // categories: campaignFilter?.join(','), // fixme
           }).toString();
           const res = await fetch(`/api/v1/bills/2023/search?${queryStr}`, {
             signal: abortController.signal,
@@ -53,7 +60,7 @@ const HomePage = () => {
       abortController.abort();
       setBills([]);
     };
-  }, [campaignFilter, searchTerm]);
+  }, [searchTerm]);
 
   // Fetch campaign mappings and campaigns
   useEffect(() => {
@@ -94,7 +101,7 @@ const HomePage = () => {
           setSearchTerm={setSearchTerm}
         />
         <div id="home-bill-grid">
-          {bills.map((bill) => (
+          {billsToDisplay.map((bill) => (
             <Card
               bill={bill}
               key={bill.basePrintNoStr}
