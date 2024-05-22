@@ -73,11 +73,6 @@ app.get('/api/v1/bills/:year/search', async (req, res, next) => {
   }
 });
 
-// todo: legacy, delete
-// app.get('/api/v1/bills/category-mappings', async (_, res) => {
-//   res.json(categoryMapping());
-// });
-
 // TODO: rename endpoint something more appropriate
 app.get('/api/v1/bills/airtable-bills', async (_, res) => {
   res.json(await fetchSunriseBills());
