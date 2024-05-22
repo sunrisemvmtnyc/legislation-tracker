@@ -1,45 +1,24 @@
 import { useState, useEffect } from 'react';
 import './HomePage.css';
 
+import useSunriseBills from '../../api/useSunriseBills';
+
 import Card from './Card';
 import Banner from './Banner';
 import Filters from './Filters';
 
 const HomePage = () => {
-  const [bills, setBills] = useState([]);
   const [categoryMappings, setCategoryMappings] = useState({});
   const [categories, setCategories] = useState({});
+
+  const { senateBills, assemblyBills } = useSunriseBills();
+
+  const bills = Object.values(senateBills).concat(Object.values(assemblyBills));
 
   useEffect(() => {
     // Correctly handle double-mount in dev/StrictMode
     // https://stackoverflow.com/a/72238236
     const abortController = new AbortController();
-
-    // TODO: does not fetch all bills, only first page
-    const paginateBills = async () => {
-      let offset = 1;
-      let done = false;
-      while (!done) {
-        try {
-          const res = await fetch(
-            `/api/v1/bills/2023/search?offset=${offset}`,
-            {
-              signal: abortController.signal,
-            }
-          );
-          const out = await res.json();
-          await setBills((prevBills) =>
-            [...prevBills].concat(out.result.items.map((item) => item.result))
-          );
-          offset = out.offsetEnd;
-          // if (out.offsetEnd >= out.total) done = true;
-          done = true;
-        } catch (error) {
-          console.log('Home bills request aborted');
-          done = true;
-        }
-      }
-    };
 
     const billCategoryMappings = async () => {
       try {
@@ -48,7 +27,7 @@ const HomePage = () => {
         });
         setCategoryMappings(await res.json());
       } catch (error) {
-        console.log('Home category mappings request aborted');
+        console.log('Home category mappings request aborted', error);
       }
     };
 
@@ -59,16 +38,14 @@ const HomePage = () => {
         });
         setCategories(await res.json());
       } catch (error) {
-        console.log('Home categories request aborted');
+        console.log('Home categories request aborted', error);
       }
     };
 
-    paginateBills();
     billCategoryMappings();
     categories();
     return () => {
       abortController.abort();
-      setBills([]);
       setCategories({});
       setCategoryMappings({});
     };
