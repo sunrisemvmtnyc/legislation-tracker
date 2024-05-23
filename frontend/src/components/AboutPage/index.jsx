@@ -1,6 +1,37 @@
+import './AboutPage.css';
+
+// TODO change with actual final text
+const blocks = [
+  {
+    title: "our goal",
+    question: "What is the NY State Legislative Tracker?",
+    descripton: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  },
+  {
+    title: "use solution",
+    question: "How to use the NY State Legislative Tracker?",
+    descripton: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+  },
+  {
+    title: "about us",
+    question: "Who are we?",
+    descripton: "Sunrise NYC’s digital tools team and legislative team are collaborating to pull together this NY State Legislative Tracker. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+  }
+];
+
 function AboutPage() {
   return (
-    <div>This is the about page: TODO</div>
+    <div id="about-page">
+      {
+        blocks.map(({ title, question, descripton }) => (
+          <div class="about-page-block">
+            <span className="about-page-block-title">{title}</span>
+            <span className="about-page-block-question">{question}</span>
+            <span className="about-page-block-desc">{descripton}</span>
+          </div>
+        ))
+      }
+    </div>
   );
 }
 
