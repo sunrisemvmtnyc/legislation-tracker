@@ -51,9 +51,6 @@ export const fetchBillsBlocks = async (
       })
     ).json();
 
-    console.log('offsetend', res.offsetEnd);
-    console.log('total', res.total);
-
     urlParams.offset = res.offsetEnd + 1;
     if (res.offsetEnd >= res.total) done = true;
 
