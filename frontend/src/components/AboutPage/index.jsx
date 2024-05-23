@@ -27,7 +27,7 @@ function AboutPage() {
           <div class="about-page-block">
             <span className="about-page-block-title">{title}</span>
             <span className="about-page-block-question">{question}</span>
-            <span className="about-page-block-desc" dangerouslySetInnerHTML={{__html: descripton}} />
+            <span className="about-page-block-desc">{question}</span>
           </div>
         ))
       }
