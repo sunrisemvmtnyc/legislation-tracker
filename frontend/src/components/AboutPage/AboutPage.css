@@ -16,6 +16,13 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-width: 1000px;
+}
+
+@media screen and (max-width: 800px) {
+  .about-page-block {
+    width: 90%;
+  }
 }
 
 .about-page-block-title {

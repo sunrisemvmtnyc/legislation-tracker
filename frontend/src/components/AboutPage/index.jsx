@@ -1,21 +1,21 @@
 import './AboutPage.css';
 
-// TODO change with actual final text
+// TODO validate final text
 const blocks = [
   {
     title: "our goal",
     question: "What is the NY State Legislative Tracker?",
-    descripton: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    descripton: "The NY State Legislative Tracker is a tool designed to keep you informed about key legislative activities in New York State. We focus on selected bills that we, along with our partner organizations, think are important and need attention right now. Our tracker provides real-time updates and detailed information on these important bills, making it easier for you to stay engaged and involved in the legislative process.",
   },
   {
     title: "use solution",
     question: "How to use the NY State Legislative Tracker?",
-    descripton: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+    descripton: "We believe that citizen involvement is crucial to making a difference. Contacting your local representatives and letting them know your stance on these bills can put significant pressure on them to act. Your voice can help push important legislation forward. Don't underestimate the power of your participation! Reach out, make your opinions known, and help us make a change.",
   },
   {
     title: "about us",
     question: "Who are we?",
-    descripton: "Sunrise NYC’s digital tools team and legislative team are collaborating to pull together this NY State Legislative Tracker. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+    descripton: "Sunrise NYC’s digital tools team and legislative team are collaborating to pull together this NY State Legislative Tracker. We are dedicated to fighting against climate change and advocating for social justice. We want to make it easier for you to understand what’s going on in the state legislature and how you can get involved. Together, we can make sure our voices are heard and make a real impact on the laws that affect us all.",
   }
 ];
 
@@ -27,7 +27,7 @@ function AboutPage() {
           <div class="about-page-block">
             <span className="about-page-block-title">{title}</span>
             <span className="about-page-block-question">{question}</span>
-            <span className="about-page-block-desc">{descripton}</span>
+            <span className="about-page-block-desc" dangerouslySetInnerHTML={{__html: descripton}} />
           </div>
         ))
       }
