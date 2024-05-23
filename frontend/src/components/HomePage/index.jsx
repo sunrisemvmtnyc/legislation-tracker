@@ -8,10 +8,11 @@ import Banner from './Banner';
 import Filters from './Filters';
 
 const HomePage = () => {
+  const [searchTerm, setSearchTerm] = useState('*');
   const [categoryMappings, setCategoryMappings] = useState({});
   const [categories, setCategories] = useState({});
 
-  const { senateBills, assemblyBills } = useSunriseBills();
+  const { senateBills, assemblyBills } = useSunriseBills(searchTerm);
 
   const bills = Object.values(senateBills).concat(Object.values(assemblyBills));
 
@@ -31,7 +32,7 @@ const HomePage = () => {
       }
     };
 
-    const categories = async () => {
+    const fetchCategories = async () => {
       try {
         const res = await fetch(`/api/v1/categories`, {
           signal: abortController.signal,
@@ -43,7 +44,7 @@ const HomePage = () => {
     };
 
     billCategoryMappings();
-    categories();
+    fetchCategories();
     return () => {
       abortController.abort();
       setCategories({});
@@ -56,7 +57,7 @@ const HomePage = () => {
       <Banner />
       <div id="home-page">
         <h1>Sunrise featured bills</h1>
-        <Filters />
+        <Filters setSearchTerm={setSearchTerm} />
         <div id="home-bill-grid">
           {bills.map((bill) => (
             <Card

@@ -56,7 +56,8 @@ export const fetchBillsBlocks = async (
   abortController,
   billCampaignMapping,
   setSenateBills,
-  setAssemblyBills
+  setAssemblyBills,
+  searchTerm
 ) => {
   const billIds = Object.keys(billCampaignMapping);
 
@@ -65,9 +66,12 @@ export const fetchBillsBlocks = async (
     pages.push(billIds.slice(i, i + PAGE_SIZE));
   }
 
+  const addedTerm = searchTerm !== '*' ? `AND ${searchTerm}` : '';
   for (let i = 0; i < pages.length; i++) {
     const page = pages[i];
-    const term = encodeURIComponent(`basePrintNo:(${page.join(' OR ')})`);
+    const term = encodeURIComponent(
+      `basePrintNo:(${page.map((printNo) => `+${printNo}`).join(' OR ')}) ${addedTerm}`
+    );
     const res = await (
       await fetch(`/api/v1/bills/2023/search?term=${term}`, {
         signal: abortController.signal,
