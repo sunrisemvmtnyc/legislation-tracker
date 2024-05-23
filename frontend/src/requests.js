@@ -1,5 +1,18 @@
 import { REQUEST_PAGE_SIZE } from './constants';
 
+/** Creates ElasticSearch query string */
+const evalSearchTerm = (searchTermsObj) => {
+  let searchTermStr = Object.entries(searchTermsObj)
+    // check if value part of object entry is truthy
+    .filter((entry) => entry[1].length)
+    .map(
+      ([key, val]) => `${key}:(${val.map((val) => `"${val}"`).join(' OR ')})`
+    )
+    .join(' AND ');
+  searchTermStr = encodeURIComponent(searchTermStr);
+  return searchTermStr || '*';
+};
+
 /** Fetches Airtable campaign mappings, assigns to state, and returns it */
 export const fetchBillCampaignMappings = async (
   abortController,
@@ -18,35 +31,33 @@ export const fetchBillCampaignMappings = async (
 /** Gets all the bills, PAGE_SIZE at a time. */
 export const fetchBillsBlocks = async (
   abortController,
-  billCampaignMapping,
-  setSenateBills,
-  setAssemblyBills
+  searchObj,
+  setBills
 ) => {
-  const billIds = Object.keys(billCampaignMapping);
+  let done = false;
+  const searchTerm = evalSearchTerm(searchObj);
 
-  const pages = [];
-  for (let i = 0; i < billIds.length; i += REQUEST_PAGE_SIZE) {
-    pages.push(billIds.slice(i, i + REQUEST_PAGE_SIZE));
-  }
+  const url = '/api/v1/bills/2023/search';
+  const urlParams = {
+    term: searchTerm,
+    limit: REQUEST_PAGE_SIZE,
+    offset: 1,
+  };
 
-  for (let i = 0; i < pages.length; i++) {
-    const page = pages[i];
-    const term = encodeURIComponent(`basePrintNo:(${page.join(' OR ')})`);
+  while (!done) {
     const res = await (
-      await fetch(`/api/v1/bills/2023/search?term=${term}`, {
+      await fetch(`${url}?${new URLSearchParams(urlParams).toString()}`, {
         signal: abortController.signal,
       })
     ).json();
 
-    (res.result?.items || []).forEach((item) => {
-      const bill = item.result;
-      const billId = bill.basePrintNo;
-      if (billId.startsWith('S')) {
-        setSenateBills((prev) => ({ ...prev, [billId]: bill }));
-      }
-      if (billId.startsWith('A')) {
-        setAssemblyBills((prev) => ({ ...prev, [billId]: bill }));
-      }
-    });
+    console.log('offsetend', res.offsetEnd);
+    console.log('total', res.total);
+
+    urlParams.offset = res.offsetEnd + 1;
+    if (res.offsetEnd >= res.total) done = true;
+
+    // Update bills using callback
+    setBills((res.result?.items || []).map((item) => item.result));
   }
 };
