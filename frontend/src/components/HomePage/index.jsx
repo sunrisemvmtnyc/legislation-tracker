@@ -4,12 +4,34 @@ import './HomePage.css';
 import Card from './Card';
 import Banner from './Banner';
 import Filters from './Filters';
+import { fetchBillsBlocks } from '../../requests';
+
+/** Simple enum to show request status */
+const RequestStatus = {
+  NONE: 'none',
+  FETCHING: 'fetching',
+  DONE: 'done',
+};
+
+/** Only search for sunrise campaign bills
+ *
+ * Gets bills for all campaigns, even if user has filtered out some specific campaigns
+ */
+const addCampaignBillsToSearchObj = (campaignMappings, searchObj) => {
+  const copy = { ...searchObj };
+  const billIds = new Set();
+  Object.keys(campaignMappings).forEach((billId) => billIds.add(billId));
+
+  return { ...copy, basePrintNo: Array.from(billIds) };
+};
 
 const HomePage = () => {
   const [bills, setBills] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('*');
-  const [_campaignMappings, setCampaignMappings] = useState({});
+  const [billStatus, setBillStatus] = useState(RequestStatus.NONE);
+  const [campaignMappings, setCampaignMappings] = useState({});
   const [campaigns, setCampaigns] = useState({});
+  const [campaignStatus, setCampaignStatus] = useState(RequestStatus.NONE);
+
   const [baseSearchTermsObj, setSearchTermsObj] = useState({});
   const [campaignFilter, setCampaignFilter] = useState([]);
 
@@ -36,40 +58,19 @@ const HomePage = () => {
     // Correctly handle double-mount in dev/StrictMode
     // https://stackoverflow.com/a/72238236
     const abortController = new AbortController();
+    fetchBillsBlocks(abortController, searchObjWithCampaignBills, (newBills) =>
+      setBills((prev) => [...prev, ...newBills])
+    )
+      .then(() => setBillStatus(RequestStatus.DONE))
+      .catch((e) => {
+        if (e.name !== 'AbortError') throw e;
+      });
 
-    // TODO: does not fetch all bills, only first page
-    const paginateBills = async () => {
-      let offset = 1;
-      let done = false;
-      while (!done) {
-        try {
-          const queryStr = new URLSearchParams({
-            offset,
-            term: searchTerm,
-          }).toString();
-          const res = await fetch(`/api/v1/bills/2023/search?${queryStr}`, {
-            signal: abortController.signal,
-          });
-          const out = await res.json();
-          await setBills((prevBills) =>
-            [...prevBills].concat(out.result.items.map((item) => item.result))
-          );
-          offset = out.offsetEnd;
-          // if (out.offsetEnd >= out.total) done = true;
-          done = true;
-        } catch (error) {
-          console.log('Home bills request aborted');
-          done = true;
-        }
-      }
-    };
-
-    paginateBills();
     return () => {
       abortController.abort();
       setBills([]);
     };
-  }, [searchTerm]);
+  }, [baseSearchTermsObj, campaignStatus, campaignMappings]);
 
   // Fetch campaign mappings and campaigns
   useEffect(() => {
@@ -86,6 +87,7 @@ const HomePage = () => {
         const { bills, campaigns } = data;
         setCampaignMappings(bills);
         setCampaigns(campaigns);
+        setCampaignStatus(RequestStatus.DONE);
       } catch (error) {
         console.log('Sunrise campaign & bill request aborted');
       }
@@ -96,6 +98,7 @@ const HomePage = () => {
       abortController.abort();
       setCampaigns({});
       setCampaignMappings({});
+      setCampaignStatus(RequestStatus.NONE);
     };
   }, []); // Only run on initial page load
 
