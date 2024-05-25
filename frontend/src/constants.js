@@ -1,5 +1,3 @@
-export const TAGS = ['Climate', 'Social Justice', 'Education', 'LGBTQ'];
-
 export const BILL_STATUSES = [
   'Introduced',
   'In Senate Committee',

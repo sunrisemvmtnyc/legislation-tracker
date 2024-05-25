@@ -2,3 +2,7 @@
   display: inline-flex;
   flex-direction: row;
 }
+
+.MuiMenuItem-root.Mui-selected {
+  background-color: rgba(25, 118, 210, 0.3)
+}
