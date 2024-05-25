@@ -1,26 +1,11 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import { BILL_STATUSES, SEARCH_QUERY_KEY_MAP } from '../../constants';
 import Dropdown from './Dropdown';
 import './Filters.css';
 
-const Filters = ({ campaignList, setSearchTerm, setCampaignFilter }) => {
-  // creates ElasticSearch query string
-  const [searchTermsObj, setSearchTermsObj] = useState({});
-
-  // update search term when obj updatedj
-  useEffect(() => {
-    const searchTermStr = Object.entries(searchTermsObj)
-      // check if value part of object entry is truthy
-      .filter((entry) => entry[1].length)
-      .map(
-        ([key, val]) => `${key}:(${val.map((val) => `"${val}"`).join(' OR ')})`
-      )
-      .join(' AND ');
-    setSearchTerm(encodeURIComponent(searchTermStr) || '*');
-  }, [setSearchTerm, searchTermsObj]);
-
+const Filters = ({ campaignList, setSearchTermsObj, setCampaignFilter }) => {
   const createSearchTermsObjUpdater = useCallback(
     (searchKey) => {
       return (searchVal) => {
@@ -83,7 +68,7 @@ const Filters = ({ campaignList, setSearchTerm, setCampaignFilter }) => {
 Filters.propTypes = {
   campaignList: PropTypes.arrayOf(PropTypes.object).isRequired,
   setCampaignFilter: PropTypes.func.isRequired,
-  setSearchTerm: PropTypes.func.isRequired,
+  setSearchTermsObj: PropTypes.func.isRequired,
 };
 
 export default Filters;

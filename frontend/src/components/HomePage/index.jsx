@@ -10,6 +10,7 @@ const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('*');
   const [_campaignMappings, setCampaignMappings] = useState({});
   const [campaigns, setCampaigns] = useState({});
+  const [baseSearchTermsObj, setSearchTermsObj] = useState({});
   const [campaignFilter, setCampaignFilter] = useState([]);
 
   // TODO: remove after review
@@ -30,8 +31,16 @@ const HomePage = () => {
 
   const campaignList = Object.values(campaigns);
 
-  // fetch bills
+  // Fetch bills on page load & filter change
   useEffect(() => {
+    // Skip if campaigns are not yet fetched
+    if (campaignStatus !== RequestStatus.DONE) return;
+
+    const searchObjWithCampaignBills = addCampaignBillsToSearchObj(
+      campaignMappings,
+      baseSearchTermsObj
+    );
+
     // Correctly handle double-mount in dev/StrictMode
     // https://stackoverflow.com/a/72238236
     const abortController = new AbortController();
@@ -106,7 +115,7 @@ const HomePage = () => {
         <Filters
           campaignList={campaignList}
           setCampaignFilter={setCampaignFilter}
-          setSearchTerm={setSearchTerm}
+          setSearchTermsObj={setSearchTermsObj}
         />
         <div id="home-bill-grid">
           {billsToDisplay.map((bill) => (
