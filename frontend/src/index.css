@@ -610,3 +610,13 @@ a:hover .callout__text {
 /*
   vim: foldmethod=marker
   */
+
+/* Keep footer always at the bottom of the page */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.App {
+  flex: 1;
+}
