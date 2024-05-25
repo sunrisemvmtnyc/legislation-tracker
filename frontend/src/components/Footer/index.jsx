@@ -13,7 +13,7 @@ function Footer() {
       <div className="footer-actions">
         <a className="footer-get-involved" href="https://sunrisenyc.org/" target="_blank" rel="noreferrer">Get involved</a>
         <div className="footer-navbar">
-          <Link to="/learn">Learn</Link>
+          {/* <Link to="/learn">Learn</Link> */}
           <Link to="/advanced">Advanced view</Link>
           <Link to="/about">About</Link>
         </div>
