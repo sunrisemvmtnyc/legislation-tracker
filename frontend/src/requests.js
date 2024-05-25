@@ -9,7 +9,9 @@ const evalSearchTerm = (searchTermsObj) => {
       ([key, val]) => `${key}:(${val.map((val) => `"${val}"`).join(' OR ')})`
     )
     .join(' AND ');
-  searchTermStr = encodeURIComponent(searchTermStr);
+
+  // NOTE: seems to have issues with encodeURI & encodeURIComponenet
+  // searchTermStr = encodeURI(searchTermStr);
   return searchTermStr || '*';
 };
 
@@ -35,6 +37,7 @@ export const fetchBillsBlocks = async (
   setBills
 ) => {
   let done = false;
+  // console.log('fetchBillsBlocks searchObj', searchObj); // Useful for debugging
   const searchTerm = evalSearchTerm(searchObj);
 
   const url = '/api/v1/bills/2023/search';
