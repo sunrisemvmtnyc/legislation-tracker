@@ -13,15 +13,7 @@ const HomePage = () => {
   const [baseSearchTermsObj, setSearchTermsObj] = useState({});
   const [campaignFilter, setCampaignFilter] = useState([]);
 
-  // TODO: remove after review
-  const campaignMappings = Object.keys(_campaignMappings).length
-    ? {
-        ..._campaignMappings,
-        A2229: ['recaKM8EyeUejwpBf'],
-      }
-    : _campaignMappings;
-
-  const billsToDisplay = campaignFilter.length
+  const campaignBills = campaignFilter.length
     ? bills.filter((bill) =>
         campaignMappings[bill.basePrintNo]?.some((relatedCampaignId) =>
           campaignFilter.includes(relatedCampaignId)
@@ -118,7 +110,7 @@ const HomePage = () => {
           setSearchTermsObj={setSearchTermsObj}
         />
         <div id="home-bill-grid">
-          {billsToDisplay.map((bill) => (
+          {campaignBills.map((bill) => (
             <Card
               bill={bill}
               key={bill.basePrintNoStr}
