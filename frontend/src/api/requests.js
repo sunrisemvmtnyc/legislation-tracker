@@ -70,7 +70,7 @@ export const fetchBillsBlocks = async (
   for (let i = 0; i < pages.length; i++) {
     const page = pages[i];
     const term = encodeURIComponent(
-      `basePrintNo:(${page.map((printNo) => `+${printNo}`).join(' OR ')}) ${addedTerm}`
+      `printNo:(${page.join(' OR ')}) ${addedTerm}`
     );
     const res = await (
       await fetch(`/api/v1/bills/2023/search?term=${term}`, {
