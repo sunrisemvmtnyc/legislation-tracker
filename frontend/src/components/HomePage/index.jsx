@@ -9,46 +9,47 @@ import Filters from './Filters';
 
 const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('*');
-  const [categoryMappings, setCategoryMappings] = useState({});
-  const [categories, setCategories] = useState({});
-
+  const [campaignMappings, setCampaignMappings] = useState({});
+  const [campaigns, setCampaigns] = useState({});
+  const [campaignFilter, setCampaignFilter] = useState([]);
   const { senateBills, assemblyBills } = useSunriseBills(searchTerm);
 
   const bills = Object.values(senateBills).concat(Object.values(assemblyBills));
+
+  const billsToDisplay = campaignFilter.length
+    ? bills.filter((bill) =>
+        campaignMappings[bill.basePrintNo]?.some((relatedCampaignId) =>
+          campaignFilter.includes(relatedCampaignId)
+        )
+      )
+    : bills;
+
+  const campaignList = Object.values(campaigns);
 
   useEffect(() => {
     // Correctly handle double-mount in dev/StrictMode
     // https://stackoverflow.com/a/72238236
     const abortController = new AbortController();
 
-    const billCategoryMappings = async () => {
+    const fetchCampaignsAndCampaignMappings = async () => {
       try {
-        const res = await fetch(`/api/v1/bills/category-mappings`, {
+        const res = await fetch(`/api/v1/bills/airtable-bills`, {
           signal: abortController.signal,
         });
-        setCategoryMappings(await res.json());
+        const data = await res.json();
+        const { bills, campaigns } = data;
+        setCampaignMappings(bills);
+        setCampaigns(campaigns);
       } catch (error) {
-        console.log('Home category mappings request aborted', error);
+        console.log('Sunrise campaign & bill request aborted');
       }
     };
 
-    const fetchCategories = async () => {
-      try {
-        const res = await fetch(`/api/v1/categories`, {
-          signal: abortController.signal,
-        });
-        setCategories(await res.json());
-      } catch (error) {
-        console.log('Home categories request aborted', error);
-      }
-    };
-
-    billCategoryMappings();
-    fetchCategories();
+    fetchCampaignsAndCampaignMappings();
     return () => {
       abortController.abort();
-      setCategories({});
-      setCategoryMappings({});
+      setCampaigns({});
+      setCampaignMappings({});
     };
   }, []); // Only run on initial page load
 
@@ -57,14 +58,18 @@ const HomePage = () => {
       <Banner />
       <div id="home-page">
         <h1>Sunrise featured bills</h1>
-        <Filters setSearchTerm={setSearchTerm} />
+        <Filters
+          campaignList={campaignList}
+          setCampaignFilter={setCampaignFilter}
+          setSearchTerm={setSearchTerm}
+        />
         <div id="home-bill-grid">
-          {bills.map((bill) => (
+          {billsToDisplay.map((bill) => (
             <Card
               bill={bill}
               key={bill.basePrintNoStr}
-              billCategoryMappings={categoryMappings[bill.basePrintNo]}
-              allCategories={categories}
+              billCampaignMappings={campaignMappings[bill.basePrintNo] || []}
+              allCampaigns={campaigns}
             />
           ))}
         </div>
