@@ -9,11 +9,16 @@ const LocForm = () => {
 
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
+  const [representatives, setRepresentatives] = useState({});
 
   useEffect(() => {
     const sessionPlaceName = window.sessionStorage.getItem("placeName");
     if (sessionPlaceName) {
       setPlaceName(sessionPlaceName);
+    }
+    const sessionRepresentatives = window.sessionStorage.getItem("representatives");
+    if (sessionRepresentatives) {
+      setRepresentatives(JSON.parse(sessionRepresentatives));
     }
     const sessionLatitude = window.sessionStorage.getItem("latitude");
     if (sessionLatitude) {
@@ -30,9 +35,11 @@ const LocForm = () => {
     setPlaceName("");
     setLatitude("");
     setLongitude("");
+    setRepresentatives({});
     window.sessionStorage.setItem("placeName", "");
     window.sessionStorage.setItem("latitude", "");
     window.sessionStorage.setItem("longitude","");
+    window.sessionStorage.setItem("representatives", JSON.stringify({}));
     window.dispatchEvent(new StorageEvent('storage'));
   };
 
@@ -52,6 +59,21 @@ const LocForm = () => {
         const coordinates = data.features[0].center;
         setLatitude(coordinates[1]);
         setLongitude(coordinates[0]);
+        // console.log(`/api/v1/legislators/geo_search/offices/${coordinates[1]}/${coordinates[0]}`);
+        const repResponse = await fetch(
+          `/api/v1/legislators/geo_search/offices/${coordinates[1]}/${coordinates[0]}`
+        );
+        const repData = await repResponse.json();
+        // console.log(repData);
+        // TODO: Print out Rep Data
+
+        repData.forEach(rep => {
+          representatives[rep.name] = rep.offices.map(office => ({
+              name: office.name,
+              phone: office.voice
+          }));
+      });
+
         window.sessionStorage.setItem("latitude", JSON.stringify(coordinates[1]));
         window.sessionStorage.setItem("longitude", JSON.stringify(coordinates[0]));
         const dataPlaceName = data.features[0].place_name;
@@ -73,9 +95,24 @@ const LocForm = () => {
   if (locationFound) {
     content = (
       <>
-        Now displaying sponsors related to <b>{placeName}</b>.
+        Now displaying representatives for your District <b>{placeName}</b>.
         <br />
         <Button variant="text" className="change-location" onClick={reset}>Change location</Button>
+        <div className="representatives">
+          {Object.entries(representatives).map(([name, offices]) => (
+            <div key={name} className="representative">
+              <h3>{name}</h3>
+              <ul>
+                {offices.map((office, index) => (
+                  <li key={index}>
+                    <strong>Address:</strong> {office.name}<br />
+                    <strong>Phone:</strong> <a href={"tel:" + office.phone}>{office.phone}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </>
     );
   } else {
