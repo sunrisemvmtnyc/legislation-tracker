@@ -18,11 +18,10 @@ const RequestStatus = {
  * Gets bills for all campaigns, even if user has filtered out some specific campaigns
  */
 const addCampaignBillsToSearchObj = (campaignMappings, searchObj) => {
-  const copy = { ...searchObj };
   const billIds = new Set();
   Object.keys(campaignMappings).forEach((billId) => billIds.add(billId));
 
-  return { ...copy, basePrintNo: Array.from(billIds) };
+  return { ...searchObj, basePrintNo: Array.from(billIds) };
 };
 
 const HomePage = () => {
