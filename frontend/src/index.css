@@ -394,15 +394,8 @@ h1 {
   text-transform: uppercase;
 }
 
-h2 {
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
 p {
   font-weight: 300;
-  padding-left: 2rem;
-  padding-right: 2rem;
 }
 
 a,
