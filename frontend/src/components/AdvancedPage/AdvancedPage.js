@@ -31,7 +31,7 @@ BillTableHeader.propTypes = {
   assemblyBills: PropTypes.object.isRequired,
 };
 
-const AdvancedPage = () => {
+export const AdvancedPage = () => {
   const [billCampaignMappings, setBillCampaignMappings] = useState();
   const [campaigns, setCampaigns] = useState();
   const [senateBills, setSenateBills] = useState({});
@@ -143,5 +143,3 @@ const AdvancedPage = () => {
     </div>
   );
 };
-
-export default AdvancedPage;
