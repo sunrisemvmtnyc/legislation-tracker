@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react';
 import './HomePage.css';
 
+import useSunriseBills from '../../api/useSunriseBills';
+
 import Card from './Card';
 import Banner from './Banner';
 import Filters from './Filters';
 
 const HomePage = () => {
-  const [bills, setBills] = useState([]);
   const [searchTerm, setSearchTerm] = useState('*');
   const [campaignMappings, setCampaignMappings] = useState({});
   const [campaigns, setCampaigns] = useState({});
   const [campaignFilter, setCampaignFilter] = useState([]);
+  const { senateBills, assemblyBills } = useSunriseBills(searchTerm);
+
+  const bills = Object.values(senateBills).concat(Object.values(assemblyBills));
 
   const billsToDisplay = campaignFilter.length
     ? bills.filter((bill) =>
@@ -22,47 +26,6 @@ const HomePage = () => {
 
   const campaignList = Object.values(campaigns);
 
-  // fetch bills
-  useEffect(() => {
-    // Correctly handle double-mount in dev/StrictMode
-    // https://stackoverflow.com/a/72238236
-    const abortController = new AbortController();
-
-    // TODO: does not fetch all bills, only first page
-    const paginateBills = async () => {
-      let offset = 1;
-      let done = false;
-      while (!done) {
-        try {
-          const queryStr = new URLSearchParams({
-            offset,
-            term: searchTerm,
-          }).toString();
-          const res = await fetch(`/api/v1/bills/2023/search?${queryStr}`, {
-            signal: abortController.signal,
-          });
-          const out = await res.json();
-          await setBills((prevBills) =>
-            [...prevBills].concat(out.result.items.map((item) => item.result))
-          );
-          offset = out.offsetEnd;
-          // if (out.offsetEnd >= out.total) done = true;
-          done = true;
-        } catch (error) {
-          console.log('Home bills request aborted');
-          done = true;
-        }
-      }
-    };
-
-    paginateBills();
-    return () => {
-      abortController.abort();
-      setBills([]);
-    };
-  }, [searchTerm]);
-
-  // Fetch campaign mappings and campaigns
   useEffect(() => {
     // Correctly handle double-mount in dev/StrictMode
     // https://stackoverflow.com/a/72238236

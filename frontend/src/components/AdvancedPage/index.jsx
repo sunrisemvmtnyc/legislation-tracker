@@ -4,9 +4,8 @@ import { useState, useEffect } from 'react';
 import { LegislatorRow } from './LegislatorRow';
 import {
   fetchLegislators,
-  fetchBillCampaignMappings,
-  fetchBillsBlocks,
-} from './requests';
+} from '../../api/requests';
+import useSunriseBills from '../../api/useSunriseBills';
 
 /** Individual th cell for a bill */
 const BillTableHeaderCell = ({ bill }) => <th>{bill.title}</th>;
@@ -32,12 +31,10 @@ BillTableHeader.propTypes = {
 };
 
 const AdvancedPage = () => {
-  const [billCampaignMappings, setBillCampaignMappings] = useState();
-  const [campaigns, setCampaigns] = useState();
-  const [senateBills, setSenateBills] = useState({});
-  const [assemblyBills, setAssemblyBills] = useState({});
   const [senators, setSenators] = useState([]);
   const [assemblyers, setAssemblyMembers] = useState([]);
+
+  const { senateBills, assemblyBills, campaigns, billCampaignMappings } = useSunriseBills();
 
   // Sponsor object for quicker lookups
   const billSponsors = {};
@@ -73,18 +70,6 @@ const AdvancedPage = () => {
     // https://stackoverflow.com/a/72238236
     const abortController = new AbortController();
 
-    fetchBillCampaignMappings(
-      abortController,
-      setCampaigns,
-      setBillCampaignMappings
-    )
-      .then((bcm) =>
-        fetchBillsBlocks(abortController, bcm, setSenateBills, setAssemblyBills)
-      )
-      .catch((e) => {
-        if (e.name !== 'AbortError') throw e;
-      });
-
     fetchLegislators(abortController, setAssemblyMembers, setSenators).catch(
       (e) => {
         if (e.name !== 'AbortError') throw e;
@@ -93,10 +78,6 @@ const AdvancedPage = () => {
 
     return () => {
       abortController.abort();
-      setCampaigns(undefined);
-      setBillCampaignMappings(undefined);
-      setSenateBills({});
-      setAssemblyBills({});
       setAssemblyMembers([]);
       setSenators([]);
     };

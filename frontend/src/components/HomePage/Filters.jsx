@@ -18,7 +18,7 @@ const Filters = ({ campaignList, setSearchTerm, setCampaignFilter }) => {
         ([key, val]) => `${key}:(${val.map((val) => `"${val}"`).join(' OR ')})`
       )
       .join(' AND ');
-    setSearchTerm(encodeURIComponent(searchTermStr) || '*');
+    setSearchTerm(searchTermStr || '*');
   }, [setSearchTerm, searchTermsObj]);
 
   const createSearchTermsObjUpdater = useCallback(
