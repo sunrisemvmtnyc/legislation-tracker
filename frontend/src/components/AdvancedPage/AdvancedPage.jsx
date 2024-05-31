@@ -134,7 +134,6 @@ export const AdvancedPage = () => {
       <table>
         <thead>
           <tr>
-            <th>District Code</th>
             <th>Full Name</th>
             <th>All Leg pct</th>
             <th>Climate Leg pct</th>

@@ -63,7 +63,6 @@ LegislatorRowCell.propTypes = {
 export const LegislatorRow = ({ member, bills, billSponsors }) => {
   return (
     <tr>
-      <td>{member.districtCode}</td>
       <td>{member.fullName}</td>
       <td>fixme: all legislation pct</td>
       <td>fixme: climate legislation pct</td>
