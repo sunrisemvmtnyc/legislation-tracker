@@ -21,6 +21,12 @@
 html {
     font-family: 'Source Sans 3';
 }
+
+#senate-site-link {
+    align-items: center;
+    display: inline-flex;
+}
+
 .bill-content {
     display: flex;
 }

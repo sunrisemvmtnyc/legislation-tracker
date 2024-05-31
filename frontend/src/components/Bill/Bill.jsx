@@ -1,7 +1,9 @@
+import { Icon } from '@iconify/react';
 import { PropTypes } from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import LocForm from "./LocForm";
+
+import LocForm from './LocForm';
 import './Bill.css';
 
 function getSponsorNumber(billData) {
@@ -72,10 +74,11 @@ export const Bill = () => {
   const { sessionYear, printNo } = useParams();
   const [bill, setBill] = useState();
   const [committee, setCommittee] = useState();
-  const [placeName, setPlaceName] = useState("");
+  const [placeName, setPlaceName] = useState('');
 
   const fetched = !!bill;
   const isSenate = bill?.billType?.chamber?.toLowerCase() === 'senate';
+  const senateSiteUrl = `https://www.nysenate.gov/legislation/bills/${sessionYear}/${printNo}`;
 
   // Fetch main bill data
   useEffect(() => {
@@ -105,13 +108,13 @@ export const Bill = () => {
 
   useEffect(() => {
     const setPlaceNameFromStorage = () => {
-      setPlaceName(window.sessionStorage.getItem("placeName") || "[CITY, ZIP]");
+      setPlaceName(window.sessionStorage.getItem('placeName') || '[CITY, ZIP]');
     };
     setPlaceNameFromStorage();
     window.addEventListener('storage', setPlaceNameFromStorage);
     return () => {
       window.removeEventListener('storage', setPlaceNameFromStorage);
-    }
+    };
   }, []);
 
   if (!bill)
@@ -134,19 +137,39 @@ export const Bill = () => {
       <div className="summary">
         <LocForm />
         <h2>{title}</h2>
+        <div>
+          <span>
+            <a
+              id="senate-site-link"
+              href={senateSiteUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              on NYSenate site &nbsp;
+              <Icon icon="material-symbols:open-in-new" />
+            </a>
+          </span>
+        </div>
         <p>{summary}</p>
         <div className="category">
           {bill.category} <p>(Sample Category)</p>
         </div>
-        
+
         <p>
-          Sponsored by <span style={{fontWeight:'bold'}}>{sponsorName}</span>
+          Sponsored by <span style={{ fontWeight: 'bold' }}>{sponsorName}</span>
           <br />
           District {bill.sponsor.member.districtCode}
         </p>
-        <p>Status: <span style={{fontWeight:'bold'}}>{bill.status.statusDesc}</span></p>
-        <div><p>Total Sponsors: {getSponsorNumber(bill)}</p></div>
-        <p><RelatedBills related={bill.billInfoRefs.items} /></p>
+        <p>
+          Status:{' '}
+          <span style={{ fontWeight: 'bold' }}>{bill.status.statusDesc}</span>
+        </p>
+        <div>
+          <p>Total Sponsors: {getSponsorNumber(bill)}</p>
+        </div>
+        <p>
+          <RelatedBills related={bill.billInfoRefs.items} />
+        </p>
         {fetched && (
           <BillCommitteeMembers
             committee={committee}
@@ -165,10 +188,10 @@ export const Bill = () => {
           </p>
         </div>
       </div>
-      
+
       <div className="action">
         <h2>Take Action!</h2>
-        
+
         <h4>Script when calling your representative:</h4>
         <div className="script">
           <p>
