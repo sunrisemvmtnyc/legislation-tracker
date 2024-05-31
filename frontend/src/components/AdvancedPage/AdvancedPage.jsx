@@ -1,3 +1,5 @@
+import { styled } from '@mui/material';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
@@ -8,8 +10,33 @@ import {
   fetchBillsBlocks,
 } from './requests';
 
+const BillTitleTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: '#f5f5f9',
+    color: 'rgba(0, 0, 0, 0.87)',
+    maxWidth: 220,
+    fontSize: theme.typography.pxToRem(24),
+    border: '1px solid #dadde9',
+  },
+}));
+
 /** Individual th cell for a bill */
-const BillTableHeaderCell = ({ bill }) => <th>{bill.title}</th>;
+const BillTableHeaderCell = ({ bill }) => (
+  <>
+    <BillTitleTooltip
+      title={bill.title}
+      arrow
+      placement="bottom"
+      // Useful for debugging
+      // open={bill.printNo === 'S1570'}
+      // open={false}
+    >
+      <th style={{ textAlign: 'center' }}>{bill.printNo}</th>
+    </BillTitleTooltip>
+  </>
+);
 BillTableHeaderCell.propTypes = {
   bill: PropTypes.object.isRequired,
 };
