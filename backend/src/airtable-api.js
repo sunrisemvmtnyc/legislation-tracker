@@ -15,6 +15,7 @@ const BILL_CAMPAIGN_FIELD_ID = 'Campaign';
 // Campaign fields we care about
 const CAMPAIGN_LONG_NAME_FIELD_ID = 'Long Name';
 const CAMPAIGN_SHORT_NAME_FIELD_ID = 'Short Name';
+const CAMPAIGN_IS_CLIMATE_FIELD_ID = 'Is Climate';
 
 const airtable = new Airtable({ apiKey: AIRTABLE_API_KEY });
 const base = airtable.base(AIRTABLE_BASE_ID);
@@ -106,7 +107,11 @@ const sunriseCampaigns = async () => {
     base(CAMPAIGNS_TABLE_ID)
       .select({
         view: 'Grid view',
-        fields: [CAMPAIGN_LONG_NAME_FIELD_ID, CAMPAIGN_SHORT_NAME_FIELD_ID],
+        fields: [
+          CAMPAIGN_LONG_NAME_FIELD_ID,
+          CAMPAIGN_SHORT_NAME_FIELD_ID,
+          CAMPAIGN_IS_CLIMATE_FIELD_ID,
+        ],
       })
       .eachPage(
         (records, fetchNextPage) => {
@@ -132,10 +137,14 @@ const sunriseCampaigns = async () => {
   records.forEach((record) => {
     const longName = record.get(CAMPAIGN_LONG_NAME_FIELD_ID);
     const shortName = record.get(CAMPAIGN_SHORT_NAME_FIELD_ID);
+    const is_climate = record.get(CAMPAIGN_IS_CLIMATE_FIELD_ID);
     const campaignId = record.id;
     campaigns[campaignId] = {
       long_name: longName,
       short_name: shortName,
+
+      // Airtable returns checkboxes as `true` or `undefined` for some unknowable reason
+      is_climate: is_climate,
       id: campaignId,
     };
   });
