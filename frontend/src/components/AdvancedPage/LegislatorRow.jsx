@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 const CellOption = {
   PASSED_ASSEMBLY: {
     className: 'member_bill-passed',
-    contents: 'Passed assembly',
+    contents: '--',
   },
   PASSED_SENATE: {
     className: 'member_bill-passed',
-    contents: 'Passed senate',
+    contents: '--',
   },
   NOT_SPONSORING: {
     className: 'member_bill-not_sponsoring',
-    contents: 'Not sponsoring',
+    contents: 'no',
   },
-  SPONSORING: { className: 'member_bill-sponsoring', contents: 'Sponsoring' },
+  SPONSORING: { className: 'member_bill-sponsoring', contents: 'S' },
 
   // fixme: handle option of dne: if sibling bill not provided
-  DNE: { className: 'member_bill-dne', contents: "Not intro'd" },
+  DNE: { className: 'member_bill-dne', contents: '--' },
 };
 
 /** Cell showing if member has sponsored a given bill */

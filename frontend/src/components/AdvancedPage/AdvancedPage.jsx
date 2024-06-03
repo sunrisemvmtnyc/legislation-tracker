@@ -3,6 +3,7 @@ import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
+import './AdvancedPage.css';
 import { LegislatorRow } from './LegislatorRow';
 import {
   fetchLegislators,

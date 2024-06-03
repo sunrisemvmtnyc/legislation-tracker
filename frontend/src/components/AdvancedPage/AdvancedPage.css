@@ -1,0 +1,23 @@
+/* Putting them up here to be more reusable/changeable in the future */
+:root {
+  --advanced-error: red;
+  --advanced-warning: yellow;
+  --advanced-success: lightgreen;
+  --advanced-secondary: lightgray;
+}
+
+.member_bill-passed {
+  background-color: var(--advanced-secondary);
+}
+.member_bill-passed {
+  background-color: var(--advanced-secondary);
+}
+.member_bill-not_sponsoring {
+  background-color: var(--advanced-error);
+}
+.member_bill-sponsoring {
+  background-color: var(--advanced-success);
+}
+.member_bill-dne {
+  background-color: var(--advanced-secondary);
+}
