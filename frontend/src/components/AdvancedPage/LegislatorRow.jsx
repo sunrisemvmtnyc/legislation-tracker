@@ -25,12 +25,13 @@ const CellOption = {
 
 /** Cell showing if member has sponsored a given bill */
 const LegislatorRowCell = ({ memberId, bill, billSponsors }) => {
-  const key = `${memberId}-sponsors-${bill.basePrintNo}`;
+  const key = `${memberId}-sponsors-${bill?.basePrintNo || 'no-bill'}`;
   const isAssembly = billIsAssembly(bill);
   const hasPassed = billHasPassed(bill);
   let { className, contents } = CellOption.DNE;
 
-  if (hasPassed) {
+  if (!bill) ({ className, contents } = CellOption.DNE);
+  else if (hasPassed) {
     if (isAssembly) ({ className, contents } = CellOption.PASSED_ASSEMBLY);
     else ({ className, contents } = CellOption.PASSED_SENATE);
   } else if (!billSponsors[bill.basePrintNo])
@@ -47,7 +48,7 @@ const LegislatorRowCell = ({ memberId, bill, billSponsors }) => {
 };
 LegislatorRowCell.propTypes = {
   memberId: PropTypes.number.isRequired,
-  bill: PropTypes.object.isRequired,
+  bill: PropTypes.object,
   billSponsors: PropTypes.object.isRequired,
 };
 
@@ -65,6 +66,7 @@ export const LegislatorRow = ({
   let sponsoredBillsCount = 0;
   let sponsoredClimateBillsCount = 0;
   bills.forEach((bill) => {
+    if (!bill) return;
     if (billSponsors[bill.basePrintNo].has(memberId)) {
       sponsoredBillsCount = ++sponsoredBillsCount;
       if (billIsClimateBill(bill, billCampaignMappings, campaigns))
@@ -97,7 +99,7 @@ export const LegislatorRow = ({
       {bills.map((bill) => (
         <LegislatorRowCell
           memberId={memberId}
-          key={bill.basePrintNo}
+          key={bill?.basePrintNo || 'no-bill'}
           bill={bill}
           billSponsors={billSponsors}
         />
@@ -107,7 +109,9 @@ export const LegislatorRow = ({
 };
 LegislatorRow.propTypes = {
   member: PropTypes.object.isRequired,
-  bills: PropTypes.array.isRequired,
+  bills: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.object, PropTypes.undefined])
+  ).isRequired,
   billSponsors: PropTypes.object.isRequired,
   unpassedBillCount: PropTypes.number.isRequired,
   unpassedClimateBillCount: PropTypes.number.isRequired,

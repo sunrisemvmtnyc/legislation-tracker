@@ -10,9 +10,11 @@ import {
   fetchBillCampaignMappings,
   fetchBillsBlocks,
 } from './requests';
-import { billIsClimateBill } from './utils';
-
-import { billInLegislature } from '../../utils';
+import {
+  collectBillPairs,
+  collectBillSponsors,
+  unpassedBillCounts,
+} from './utils';
 
 const BillTitleTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -27,39 +29,43 @@ const BillTitleTooltip = styled(({ className, ...props }) => (
 }));
 
 /** Individual th cell for a bill */
-const BillTableHeaderCell = ({ bill }) => (
+const BillTableHeaderCell = ({ senate, assembly }) => (
   <>
     <BillTitleTooltip
-      title={bill.title}
+      title={senate?.title || assembly?.title || '--'}
       arrow
       placement="bottom"
       // Useful for debugging
       // open={bill.printNo === 'S1570'}
       // open={false}
     >
-      <th style={{ textAlign: 'center' }}>{bill.printNo}</th>
+      <th style={{ textAlign: 'center' }}>
+        {senate?.printNo || '--'} {assembly?.printNo || '--'}
+      </th>
     </BillTitleTooltip>
   </>
 );
 BillTableHeaderCell.propTypes = {
-  bill: PropTypes.object.isRequired,
+  senate: PropTypes.object,
+  assembly: PropTypes.object,
 };
 
-const BillTableHeader = ({ senateBills, assemblyBills }) => {
+const BillTableHeader = ({ billPairs }) => {
   // fixme: show full bill title on hover, partial title in cell
   return (
     <>
-      {Object.values(senateBills)
-        .concat(Object.values(assemblyBills))
-        .map((bill) => (
-          <BillTableHeaderCell key={bill.basePrintNo} bill={bill} />
-        ))}
+      {billPairs.map(([senate, assembly]) => (
+        <BillTableHeaderCell
+          key={senate?.basePrintNo || assembly?.basePrintNo}
+          senate={senate}
+          assembly={assembly}
+        />
+      ))}
     </>
   );
 };
 BillTableHeader.propTypes = {
-  senateBills: PropTypes.object.isRequired,
-  assemblyBills: PropTypes.object.isRequired,
+  billPairs: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)).isRequired,
 };
 
 export const AdvancedPage = () => {
@@ -70,51 +76,23 @@ export const AdvancedPage = () => {
   const [senators, setSenators] = useState([]);
   const [assemblyers, setAssemblyMembers] = useState([]);
 
-  // Used for calculating percentages in LegislatorRow
-  let unpassedAssemblyBillCount = 0;
-  let unpassedAssemblyClimateBillCount = 0;
-  let unpassedSenateBillCount = 0;
-  let unpassedSenateClimateBillCount = 0;
-  Object.values(assemblyBills).forEach((bill) => {
-    if (billInLegislature(bill)) {
-      unpassedAssemblyBillCount = ++unpassedAssemblyBillCount;
-      if (billIsClimateBill(bill, billCampaignMappings, campaigns))
-        unpassedAssemblyClimateBillCount = ++unpassedAssemblyClimateBillCount;
-    }
-  });
-  Object.values(senateBills).forEach((bill) => {
-    if (billInLegislature(bill)) {
-      unpassedSenateBillCount = ++unpassedSenateBillCount;
-      if (billIsClimateBill(bill, billCampaignMappings, campaigns))
-        unpassedSenateClimateBillCount = ++unpassedSenateClimateBillCount;
-    }
-  });
+  const billPairs = collectBillPairs(senateBills, assemblyBills);
 
   // Sponsor object for quicker lookups
-  const billSponsors = {};
-  Object.values(senateBills)
-    .concat(Object.values(assemblyBills))
-    .forEach((bill) => {
-      let sponsorSet = new Set();
+  const billSponsors = collectBillSponsors(senateBills, assemblyBills);
 
-      // Use non-main sponsor first to fill Set more efficiently
-      const amendmentItems = bill?.amendments?.items || {};
-      Object.values(amendmentItems).forEach((amendmentItem) => {
-        const cosponsors = amendmentItem.coSponsors?.items || [];
-
-        // Create Set in bulk
-        sponsorSet = new Set(cosponsors.map((cs) => cs.memberId));
-        // cosponsors.forEach((cosponsor) => sponsorSet.add(cosponsor.memberId));
-      });
-
-      const mainSponsor = bill?.sponsor?.member?.memberId;
-      sponsorSet.add(mainSponsor);
-
-      // todo: check if some use cosponsor instead of amendments
-      // None seem to actually use the field
-
-      billSponsors[bill.basePrintNo] = sponsorSet;
-    });
+  // Used for calculating percentages in LegislatorRow
+  const {
+    unpassedAssemblyBillCount,
+    unpassedAssemblyClimateBillCount,
+    unpassedSenateBillCount,
+    unpassedSenateClimateBillCount,
+  } = unpassedBillCounts(
+    senateBills,
+    assemblyBills,
+    billCampaignMappings,
+    campaigns
+  );
 
   // fixme: collect bills into campaigns
   const campaignBuckets = {};
@@ -161,10 +139,7 @@ export const AdvancedPage = () => {
             <th>Full Name</th>
             <th>All Leg pct</th>
             <th>Climate Leg pct</th>
-            <BillTableHeader
-              senateBills={senateBills}
-              assemblyBills={assemblyBills}
-            />
+            <BillTableHeader billPairs={billPairs} />
           </tr>
         </thead>
         <tbody>
@@ -172,9 +147,7 @@ export const AdvancedPage = () => {
             <LegislatorRow
               key={senator.memberId}
               member={senator}
-              bills={Object.values(senateBills).concat(
-                Object.values(assemblyBills)
-              )}
+              bills={billPairs.map((pair) => pair[0])}
               campaigns={campaigns}
               billCampaignMappings={billCampaignMappings}
               billSponsors={billSponsors}
@@ -186,9 +159,7 @@ export const AdvancedPage = () => {
             <LegislatorRow
               key={assemblyer.memberId}
               member={assemblyer}
-              bills={Object.values(senateBills).concat(
-                Object.values(assemblyBills)
-              )}
+              bills={billPairs.map((pair) => pair[1])}
               campaigns={campaigns}
               billCampaignMappings={billCampaignMappings}
               billSponsors={billSponsors}
