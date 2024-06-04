@@ -69,7 +69,7 @@ BillTableHeader.propTypes = {
 };
 
 export const AdvancedPage = () => {
-  const [billCampaignMappings, setBillCampaignMappings] = useState();
+  const [billCampaignMappings, setBillCampaignMappings] = useState({});
   const [campaigns, setCampaigns] = useState();
   const [senateBills, setSenateBills] = useState({});
   const [assemblyBills, setAssemblyBills] = useState({});
