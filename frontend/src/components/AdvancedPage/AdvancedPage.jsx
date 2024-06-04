@@ -10,6 +10,9 @@ import {
   fetchBillCampaignMappings,
   fetchBillsBlocks,
 } from './requests';
+import { billIsClimateBill } from './utils';
+
+import { billInLegislature } from '../../utils';
 
 const BillTitleTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -66,6 +69,26 @@ export const AdvancedPage = () => {
   const [assemblyBills, setAssemblyBills] = useState({});
   const [senators, setSenators] = useState([]);
   const [assemblyers, setAssemblyMembers] = useState([]);
+
+  // Used for calculating percentages in LegislatorRow
+  let unpassedAssemblyBillCount = 0;
+  let unpassedAssemblyClimateBillCount = 0;
+  let unpassedSenateBillCount = 0;
+  let unpassedSenateClimateBillCount = 0;
+  Object.values(assemblyBills).forEach((bill) => {
+    if (billInLegislature(bill)) {
+      unpassedAssemblyBillCount = ++unpassedAssemblyBillCount;
+      if (billIsClimateBill(bill, billCampaignMappings, campaigns))
+        unpassedAssemblyClimateBillCount = ++unpassedAssemblyClimateBillCount;
+    }
+  });
+  Object.values(senateBills).forEach((bill) => {
+    if (billInLegislature(bill)) {
+      unpassedSenateBillCount = ++unpassedSenateBillCount;
+      if (billIsClimateBill(bill, billCampaignMappings, campaigns))
+        unpassedSenateClimateBillCount = ++unpassedSenateClimateBillCount;
+    }
+  });
 
   // Sponsor object for quicker lookups
   const billSponsors = {};
@@ -152,7 +175,11 @@ export const AdvancedPage = () => {
               bills={Object.values(senateBills).concat(
                 Object.values(assemblyBills)
               )}
+              campaigns={campaigns}
+              billCampaignMappings={billCampaignMappings}
               billSponsors={billSponsors}
+              unpassedBillCount={unpassedSenateBillCount}
+              unpassedClimateBillCount={unpassedSenateClimateBillCount}
             />
           ))}
           {assemblyers.map((assemblyer) => (
@@ -162,7 +189,11 @@ export const AdvancedPage = () => {
               bills={Object.values(senateBills).concat(
                 Object.values(assemblyBills)
               )}
+              campaigns={campaigns}
+              billCampaignMappings={billCampaignMappings}
               billSponsors={billSponsors}
+              unpassedBillCount={unpassedAssemblyBillCount}
+              unpassedClimateBillCount={unpassedAssemblyClimateBillCount}
             />
           ))}
         </tbody>
