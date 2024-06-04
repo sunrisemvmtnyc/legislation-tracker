@@ -65,9 +65,11 @@ export const fetchBillsBlocks = async (
     pages.push(billIds.slice(i, i + PAGE_SIZE));
   }
 
+  // useful for debugging
+  // for (let i = 0; i < 1; i++) {
   for (let i = 0; i < pages.length; i++) {
     const page = pages[i];
-    const term = encodeURIComponent(`basePrintNo:(${page.join(' OR ')})`);
+    const term = encodeURIComponent(`printNo:(${page.join(' OR ')})`);
     const res = await (
       await fetch(`/api/v1/bills/2023/search?term=${term}`, {
         signal: abortController.signal,
