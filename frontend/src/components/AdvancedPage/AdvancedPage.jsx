@@ -75,8 +75,24 @@ export const AdvancedPage = () => {
   const [assemblyBills, setAssemblyBills] = useState({});
   const [senators, setSenators] = useState([]);
   const [assemblyers, setAssemblyMembers] = useState([]);
+  const [legFilter, setLegFilter] = useState('');
+  const [billFilter, setBillFilter] = useState('');
+
+  const filteredSenators = senators.filter((senator) =>
+    senator.fullName.toLowerCase().includes(legFilter.toLowerCase())
+  );
+  const filteredAssemblyers = assemblyers.filter((assemblyer) =>
+    assemblyer.fullName.toLowerCase().includes(legFilter.toLowerCase())
+  );
 
   const billPairs = collectBillPairs(senateBills, assemblyBills);
+  const filteredBillPairs = billPairs.filter(
+    ([senateBill, assemblyBill]) =>
+      senateBill?.title.toLowerCase().includes(billFilter.toLowerCase()) ||
+      senateBill?.printNo.toLowerCase().includes(billFilter.toLowerCase()) ||
+      assemblyBill?.title.toLowerCase().includes(billFilter.toLowerCase()) ||
+      assemblyBill?.printNo.toLowerCase().includes(billFilter.toLowerCase())
+  );
 
   // Sponsor object for quicker lookups
   const billSponsors = collectBillSponsors(senateBills, assemblyBills);
@@ -133,21 +149,37 @@ export const AdvancedPage = () => {
 
   return (
     <div>
+      <div>
+        <input
+          type="text"
+          placeholder="Filter Legislators"
+          value={legFilter}
+          onChange={(e) => setLegFilter(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Filter Bills"
+          value={billFilter}
+          onChange={(e) => setBillFilter(e.target.value)}
+        />
+      </div>
+
       <table>
         <thead>
           <tr>
             <th>Full Name</th>
             <th>All Leg pct</th>
             <th>Climate Leg pct</th>
-            <BillTableHeader billPairs={billPairs} />
+            <BillTableHeader billPairs={filteredBillPairs} />
           </tr>
         </thead>
         <tbody>
-          {senators.map((senator) => (
+          {filteredSenators.map((senator) => (
             <LegislatorRow
               key={senator.memberId}
               member={senator}
               bills={billPairs.map((pair) => pair[0])}
+              filteredBills={filteredBillPairs.map((pair) => pair[0])}
               campaigns={campaigns}
               billCampaignMappings={billCampaignMappings}
               billSponsors={billSponsors}
@@ -155,11 +187,12 @@ export const AdvancedPage = () => {
               unpassedClimateBillCount={unpassedSenateClimateBillCount}
             />
           ))}
-          {assemblyers.map((assemblyer) => (
+          {filteredAssemblyers.map((assemblyer) => (
             <LegislatorRow
               key={assemblyer.memberId}
               member={assemblyer}
               bills={billPairs.map((pair) => pair[1])}
+              filteredBills={filteredBillPairs.map((pair) => pair[1])}
               campaigns={campaigns}
               billCampaignMappings={billCampaignMappings}
               billSponsors={billSponsors}

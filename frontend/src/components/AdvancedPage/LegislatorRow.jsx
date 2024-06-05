@@ -50,6 +50,7 @@ LegislatorRowCell.propTypes = {
 export const LegislatorRow = ({
   member,
   bills,
+  filteredBills,
   billSponsors,
   unpassedBillCount,
   unpassedClimateBillCount,
@@ -93,7 +94,7 @@ export const LegislatorRow = ({
       >
         {climateLegPct}%
       </td>
-      {bills.map((bill, i) => (
+      {filteredBills.map((bill, i) => (
         <LegislatorRowCell
           memberId={memberId}
           // TODO: Not great to key by index
@@ -108,6 +109,9 @@ export const LegislatorRow = ({
 LegislatorRow.propTypes = {
   member: PropTypes.object.isRequired,
   bills: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.object, PropTypes.undefined])
+  ).isRequired,
+  filteredBills: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.object, PropTypes.undefined])
   ).isRequired,
   billSponsors: PropTypes.object.isRequired,
