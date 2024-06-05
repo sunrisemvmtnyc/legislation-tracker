@@ -93,10 +93,11 @@ export const LegislatorRow = ({
       >
         {climateLegPct}%
       </td>
-      {bills.map((bill) => (
+      {bills.map((bill, i) => (
         <LegislatorRowCell
           memberId={memberId}
-          key={`${memberId}-sponsors-${bill?.basePrintNo || 'no-bill'}`}
+          // TODO: Not great to key by index
+          key={`${memberId}-sponsors-${bill?.basePrintNo || 'no-bill-' + i}`}
           bill={bill}
           billSponsors={billSponsors}
         />
