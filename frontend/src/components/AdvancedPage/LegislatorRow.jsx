@@ -80,13 +80,15 @@ export const LegislatorRow = ({
     <tr>
       <td className="row-name">{member.fullName}</td>
       <td
-        style={{ background: `rgb(${100 - allLegPct}% ${allLegPct} 0% / 60%)` }}
+        style={{
+          background: `rgb(${100 - allLegPct}% ${allLegPct}% 0% / 60%)`,
+        }}
       >
         {allLegPct}%
       </td>
       <td
         style={{
-          background: `rgb(${100 - climateLegPct}% ${climateLegPct} 0% / 60%)`,
+          background: `rgb(${100 - climateLegPct}% ${climateLegPct}% 0% / 60%)`,
         }}
       >
         {climateLegPct}%
