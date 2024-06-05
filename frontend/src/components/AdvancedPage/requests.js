@@ -69,22 +69,29 @@ export const fetchBillsBlocks = async (
   // for (let i = 0; i < 1; i++) {
   for (let i = 0; i < pages.length; i++) {
     const page = pages[i];
-    const term = encodeURIComponent(`printNo:(${page.join(' OR ')})`);
-    const res = await (
-      await fetch(`/api/v1/bills/2023/search?term=${term}`, {
+
+    // We directly fetch each bill individually. Can't use search API bc it doesn't return enough fields
+    const promises = page.map((billId) =>
+      fetch(`/api/v1/bills/2023/${billId}?view=info`, {
         signal: abortController.signal,
       })
-    ).json();
+    );
 
-    (res.result?.items || []).forEach((item) => {
-      const bill = item.result;
-      const billId = bill.basePrintNo;
-      if (billId.startsWith('S')) {
-        setSenateBills((prev) => ({ ...prev, [billId]: bill }));
-      }
-      if (billId.startsWith('A')) {
-        setAssemblyBills((prev) => ({ ...prev, [billId]: bill }));
-      }
-    });
+    const res = await Promise.all(promises);
+    const bills = await Promise.all(res.map((r) => r.json()));
+
+    const senateBills = Object.fromEntries(
+      bills
+        .filter((bill) => bill.basePrintNo.startsWith('S'))
+        .map((bill) => [bill.basePrintNo, bill])
+    );
+    const assemblyBills = Object.fromEntries(
+      bills
+        .filter((bill) => bill.basePrintNo.startsWith('A'))
+        .map((bill) => [bill.basePrintNo, bill])
+    );
+
+    setSenateBills((prev) => ({ ...prev, ...senateBills }));
+    setAssemblyBills((prev) => ({ ...prev, ...assemblyBills }));
   }
 };
