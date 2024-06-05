@@ -29,7 +29,12 @@ const BillTitleTooltip = styled(({ className, ...props }) => (
 }));
 
 /** Individual th cell for a bill */
-const BillTableHeaderCell = ({ senate, assembly }) => (
+const BillTableHeaderCell = ({
+  senate,
+  assembly,
+  billCampaignMappings,
+  campaigns,
+}) => (
   <>
     <BillTitleTooltip
       title={senate?.title || assembly?.title || '--'}
@@ -40,6 +45,9 @@ const BillTableHeaderCell = ({ senate, assembly }) => (
       // open={false}
     >
       <th style={{ textAlign: 'center' }}>
+        {billCampaignMappings[senate?.basePrintNo || assembly?.basePrintNo]
+          .map((campaignId) => campaigns[campaignId].short_name)
+          .join(' ')}{' '}
         {senate?.printNo || '--'} {assembly?.printNo || '--'}
       </th>
     </BillTitleTooltip>
@@ -48,9 +56,11 @@ const BillTableHeaderCell = ({ senate, assembly }) => (
 BillTableHeaderCell.propTypes = {
   senate: PropTypes.object,
   assembly: PropTypes.object,
+  billCampaignMappings: PropTypes.object.isRequired,
+  campaigns: PropTypes.object.isRequired,
 };
 
-const BillTableHeader = ({ billPairs }) => {
+const BillTableHeader = ({ billPairs, billCampaignMappings, campaigns }) => {
   // fixme: show full bill title on hover, partial title in cell
   return (
     <>
@@ -59,6 +69,8 @@ const BillTableHeader = ({ billPairs }) => {
           key={senate?.basePrintNo || assembly?.basePrintNo}
           senate={senate}
           assembly={assembly}
+          billCampaignMappings={billCampaignMappings}
+          campaigns={campaigns}
         />
       ))}
     </>
@@ -66,6 +78,8 @@ const BillTableHeader = ({ billPairs }) => {
 };
 BillTableHeader.propTypes = {
   billPairs: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)).isRequired,
+  billCampaignMappings: PropTypes.object.isRequired,
+  campaigns: PropTypes.object.isRequired,
 };
 
 export const AdvancedPage = () => {
@@ -109,9 +123,6 @@ export const AdvancedPage = () => {
     billCampaignMappings,
     campaigns
   );
-
-  // fixme: collect bills into campaigns
-  const campaignBuckets = {};
 
   useEffect(() => {
     // Correctly handle double-mount in dev/StrictMode
@@ -170,7 +181,11 @@ export const AdvancedPage = () => {
             <th>Full Name</th>
             <th>All Leg pct</th>
             <th>Climate Leg pct</th>
-            <BillTableHeader billPairs={filteredBillPairs} />
+            <BillTableHeader
+              billPairs={filteredBillPairs}
+              billCampaignMappings={billCampaignMappings}
+              campaigns={campaigns}
+            />
           </tr>
         </thead>
         <tbody>
