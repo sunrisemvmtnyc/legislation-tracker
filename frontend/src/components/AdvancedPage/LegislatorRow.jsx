@@ -78,7 +78,7 @@ export const LegislatorRow = ({
 
   return (
     <tr>
-      <td>{member.fullName}</td>
+      <td className="row-name">{member.fullName}</td>
       <td
         style={{ background: `rgb(${100 - allLegPct}% ${allLegPct} 0% / 60%)` }}
       >
