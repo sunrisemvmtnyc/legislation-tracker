@@ -1,6 +1,6 @@
 /* Putting them up here to be more reusable/changeable in the future */
 :root {
-  --advanced-error: red;
+  --advanced-error: rgb(238, 144, 144);
   --advanced-warning: yellow;
   --advanced-success: lightgreen;
   --advanced-secondary: lightgray;

@@ -17,7 +17,7 @@ const CellOption = {
     className: 'member_bill-not_sponsoring',
     contents: 'no',
   },
-  SPONSORING: { className: 'member_bill-sponsoring', contents: 'S' },
+  SPONSORING: { className: 'member_bill-sponsoring', contents: 'yes' },
 
   // fixme: handle option of dne: if sibling bill not provided
   DNE: { className: 'member_bill-dne', contents: '--' },
