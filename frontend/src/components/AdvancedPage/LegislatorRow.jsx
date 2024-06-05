@@ -25,7 +25,6 @@ const CellOption = {
 
 /** Cell showing if member has sponsored a given bill */
 const LegislatorRowCell = ({ memberId, bill, billSponsors }) => {
-  const key = `${memberId}-sponsors-${bill?.basePrintNo || 'no-bill'}`;
   const isAssembly = billIsAssembly(bill);
   const hasPassed = billHasPassed(bill);
   let { className, contents } = CellOption.DNE;
@@ -40,11 +39,7 @@ const LegislatorRowCell = ({ memberId, bill, billSponsors }) => {
     ({ className, contents } = CellOption.SPONSORING);
   else ({ className, contents } = CellOption.NOT_SPONSORING);
 
-  return (
-    <td key={key} className={className}>
-      {contents}
-    </td>
-  );
+  return <td className={className}>{contents}</td>;
 };
 LegislatorRowCell.propTypes = {
   memberId: PropTypes.number.isRequired,
@@ -99,7 +94,7 @@ export const LegislatorRow = ({
       {bills.map((bill) => (
         <LegislatorRowCell
           memberId={memberId}
-          key={bill?.basePrintNo || 'no-bill'}
+          key={`${memberId}-sponsors-${bill?.basePrintNo || 'no-bill'}`}
           bill={bill}
           billSponsors={billSponsors}
         />
