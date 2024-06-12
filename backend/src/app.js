@@ -206,7 +206,7 @@ app.get('/api/v1/legislators/geo_search/offices/:lat/:lng', async (req, res, nex
       'Failed representative request:',
       apiResponse.status,
       out.detail || out.pagination?.total_items
-    );
+    ); 
     next(
       'Did not successfully retrieve legislator from openstates.org. Response from API was marked as a failure.'
     );
