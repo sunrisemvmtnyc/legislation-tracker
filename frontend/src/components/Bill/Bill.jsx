@@ -16,6 +16,15 @@ function getSponsorNumber(billData) {
   );
 }
 
+function getSponsorNames(billData) {
+  const {
+    activeVersion,
+    amendments: { items },
+    sponsor,
+  } = billData;
+  return [sponsor.member.fullName, ...items[activeVersion].coSponsors.items.map (rep => rep.fullName)];
+}
+
 const RelatedBills = ({ related }) => {
   if (!related) return <div>No related bills</div>;
   return (
@@ -167,7 +176,7 @@ export const Bill = () => {
       
       <div className="action">
         <h2>Who are my representatives?</h2>
-        <LocForm />
+        <LocForm sponsorNames={getSponsorNames(bill)}/>
       </div>
     </div>
   );

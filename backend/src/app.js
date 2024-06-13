@@ -196,7 +196,6 @@ app.get('/api/v1/legislators/geo_search/offices/:lat/:lng', async (req, res, nex
   const lat = req.params.lat;
   const lng = req.params.lng;
   const url = openStatesGeoApi('people.geo', { lat: lat, lng: lng, include: 'offices'});
-  console.log(url);
   const apiResponse = await fetch(url);
   const out = await apiResponse.json();
   if (!apiResponse.ok || !out || !out.pagination?.total_items) {

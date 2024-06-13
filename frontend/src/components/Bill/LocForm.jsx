@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Button from '@mui/material/Button';
 import './LocForm.css';
 
-const LocForm = () => {
+const LocForm = ({sponsorNames}) => {
   const [loading, setLoading] = useState(false);
   const [loc, setLoc] = useState("");
   const [placeName, setPlaceName] = useState("");
@@ -10,6 +10,7 @@ const LocForm = () => {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [representatives, setRepresentatives] = useState({});
+  const [sponsorshipStatus, setSponsorshipStatus] = useState({});
 
   useEffect(() => {
     const sessionPlaceName = window.sessionStorage.getItem("placeName");
@@ -68,12 +69,18 @@ const LocForm = () => {
           name: rep.name,
           title: rep.current_role.title,
           offices: rep.offices.map(office => ({
-            name: office.name.includes("District") ? office.address.split(";")[1] : office.name,
+            name: office.name.includes("District") ? office.address.slice(0, -6) : office.name,
             phone: office.voice
-          }))
+          })),
+          jurisdiction: rep.jurisdiction.classification
         }));
-  
-        setRepresentatives(fetchedRepresentatives);
+        
+        const sponsorshipStatus = {};
+        fetchedRepresentatives.forEach(rep => {
+          sponsorshipStatus[rep.name] = sponsorNames.includes(rep.name);
+        });
+        setSponsorshipStatus(sponsorshipStatus);
+        setRepresentatives(fetchedRepresentatives.filter(rep => rep.jurisdiction === "state"));
         window.sessionStorage.setItem("representatives", JSON.stringify(fetchedRepresentatives));
         window.sessionStorage.setItem("latitude", JSON.stringify(coordinates[1]));
         window.sessionStorage.setItem("longitude", JSON.stringify(coordinates[0]));
@@ -103,7 +110,7 @@ const LocForm = () => {
         <div className="representatives">
           {Object.entries(representatives).map(([name, rep]) => (
             <div key={rep.name} className="representative">
-              <h3>{rep.title} {rep.name}</h3>
+              <h3>{rep.title} {rep.name}: {sponsorshipStatus[rep.name] ? 'Already a sponsor' : 'NOT A SPONSOR'}</h3>
               <ul>
                 {rep.offices.map((office, index) => (
                   <li key={index}>
