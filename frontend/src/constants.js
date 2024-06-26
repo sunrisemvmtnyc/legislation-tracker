@@ -15,3 +15,6 @@ export const SEARCH_QUERY_KEY_MAP = {
   STATUS: 'status.statusDesc',
   SPONSOR_NAME: 'sponsor.member.fullName',
 };
+
+/** Page size for paginating members/bills */
+export const REQUEST_PAGE_SIZE = 20;
