@@ -4,7 +4,21 @@ import { useParams } from 'react-router-dom';
 import LocForm from "./LocForm";
 import './Bill.css';
 
-function getSponsorNumber(billData) {
+function getSponsors(billData) { // TODO: change to getSponsors
+  const {
+    activeVersion,
+    amendments: { items },
+    sponsor,
+
+  } = billData;
+  return (
+    1 +
+    items[activeVersion].coSponsors.size +
+    items[activeVersion].multiSponsors.size
+  );
+}
+
+function getSponsorNumber(billData) { // TODO: change to getSponsors
   const {
     activeVersion,
     amendments: { items },
@@ -143,14 +157,12 @@ export const Bill = () => {
       <div className="summary">
         <h2>{title}</h2>
         <p>{summary}</p>
-        <div className="category">
-          {bill.category} <p>(Sample Category)</p>
-        </div>
+        {/* <div className="category">
+           <p>(Sample Category)</p>
+        </div> */}
         
         <p>
-          Sponsored by <span style={{fontWeight:'bold'}}>{sponsorName}</span>
-          <br />
-          District {bill.sponsor.member.districtCode}
+          Introduced by <span style={{fontWeight:'bold'}}>{sponsorName}, District {bill.sponsor.member.districtCode}</span>
         </p>
         <p>Status: <span style={{fontWeight:'bold'}}>{bill.status.statusDesc}</span></p>
         <div><p>Total Sponsors: {getSponsorNumber(bill)}</p></div>
@@ -162,8 +174,20 @@ export const Bill = () => {
             isSenate={isSenate}
           />
         )}
-        <div className="important">
-          <h4>Why is this important? Why should this bill pass?</h4>
+      </div>
+      
+      <div className="action">
+        <h2>Take Action!</h2>
+        <LocForm sponsorNames={getSponsorNames(bill)}/>
+        <div className="script">
+          <h2>Script when calling a Legislator</h2>
+          <p>
+            Hi, my name is [Your Name] and I'm a constituent from {window.sessionStorage.getItem('placeName')}. I'm calling to urge [Legislator's Name] to support {printNo}.
+            <br></br>
+            [Add any info for why it's important to you]
+          </p>
+        </div>
+        <h4>Why is this important? Why should this bill pass?</h4>
           <p>
             Sample reasons why it should be passed!
             <ol>
@@ -171,12 +195,6 @@ export const Bill = () => {
               <li>Just because</li>
             </ol>
           </p>
-        </div>
-      </div>
-      
-      <div className="action">
-        <h2>Who are my representatives?</h2>
-        <LocForm sponsorNames={getSponsorNames(bill)}/>
       </div>
     </div>
   );
