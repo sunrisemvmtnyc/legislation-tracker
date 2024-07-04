@@ -155,7 +155,7 @@ export const Bill = () => {
   return (
     <div className="bill-content">
       <div className="summary">
-        <h2>{title}</h2>
+        <h2>{printNo}: {title}</h2>
         <p>{summary}</p>
         {/* <div className="category">
            <p>(Sample Category)</p>
@@ -165,7 +165,7 @@ export const Bill = () => {
           Introduced by <span style={{fontWeight:'bold'}}>{sponsorName}, District {bill.sponsor.member.districtCode}</span>
         </p>
         <p>Status: <span style={{fontWeight:'bold'}}>{bill.status.statusDesc}</span></p>
-        <div><p>Total Sponsors: {getSponsorNumber(bill)}</p></div>
+        <div><p>Total Sponsors: <span style={{fontWeight:'bold'}}>{getSponsorNumber(bill)}</span></p></div>
         <p><RelatedBills related={bill.billInfoRefs.items} /></p>
         {fetched && (
           <BillCommitteeMembers
@@ -184,7 +184,8 @@ export const Bill = () => {
           <p>
             Hi, my name is [Your Name] and I'm a constituent from {window.sessionStorage.getItem('placeName')}. I'm calling to urge [Legislator's Name] to support {printNo}.
             <br></br>
-            [Add any info for why it's important to you]
+            <br></br>
+            IF LEAVING A VOICEMAIL: Be sure to state your full address so your call gets tallied!
           </p>
         </div>
         <h4>Why is this important? Why should this bill pass?</h4>
