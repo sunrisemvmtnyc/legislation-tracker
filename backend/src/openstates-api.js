@@ -27,8 +27,8 @@ export const openStatesApi = (path, params = {}) => {
 export const openStatesGeoApi = (path, params = {}) => {
   // Add API key to all requests
   params.apikey = process.env.OPEN_STATES_KEY;
-  // params.lat
-  // params.lon
+  params.lat = params.lat;
+  params.lng = params.lng;
 
   params.include = 'offices';
 

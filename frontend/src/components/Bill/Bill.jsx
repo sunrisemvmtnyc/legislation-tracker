@@ -18,6 +18,18 @@ function getSponsorNumber(billData) {
   );
 }
 
+function getSponsorNames(billData) {
+  const {
+    activeVersion,
+    amendments: { items },
+    sponsor,
+  } = billData;
+  return [
+    sponsor.member.fullName,
+    ...items[activeVersion].coSponsors.items.map((rep) => rep.fullName),
+  ];
+}
+
 const RelatedBills = ({ related }) => {
   if (!related) return <div>No related bills</div>;
   return (
@@ -135,7 +147,6 @@ export const Bill = () => {
   return (
     <div className="bill-content">
       <div className="summary">
-        <LocForm />
         <h2>{title}</h2>
         <div>
           <span>
@@ -190,23 +201,8 @@ export const Bill = () => {
       </div>
 
       <div className="action">
-        <h2>Take Action!</h2>
-
-        <h4>Script when calling your representative:</h4>
-        <div className="script">
-          <p>
-            Hi, my name is [NAME] and I&#39;m a constituent from {placeName}.
-            <br />
-            <br />
-            I&#39;m calling to ask that [REP/SEN NAME] support {printNo}.
-            <br />
-            Thank you for your time and consideration.
-            <br />
-            <br />
-            IF LEAVING A VOICEMAIL: Please leave your full street address to
-            ensure your call is tallied.
-          </p>
-        </div>
+        <h2>Who are my representatives?</h2>
+        <LocForm sponsorNames={getSponsorNames(bill)} />
       </div>
     </div>
   );

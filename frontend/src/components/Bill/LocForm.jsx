@@ -1,38 +1,49 @@
-import { useState, useEffect } from "react";
 import Button from '@mui/material/Button';
+import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+
 import './LocForm.css';
 
-const LocForm = () => {
+const LocForm = ({ sponsorNames }) => {
   const [loading, setLoading] = useState(false);
-  const [loc, setLoc] = useState("");
-  const [placeName, setPlaceName] = useState("");
+  const [loc, setLoc] = useState('');
+  const [placeName, setPlaceName] = useState('');
 
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
+  const [representatives, setRepresentatives] = useState({});
+  const [sponsorshipStatus, setSponsorshipStatus] = useState({});
 
   useEffect(() => {
-    const sessionPlaceName = window.sessionStorage.getItem("placeName");
+    const sessionPlaceName = window.sessionStorage.getItem('placeName');
     if (sessionPlaceName) {
       setPlaceName(sessionPlaceName);
     }
-    const sessionLatitude = window.sessionStorage.getItem("latitude");
+    const sessionRepresentatives =
+      window.sessionStorage.getItem('representatives');
+    if (sessionRepresentatives) {
+      setRepresentatives(JSON.parse(sessionRepresentatives));
+    }
+    const sessionLatitude = window.sessionStorage.getItem('latitude');
     if (sessionLatitude) {
       setLatitude(JSON.parse(sessionLatitude));
     }
-    const sessionLongitude = window.sessionStorage.getItem("longitude");
+    const sessionLongitude = window.sessionStorage.getItem('longitude');
     if (sessionLongitude) {
       setLongitude(JSON.parse(sessionLongitude));
     }
   }, []);
 
   const reset = () => {
-    setLoc("");
-    setPlaceName("");
-    setLatitude("");
-    setLongitude("");
-    window.sessionStorage.setItem("placeName", "");
-    window.sessionStorage.setItem("latitude", "");
-    window.sessionStorage.setItem("longitude","");
+    setLoc('');
+    setPlaceName('');
+    setLatitude('');
+    setLongitude('');
+    setRepresentatives({});
+    window.sessionStorage.setItem('placeName', '');
+    window.sessionStorage.setItem('latitude', '');
+    window.sessionStorage.setItem('longitude', '');
+    window.sessionStorage.setItem('representatives', JSON.stringify({}));
     window.dispatchEvent(new StorageEvent('storage'));
   };
 
@@ -44,25 +55,62 @@ const LocForm = () => {
     event.preventDefault();
     try {
       setLoading(true);
-      const response = await fetch(
-        `/api/v1/geocoding/${loc}`
-      );
+      const response = await fetch(`/api/v1/geocoding/${loc}`);
       const data = await response.json();
       if (data.features[0]) {
         const coordinates = data.features[0].center;
         setLatitude(coordinates[1]);
         setLongitude(coordinates[0]);
-        window.sessionStorage.setItem("latitude", JSON.stringify(coordinates[1]));
-        window.sessionStorage.setItem("longitude", JSON.stringify(coordinates[0]));
-        const dataPlaceName = data.features[0].place_name;
+        const repResponse = await fetch(
+          `/api/v1/legislators/geo_search/offices/${coordinates[1]}/${coordinates[0]}`
+        );
+        const repData = await repResponse.json();
+
+        const fetchedRepresentatives = repData.map((rep) => ({
+          name: rep.name,
+          title: rep.current_role.title,
+          offices: rep.offices.map((office) => ({
+            name: office.name.includes('District')
+              ? office.address.slice(0, -6)
+              : office.name,
+            phone: office.voice,
+          })),
+          jurisdiction: rep.jurisdiction.classification,
+        }));
+
+        const sponsorshipStatus = {};
+        fetchedRepresentatives.forEach((rep) => {
+          sponsorshipStatus[rep.name] = sponsorNames.includes(rep.name);
+        });
+        setSponsorshipStatus(sponsorshipStatus);
+        setRepresentatives(
+          fetchedRepresentatives.filter((rep) => rep.jurisdiction === 'state')
+        );
+        window.sessionStorage.setItem(
+          'representatives',
+          JSON.stringify(fetchedRepresentatives)
+        );
+        window.sessionStorage.setItem(
+          'latitude',
+          JSON.stringify(coordinates[1])
+        );
+        window.sessionStorage.setItem(
+          'longitude',
+          JSON.stringify(coordinates[0])
+        );
+        const dataPlaceName =
+          data.features[0].context[0].text +
+          ', ' +
+          data.features[0].context[1].text;
+        console.log(dataPlaceName);
         if (dataPlaceName) {
           setPlaceName(dataPlaceName);
-          window.sessionStorage.setItem("placeName", dataPlaceName);
+          window.sessionStorage.setItem('placeName', dataPlaceName);
         }
         window.dispatchEvent(new StorageEvent('storage'));
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error('Error fetching data:', error);
     }
     setLoading(false);
   };
@@ -73,15 +121,41 @@ const LocForm = () => {
   if (locationFound) {
     content = (
       <>
-        Now displaying sponsors related to <b>{placeName}</b>.
+        Now displaying representatives for your District <b>{placeName}</b>.
         <br />
-        <Button variant="text" className="change-location" onClick={reset}>Change location</Button>
+        <Button variant="text" className="change-location" onClick={reset}>
+          Change location
+        </Button>
+        <div className="representatives">
+          {/* eslint-disable-next-line no-unused-vars */}
+          {Object.entries(representatives).map(([name, rep]) => (
+            <div key={rep.name} className="representative">
+              <h3>
+                {rep.title} {rep.name}:{' '}
+                {sponsorshipStatus[rep.name]
+                  ? 'Already a sponsor'
+                  : 'NOT A SPONSOR'}
+              </h3>
+              <ul>
+                {rep.offices.map((office, index) => (
+                  <li key={index}>
+                    <strong>Location:</strong> {office.name}
+                    <br />
+                    <strong>Phone:</strong>{' '}
+                    <a href={'tel:' + office.phone}>{office.phone}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </>
     );
   } else {
     content = (
       <>
-        You can personalize this page by displaying the list of representatives from your district.
+        You can personalize this page by displaying the list of representatives
+        from your district.
         <i>(we do not store any data!)</i>
         <form onSubmit={handleFormSubmit}>
           <input
@@ -90,17 +164,19 @@ const LocForm = () => {
             onChange={handleInputChange}
             value={loc}
           />
-          <button type="submit" disabled={loading}>Submit</button>
+          <button type="submit" disabled={loading}>
+            Submit
+          </button>
         </form>
       </>
     );
   }
 
-  return (
-    <div className="loc-form">
-      {content}
-    </div>
-  )
+  return <div className="loc-form">{content}</div>;
+};
+
+LocForm.propTypes = {
+  sponsorNames: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default LocForm;
