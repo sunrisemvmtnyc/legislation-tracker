@@ -134,9 +134,24 @@ export const AdvancedPage = () => {
       setCampaigns,
       setBillCampaignMappings
     )
-      .then((bcm) =>
-        fetchBillsBlocks(abortController, bcm, setSenateBills, setAssemblyBills)
-      )
+      .then((bcm) => {
+        const searchObj = {
+          basePrintNo: Object.keys(bcm),
+        };
+
+        // Helper method to format bills from fetchBillsBlocks method
+        const billSetter = (bills) => {
+          const [senate, assembly] = [{}, {}];
+          bills.forEach((bill) => {
+            const billId = bill.basePrintNo;
+            if (billId.startsWith('S')) senate[billId] = bill;
+            if (billId.startsWith('A')) assembly[billId] = bill;
+          });
+          setSenateBills((prev) => ({ ...prev, ...senate }));
+          setAssemblyBills((prev) => ({ ...prev, ...assembly }));
+        };
+        fetchBillsBlocks(abortController, searchObj, billSetter);
+      })
       .catch((e) => {
         if (e.name !== 'AbortError') throw e;
       });
