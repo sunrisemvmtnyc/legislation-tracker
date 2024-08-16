@@ -5,11 +5,8 @@ import { useState, useEffect } from 'react';
 
 import './AdvancedPage.css';
 import { LegislatorRow } from './LegislatorRow';
-import {
-  fetchLegislators,
-  fetchBillCampaignMappings,
-  fetchBillsBlocks,
-} from './requests';
+import { fetchLegislators } from './requests';
+import { fetchBillCampaignMappings, fetchBillsBlocks } from '../../requests';
 import {
   collectBillPairs,
   collectBillSponsors,
