@@ -15,8 +15,8 @@ const TextSearch = ({ updateValue }) => {
   );
 
   return (
-    <div className="text-input-container">
-      <TextField id="text-input" label="Search" onChange={handleChange} />
+    <div className="text-field-container">
+      <TextField id="text-field" label="Search" onChange={handleChange} />
     </div>
   );
 };
