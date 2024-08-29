@@ -5,7 +5,13 @@ import { BILL_STATUSES, SEARCH_QUERY_KEY_MAP } from '../../constants';
 import Dropdown from './Dropdown';
 import './Filters.css';
 
-const Filters = ({ campaignList, setSearchTermsObj, setCampaignFilter }) => {
+const Filters = ({
+  sponsorList,
+  campaignList,
+  setSearchTermsObj,
+  setCampaignFilter,
+  setLegislatorFilter,
+}) => {
   const createSearchTermsObjUpdater = useCallback(
     (searchKey) => {
       return (searchVal) => {
@@ -17,10 +23,6 @@ const Filters = ({ campaignList, setSearchTermsObj, setCampaignFilter }) => {
     },
     [setSearchTermsObj]
   );
-
-  const updateLegislatorFilter = createSearchTermsObjUpdater(
-    SEARCH_QUERY_KEY_MAP.SPONSOR_NAME
-  );
   const updateStatusFilter = createSearchTermsObjUpdater(
     SEARCH_QUERY_KEY_MAP.STATUS
   );
@@ -30,18 +32,8 @@ const Filters = ({ campaignList, setSearchTermsObj, setCampaignFilter }) => {
       <Dropdown
         id="legislator-select"
         label="Legislator Name"
-        // TODO: populate with actual legislator names
-        options={[
-          {
-            displayName: 'Pete Harckham',
-            value: 'Pete Harckham',
-          },
-          {
-            displayName: 'Edward Ra',
-            value: 'Edward Ra',
-          },
-        ]}
-        updateFilter={updateLegislatorFilter}
+        options={sponsorList}
+        updateFilter={setLegislatorFilter}
       />
       <Dropdown
         id="status-select"
@@ -67,8 +59,10 @@ const Filters = ({ campaignList, setSearchTermsObj, setCampaignFilter }) => {
 
 Filters.propTypes = {
   campaignList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  sponsorList: PropTypes.arrayOf(PropTypes.object).isRequired,
   setCampaignFilter: PropTypes.func.isRequired,
   setSearchTermsObj: PropTypes.func.isRequired,
+  setLegislatorFilter: PropTypes.func.isRequired,
 };
 
 export default Filters;
