@@ -157,9 +157,6 @@ export const Bill = () => {
       <div className="summary">
         <h2>{printNo}: {title}</h2>
         <p>{summary}</p>
-        {/* <div className="category">
-           <p>(Sample Category)</p>
-        </div> */}
         
         <p>
           Introduced by <span style={{fontWeight:'bold'}}>{sponsorName}, District {bill.sponsor.member.districtCode}</span>
