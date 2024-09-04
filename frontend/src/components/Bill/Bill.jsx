@@ -179,7 +179,7 @@ export const Bill = () => {
         <div className="script">
           <h2>Script when calling a Legislator</h2>
           <p>
-            Hi, my name is [Your Name] and I'm a constituent from {window.sessionStorage.getItem('placeName')}. I'm calling to urge [Legislator's Name] to support {printNo}.
+            Hi, my name is [Your Name] and I'm a constituent from {window.sessionStorage.getItem('placeName') || '[Borough]'}. I'm calling to urge [Legislator's Name] to support {printNo}.
             <br></br>
             <br></br>
             IF LEAVING A VOICEMAIL: Be sure to state your full address so your call gets tallied!
