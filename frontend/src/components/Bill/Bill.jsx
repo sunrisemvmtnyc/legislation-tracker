@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import LocForm from "./LocForm";
 import './Bill.css';
 
-function getSponsors(billData) { // TODO: change to getSponsors
+function getSponsors(billData) {
   const {
     activeVersion,
     amendments: { items },
