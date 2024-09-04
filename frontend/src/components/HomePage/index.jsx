@@ -40,6 +40,7 @@ const getSponsorList = (bills) => {
       const sponsorObj = getSponsorMembers(bill);
       return {
         displayName: sponsorObj?.sponsor?.fullName,
+        shortName: sponsorObj?.sponsor?.shortName,
         value: sponsorObj?.sponsor?.memberId,
       };
     })
@@ -54,7 +55,8 @@ const getSponsorList = (bills) => {
     return true;
   });
 
-  return sponsorList;
+  // Sort alphabetically by last name
+  return sponsorList.sort((a, b) => a.shortName.localeCompare(b.shortName));
 };
 
 const HomePage = () => {
