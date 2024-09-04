@@ -18,7 +18,7 @@ function getSponsors(billData) { // TODO: change to getSponsors
   );
 }
 
-function getSponsorNumber(billData) { // TODO: change to getSponsors
+function getSponsorNumber(billData) {
   const {
     activeVersion,
     amendments: { items },
