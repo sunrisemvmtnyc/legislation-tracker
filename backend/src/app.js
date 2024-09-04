@@ -13,7 +13,7 @@ import fs from 'fs';
 
 // Create Express server
 const host = '0.0.0.0';
-const port = 3001;
+const port = 3000;
 const app = express();
 
 // Global constants

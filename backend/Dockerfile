@@ -9,4 +9,8 @@ RUN npm install
 # Add the source
 ADD . ./
 
-CMD ["npm", "run", "dev"]
+# Expose application port
+EXPOSE 3000
+
+# Start the application
+CMD ["npm", "start"]
