@@ -1,12 +1,14 @@
-import { REQUEST_PAGE_SIZE } from './constants';
+import { REQUEST_PAGE_SIZE, SEARCH_QUERY_KEY_MAP } from './constants';
 
 /** Creates ElasticSearch query string */
 const evalSearchTerm = (searchTermsObj) => {
   let searchTermStr = Object.entries(searchTermsObj)
     // check if value part of object entry is truthy
     .filter((entry) => entry[1].length)
-    .map(
-      ([key, val]) => `${key}:(${val.map((val) => `"${val}"`).join(' OR ')})`
+    .map(([key, val]) =>
+      key === SEARCH_QUERY_KEY_MAP.TEXT_SEARCH_KEY
+        ? `${val}~` // fuzzy text matching
+        : `${key}:(${val.map((val) => `"${val}"`).join(' OR ')})`
     )
     .join(' AND ');
 
