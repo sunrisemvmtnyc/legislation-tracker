@@ -99,10 +99,10 @@ export const AdvancedPage = () => {
   const billPairs = collectBillPairs(senateBills, assemblyBills);
   const filteredBillPairs = billPairs.filter(
     ([senateBill, assemblyBill]) =>
-      senateBill?.title.toLowerCase().includes(billFilter.toLowerCase()) ||
-      senateBill?.printNo.toLowerCase().includes(billFilter.toLowerCase()) ||
-      assemblyBill?.title.toLowerCase().includes(billFilter.toLowerCase()) ||
-      assemblyBill?.printNo.toLowerCase().includes(billFilter.toLowerCase())
+      senateBill?.title?.toLowerCase().includes(billFilter.toLowerCase()) ||
+      senateBill?.printNo?.toLowerCase().includes(billFilter.toLowerCase()) ||
+      assemblyBill?.title?.toLowerCase().includes(billFilter.toLowerCase()) ||
+      assemblyBill?.printNo?.toLowerCase().includes(billFilter.toLowerCase())
   );
 
   // Sponsor object for quicker lookups
