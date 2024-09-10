@@ -137,14 +137,14 @@ const sunriseCampaigns = async () => {
   records.forEach((record) => {
     const longName = record.get(CAMPAIGN_LONG_NAME_FIELD_ID);
     const shortName = record.get(CAMPAIGN_SHORT_NAME_FIELD_ID);
-    const is_climate = record.get(CAMPAIGN_IS_CLIMATE_FIELD_ID);
+    const isClimate = record.get(CAMPAIGN_IS_CLIMATE_FIELD_ID);
     const campaignId = record.id;
     campaigns[campaignId] = {
       long_name: longName,
       short_name: shortName,
 
       // Airtable returns checkboxes as `true` or `undefined` for some unknowable reason
-      is_climate: is_climate,
+      is_climate: isClimate,
       id: campaignId,
     };
   });
