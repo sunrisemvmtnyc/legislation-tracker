@@ -90,10 +90,10 @@ export const AdvancedPage = () => {
   const [billFilter, setBillFilter] = useState('');
 
   const filteredSenators = senators.filter((senator) =>
-    senator.fullName.toLowerCase().includes(legFilter.toLowerCase())
+    (senator?.fullName ?? '').toLowerCase().includes(legFilter.toLowerCase())
   );
   const filteredAssemblyers = assemblyers.filter((assemblyer) =>
-    assemblyer.fullName.toLowerCase().includes(legFilter.toLowerCase())
+    (assemblyer?.fullName ?? '').toLowerCase().includes(legFilter.toLowerCase())
   );
 
   const billPairs = collectBillPairs(senateBills, assemblyBills);
