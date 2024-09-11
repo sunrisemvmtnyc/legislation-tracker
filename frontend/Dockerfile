@@ -1,6 +1,6 @@
 FROM node:20.9-alpine
 
-WORKDIR /app
+WORKDIR /srv
 
 # Install requirements
 ADD package.json package-lock.json ./
@@ -14,4 +14,4 @@ RUN npm run build
 
 EXPOSE 8080
 
-CMD [ "npm", "run", "preview" ]
+CMD ["npm", "run", "dev"]
