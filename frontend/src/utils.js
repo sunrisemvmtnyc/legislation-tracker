@@ -38,15 +38,28 @@ const PASSED_LEGISLATURE_STATUSES = new Set([
 
 export const billIsAssembly = (bill) => bill?.basePrintNo?.startsWith('A');
 
+/** Get sponsors for a single bill
+ *
+ * @param {Object} bill - Bill object from legislative API
+ * @returns {{
+ *    sponsor: {
+ *      memberId: number,
+ *      chamber:	"ASSEMBLY" | "SENATE",
+ *      incumbent: boolean,
+ *      fullName: string,
+ *      shortName: string,
+ *      imgName: string,
+ *      alternate:	boolean,
+ *      sessionMemberId: number,
+ *      sessionYear: number,
+ *      districtCode: number,
+ * }, coSponsors: Array<Object | undefined>
+ * }} - Object with sponsor and co-sponsors
+ */
 export function getSponsorMembers(billsResult) {
-  const {
-    sponsor: { member: sponsorMember },
-    coSponsors: { items: coSponsorMembers },
-  } = billsResult;
-
   return {
-    sponsor: sponsorMember,
-    coSponsors: coSponsorMembers,
+    sponsor: billsResult?.sponsor?.member,
+    coSponsors: billsResult?.coSponsors?.items,
   };
 }
 
