@@ -4,7 +4,7 @@ import './HomePage.css';
 import Card from './Card';
 import Banner from './Banner';
 import Filters from './Filters';
-import { fetchBillsBlocks } from '../../requests';
+import { fetchBillsBlocks, API_URL } from '../../requests';
 import { getSponsorMembers } from '../../utils';
 
 /** Simple enum to show request status */
@@ -124,7 +124,7 @@ const HomePage = () => {
 
     const fetchCampaignsAndCampaignMappings = async () => {
       try {
-        const res = await fetch(`/api/v1/bills/airtable-bills`, {
+        const res = await fetch(`${API_URL}/api/v1/bills/airtable-bills`, {
           signal: abortController.signal,
         });
         const data = await res.json();
