@@ -1,10 +1,12 @@
+import PropTypes from 'prop-types';
+
 import CategoryTag from '../Category/CategoryTag';
 
-const Card = ({ bill, billCategoryMappings, allCategories }) => {
+const Card = ({ bill, billCampaignMappings, allCampaigns }) => {
   let categories = [];
-  if (billCategoryMappings && allCategories) {
-    categories = billCategoryMappings
-      .map((abrv) => allCategories[abrv].short_name)
+  if (billCampaignMappings && allCampaigns) {
+    categories = billCampaignMappings
+      .map((abrv) => allCampaigns[abrv].short_name)
       .filter((v) => !!v);
   }
   return (
@@ -28,6 +30,11 @@ const Card = ({ bill, billCategoryMappings, allCategories }) => {
       )}
     </a>
   );
+};
+Card.propTypes = {
+  bill: PropTypes.object.isRequired,
+  billCampaignMappings: PropTypes.arrayOf(PropTypes.string).isRequired,
+  allCampaigns: PropTypes.object.isRequired,
 };
 
 export default Card;

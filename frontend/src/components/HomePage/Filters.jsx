@@ -1,26 +1,18 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
-import { TAGS, BILL_STATUSES, SEARCH_QUERY_KEY_MAP } from '../../constants';
+import { BILL_STATUSES, SEARCH_QUERY_KEY_MAP } from '../../constants';
 import Dropdown from './Dropdown';
+import TextSearch from './TextSearch';
 import './Filters.css';
 
-const Filters = ({ setSearchTerm }) => {
-  // creates ElasticSearch query string
-  const [searchTermsObj, setSearchTermsObj] = useState({});
-
-  // update search term when obj updatedj
-  useEffect(() => {
-    const searchTermStr = Object.entries(searchTermsObj)
-      // check if value part of object entry is truthy
-      .filter((entry) => entry[1].length)
-      .map(
-        ([key, val]) => `${key}:(${val.map((val) => `"${val}"`).join(' OR ')})`
-      )
-      .join(' AND ');
-    setSearchTerm(encodeURIComponent(searchTermStr) || '*');
-  }, [setSearchTerm, searchTermsObj]);
-
+const Filters = ({
+  sponsorList,
+  campaignList,
+  setSearchTermsObj,
+  setCampaignFilter,
+  setLegislatorFilter,
+}) => {
   const createSearchTermsObjUpdater = useCallback(
     (searchKey) => {
       return (searchVal) => {
@@ -32,31 +24,21 @@ const Filters = ({ setSearchTerm }) => {
     },
     [setSearchTermsObj]
   );
-
-  const updateLegislatorFilter = createSearchTermsObjUpdater(
-    SEARCH_QUERY_KEY_MAP.SPONSOR_NAME
-  );
   const updateStatusFilter = createSearchTermsObjUpdater(
     SEARCH_QUERY_KEY_MAP.STATUS
+  );
+  const updateTextSearchFilter = createSearchTermsObjUpdater(
+    SEARCH_QUERY_KEY_MAP.TEXT_SEARCH_KEY
   );
 
   return (
     <div className="filters-bar">
+      <TextSearch updateValue={updateTextSearchFilter} />
       <Dropdown
         id="legislator-select"
         label="Legislator Name"
-        // TODO: populate with actual legislator names
-        options={[
-          {
-            displayName: 'Pete Harckham',
-            value: 'Pete Harckham',
-          },
-          {
-            displayName: 'Edward Ra',
-            value: 'Edward Ra',
-          },
-        ]}
-        updateFilter={updateLegislatorFilter}
+        options={sponsorList}
+        updateFilter={setLegislatorFilter}
       />
       <Dropdown
         id="status-select"
@@ -70,17 +52,22 @@ const Filters = ({ setSearchTerm }) => {
       <Dropdown
         id="category-select"
         label="Bill Category"
-        options={TAGS.map((tag) => ({
-          displayName: tag,
-          value: tag,
+        options={campaignList.map((campaign) => ({
+          displayName: campaign.short_name,
+          value: campaign.id,
         }))}
+        updateFilter={setCampaignFilter}
       />
     </div>
   );
 };
 
 Filters.propTypes = {
-  setSearchTerm: PropTypes.func.isRequired,
+  campaignList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  sponsorList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setCampaignFilter: PropTypes.func.isRequired,
+  setSearchTermsObj: PropTypes.func.isRequired,
+  setLegislatorFilter: PropTypes.func.isRequired,
 };
 
 export default Filters;

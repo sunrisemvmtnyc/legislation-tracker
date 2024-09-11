@@ -4,8 +4,8 @@ import express from 'express';
 import fetch from 'node-fetch';
 
 import { legApi, membersFromYear } from './nysenate-api.js';
-import { categories, categoryMapping } from './categories.js';
-import { openStatesApi } from './openstates-api.js';
+import { categories } from './categories.js';
+import { openStatesApi, openStatesGeoApi } from './openstates-api.js';
 import { mapBoxApi } from './mapbox-api.js';
 import { fetchSunriseBills } from './airtable-api.js';
 
@@ -57,7 +57,8 @@ app.get('/api/v1/bills/:year/search', async (req, res, next) => {
     term,
     limit,
   });
-  const out = await (await fetch(url)).json();
+  let out = await (await fetch(url)).json();
+
   if (!out.success) {
     // TODO: upgrade expressJS when v5 is stable
     // https://expressjs.com/en/guide/error-handling.html
@@ -70,11 +71,6 @@ app.get('/api/v1/bills/:year/search', async (req, res, next) => {
   } else {
     res.json(out);
   }
-});
-
-// Mapping from bill id to category
-app.get('/api/v1/bills/category-mappings', async (_, res) => {
-  res.json(categoryMapping());
 });
 
 // TODO: rename endpoint something more appropriate
@@ -179,30 +175,48 @@ app.get('/api/v1/legislators/search/offices', async (req, res, next) => {
   }
 });
 
-app.get(
-  '/api/v1/geocoding/:loc',
-  async (req, res, next) => {
-    const url = mapBoxApi(
-      `geocoding/v5/mapbox.places/${req.params.loc}.json`,
-      {
-        country: 'US',
-        fuzzyMatch: true
-      }
-    );
-    const apiResponse = await fetch(url);
-    const out = await apiResponse.json();
-    if (!out) {
-      // TODO: upgrade expressJS when v5 is stable
-      // https://expressjs.com/en/guide/error-handling.html
-      console.log('Failed geocode request:');
-      next(
-        'Did not successfully retrieve lat/long from Mapbox'
-      );
-    } else {
-      res.json(out);
-    }
+app.get('/api/v1/geocoding/:loc', async (req, res, next) => {
+  const url = mapBoxApi(`geocoding/v5/mapbox.places/${req.params.loc}.json`, {
+    country: 'US',
+    fuzzyMatch: true,
+  });
+  const apiResponse = await fetch(url);
+  const out = await apiResponse.json();
+  if (!out) {
+    // TODO: upgrade expressJS when v5 is stable
+    // https://expressjs.com/en/guide/error-handling.html
+    console.log('Failed geocode request:');
+    next('Did not successfully retrieve lat/long from Mapbox');
+  } else {
+    res.json(out);
   }
-);
+});
+
+app.get('/api/v1/legislators/geo_search/offices/:lat/:lng', async (req, res, next) => {
+  const lat = req.params.lat;
+  const lng = req.params.lng;
+  const url = openStatesGeoApi('people.geo', { lat: lat, lng: lng, include: 'offices'});
+  const apiResponse = await fetch(url);
+  const out = await apiResponse.json();
+  if (!apiResponse.ok || !out || !out.pagination?.total_items) {
+    // TODO: upgrade expressJS when v5 is stable
+    // https://expressjs.com/en/guide/error-handling.html
+    console.log(
+      'Failed representative request:',
+      apiResponse.status,
+      out.detail || out.pagination?.total_items
+    ); 
+    next(
+      'Did not successfully retrieve legislator from openstates.org. Response from API was marked as a failure.'
+    );
+  } else {
+    // Note: arbitrarily using first result
+    const legislator = out.results;
+    // res.json(legislator.offices);
+    const reps = res.json(legislator);
+    // console.log(reps);
+  }
+});
 
 // Listen
 app.listen(port, host, () => {

@@ -21,6 +21,12 @@
 html {
     font-family: 'Source Sans 3';
 }
+
+#senate-site-link {
+    align-items: center;
+    display: inline-flex;
+}
+
 .bill-content {
     display: flex;
 }
@@ -56,6 +62,7 @@ html {
     border-radius: 10px;
     background: #ffffff;
     justify-content: flex-end;
+    padding: 0px 20px;
     max-height: max-content;
     min-height: min-content;
     margin-top: 16px;
@@ -65,7 +72,6 @@ html {
     overflow: auto;
     border-radius: 10px;
     background: #eeede7;
-    padding: 0px 20px;
     justify-content: flex-start;
     max-height: max-content;
     min-height: min-content;
