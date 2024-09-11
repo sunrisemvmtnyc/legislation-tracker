@@ -61,7 +61,6 @@ const getSponsorList = (bills) => {
 
 const HomePage = () => {
   const [bills, setBills] = useState([]);
-  const [billStatus, setBillStatus] = useState(RequestStatus.NONE);
   const [campaignMappings, setCampaignMappings] = useState({});
   const [campaigns, setCampaigns] = useState({});
   const [campaignStatus, setCampaignStatus] = useState(RequestStatus.NONE);
@@ -107,11 +106,9 @@ const HomePage = () => {
     const abortController = new AbortController();
     fetchBillsBlocks(abortController, searchObjWithCampaignBills, (newBills) =>
       setBills((prev) => [...prev, ...newBills])
-    )
-      .then(() => setBillStatus(RequestStatus.DONE))
-      .catch((e) => {
-        if (e.name !== 'AbortError') throw e;
-      });
+    ).catch((e) => {
+      if (e.name !== 'AbortError') throw e;
+    });
 
     return () => {
       abortController.abort();
