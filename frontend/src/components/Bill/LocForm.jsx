@@ -2,6 +2,7 @@ import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
+import { API_URL } from '../../requests';
 import './LocForm.css';
 
 const LocForm = ({ sponsorNames }) => {
@@ -55,14 +56,14 @@ const LocForm = ({ sponsorNames }) => {
     event.preventDefault();
     try {
       setLoading(true);
-      const response = await fetch(`/api/v1/geocoding/${loc}`);
+      const response = await fetch(`${API_URL}/api/v1/geocoding/${loc}`);
       const data = await response.json();
       if (data.features[0]) {
         const coordinates = data.features[0].center;
         setLatitude(coordinates[1]);
         setLongitude(coordinates[0]);
         const repResponse = await fetch(
-          `/api/v1/legislators/geo_search/offices/${coordinates[1]}/${coordinates[0]}`
+          `${API_URL}/api/v1/legislators/geo_search/offices/${coordinates[1]}/${coordinates[0]}`
         );
         const repData = await repResponse.json();
 

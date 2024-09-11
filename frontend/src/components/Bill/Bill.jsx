@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import LocForm from './LocForm';
+import { API_URL } from '../../requests';
 import './Bill.css';
 
 function getSponsorNumber(billData) {
@@ -95,7 +96,9 @@ export const Bill = () => {
   // Fetch main bill data
   useEffect(() => {
     const fetchBill = async () => {
-      const res = await fetch(`/api/v1/bills/${sessionYear}/${printNo}`);
+      const res = await fetch(
+        `${API_URL}/api/v1/bills/${sessionYear}/${printNo}`
+      );
       await setBill(await res.json());
     };
     fetchBill();
@@ -110,7 +113,7 @@ export const Bill = () => {
 
     const fetchCommittee = async () => {
       const res = await fetch(
-        `/api/v1/committees/${sessionYear}/${chamber}/${committee}`
+        `${API_URL}/api/v1/committees/${sessionYear}/${chamber}/${committee}`
       );
       setCommittee(await res.json());
     };
