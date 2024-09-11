@@ -6,6 +6,20 @@ import { useParams } from 'react-router-dom';
 import LocForm from './LocForm';
 import './Bill.css';
 
+function getSponsors(billData) {
+  const {
+    activeVersion,
+    amendments: { items },
+    sponsor,
+
+  } = billData;
+  return (
+    1 +
+    items[activeVersion].coSponsors.size +
+    items[activeVersion].multiSponsors.size
+  );
+}
+
 function getSponsorNumber(billData) {
   const {
     activeVersion,
@@ -188,8 +202,21 @@ export const Bill = () => {
             isSenate={isSenate}
           />
         )}
-        <div className="important">
-          <h4>Why is this important? Why should this bill pass?</h4>
+      </div>
+      
+      <div className="action">
+        <h2>Take Action!</h2>
+        <LocForm sponsorNames={getSponsorNames(bill)}/>
+        <div className="script">
+          <h2>Script when calling a Legislator</h2>
+          <p>
+            Hi, my name is [Your Name] and I'm a constituent from {window.sessionStorage.getItem('placeName') || '[Borough]'}. I'm calling to urge [Legislator's Name] to support {printNo}.
+            <br></br>
+            <br></br>
+            IF LEAVING A VOICEMAIL: Be sure to state your full address so your call gets tallied!
+          </p>
+        </div>
+        <h4>Why is this important? Why should this bill pass?</h4>
           <p>
             Sample reasons why it should be passed!
             <ol>

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 import './LocForm.css';
 
-const LocForm = ({ sponsorNames }) => {
+const LocForm = ( {sponsorNames}, printNo ) => {
   const [loading, setLoading] = useState(false);
   const [loc, setLoc] = useState('');
   const [placeName, setPlaceName] = useState('');
@@ -40,6 +40,7 @@ const LocForm = ({ sponsorNames }) => {
     setLatitude('');
     setLongitude('');
     setRepresentatives({});
+    window.sessionStorage.setItem('printNo', printNo);
     window.sessionStorage.setItem('placeName', '');
     window.sessionStorage.setItem('latitude', '');
     window.sessionStorage.setItem('longitude', '');
@@ -69,6 +70,7 @@ const LocForm = ({ sponsorNames }) => {
         const fetchedRepresentatives = repData.map((rep) => ({
           name: rep.name,
           title: rep.current_role.title,
+          sponsorStatus: sponsorNames.includes[rep.name] ? true : false,
           offices: rep.offices.map((office) => ({
             name: office.name.includes('District')
               ? office.address.slice(0, -6)
@@ -77,18 +79,12 @@ const LocForm = ({ sponsorNames }) => {
           })),
           jurisdiction: rep.jurisdiction.classification,
         }));
-
-        const sponsorshipStatus = {};
-        fetchedRepresentatives.forEach((rep) => {
-          sponsorshipStatus[rep.name] = sponsorNames.includes(rep.name);
-        });
-        setSponsorshipStatus(sponsorshipStatus);
-        setRepresentatives(
-          fetchedRepresentatives.filter((rep) => rep.jurisdiction === 'state')
-        );
+        const nonSponsors = fetchedRepresentatives.filter((rep) => rep.jurisdiction === 'state').filter((rep) => rep.sponsorStatus === false);
+        setRepresentatives(nonSponsors);
+        console.log(nonSponsors);
         window.sessionStorage.setItem(
           'representatives',
-          JSON.stringify(fetchedRepresentatives)
+          JSON.stringify(nonSponsors)
         );
         window.sessionStorage.setItem(
           'latitude',
@@ -121,7 +117,7 @@ const LocForm = ({ sponsorNames }) => {
   if (locationFound) {
     content = (
       <>
-        Now displaying representatives for your District <b>{placeName}</b>.
+        Now displaying representatives of your District <b>{placeName}</b> who are NOT cosponsors.
         <br />
         <Button variant="text" className="change-location" onClick={reset}>
           Change location
@@ -131,10 +127,10 @@ const LocForm = ({ sponsorNames }) => {
           {Object.entries(representatives).map(([name, rep]) => (
             <div key={rep.name} className="representative">
               <h3>
-                {rep.title} {rep.name}:{' '}
-                {sponsorshipStatus[rep.name]
+                {rep.title} {rep.name}
+                {/* {sponsorshipStatus[rep.name]
                   ? 'Already a sponsor'
-                  : 'NOT A SPONSOR'}
+                  : 'NOT A SPONSOR'} */}
               </h3>
               <ul>
                 {rep.offices.map((office, index) => (
@@ -156,7 +152,7 @@ const LocForm = ({ sponsorNames }) => {
       <>
         You can personalize this page by displaying the list of representatives
         from your district.
-        <i>(we do not store any data!)</i>
+        <br></br><i>(we do not store any data!)</i>
         <form onSubmit={handleFormSubmit}>
           <input
             id="autocomplete"
