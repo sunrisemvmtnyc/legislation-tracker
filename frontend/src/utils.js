@@ -38,9 +38,9 @@ const PASSED_LEGISLATURE_STATUSES = new Set([
 
 export const billIsAssembly = (bill) => bill?.basePrintNo?.startsWith('A');
 
-/** Get sponsors for bills
+/** Get sponsors for a single bill
  *
- * @param {Array} bills - Array of bill objects from legislative API
+ * @param {Object} bill - Bill object from legislative API
  * @returns {{
  *    sponsor: {
  *      memberId: number,
