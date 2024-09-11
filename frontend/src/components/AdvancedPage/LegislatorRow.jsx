@@ -64,9 +64,9 @@ export const LegislatorRow = ({
   bills.forEach((bill) => {
     if (!bill) return;
     if (billSponsors[bill.basePrintNo].has(memberId)) {
-      sponsoredBillsCount = ++sponsoredBillsCount;
+      ++sponsoredBillsCount;
       if (billIsClimateBill(bill, billCampaignMappings, campaigns))
-        sponsoredClimateBillsCount = ++sponsoredClimateBillsCount;
+        ++sponsoredClimateBillsCount;
     }
   });
   const allLegPct = ((sponsoredBillsCount * 100) / unpassedBillCount).toFixed(
