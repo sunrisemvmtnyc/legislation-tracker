@@ -20,21 +20,17 @@ const app = express();
 const BILL_PAGE_SIZE = 100;
 const MEMBER_PAGE_SIZE = 1000;
 
-// Endpoint to get all the bills in a year
-// FIXME: legacy, delete
-// app.get('/api/v1/bills/:year', async (req, res) => {
-//   let bills = await getBillsWithCache(req.params.year);
-
-//   let start = 0;
-//   if (parseInt(req.query.start)) start = parseInt(req.query.start);
-
-//   const slicedBills = bills.slice(start, start + BILL_PAGE_SIZE);
-
-//   res.json({
-//     end: start + BILL_PAGE_SIZE < bills.length ? start + BILL_PAGE_SIZE : 0,
-//     bills: slicedBills,
-//   });
-// });
+// Set up CORS
+app.use(function (req, res, next) {
+  if (process.env.CLIENT_URL) {
+    res.header('Access-Control-Allow-Origin', process.env.CLIENT_URL);
+    res.header(
+      'Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept'
+    );
+  }
+  next();
+});
 
 // Paginated & searchable endopint
 app.get('/api/v1/bills/:year/search', async (req, res, next) => {
