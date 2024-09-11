@@ -21,7 +21,7 @@ const addCampaignBillsToSearchObj = (campaignMappings, searchObj) => {
   const billIds = new Set();
   Object.keys(campaignMappings).forEach((billId) => billIds.add(billId));
 
-  return { ...searchObj, basePrintNo: Array.from(billIds) };
+  return { ...searchObj, printNo: Array.from(billIds) };
 };
 
 const HomePage = () => {
@@ -35,7 +35,7 @@ const HomePage = () => {
 
   const campaignBills = campaignFilter.length
     ? bills.filter((bill) =>
-        campaignMappings[bill.basePrintNo]?.some((relatedCampaignId) =>
+        campaignMappings[bill.printNo]?.some((relatedCampaignId) =>
           campaignFilter.includes(relatedCampaignId)
         )
       )
@@ -112,8 +112,8 @@ const HomePage = () => {
           {campaignBills.map((bill) => (
             <Card
               bill={bill}
-              key={bill.basePrintNoStr}
-              billCampaignMappings={campaignMappings[bill.basePrintNo] || []}
+              key={bill.printNoStr}
+              billCampaignMappings={campaignMappings[bill.printNo] || []}
               allCampaigns={campaigns}
             />
           ))}

@@ -21,8 +21,8 @@ const CellOption = {
 
 /** Cell showing if member has sponsored a given bill */
 const LegislatorRowCell = ({ memberId, bill, billSponsors }) => {
-  const key = `${memberId}-sponsors-${bill.basePrintNo}`;
-  const isAssembly = bill.basePrintNo.startsWith('A');
+  const key = `${memberId}-sponsors-${bill.printNo}`;
+  const isAssembly = bill.printNo.startsWith('A');
   let { className, contents } = CellOption.DNE;
 
   /** Bill that passes one chamber can get status like "in other chamber" */
@@ -42,9 +42,9 @@ const LegislatorRowCell = ({ memberId, bill, billSponsors }) => {
   if (hasPassed(bill, isAssembly)) {
     if (isAssembly) ({ className, contents } = CellOption.PASSED_ASSEMBLY);
     else ({ className, contents } = CellOption.PASSED_SENATE);
-  } else if (!billSponsors[bill.basePrintNo])
+  } else if (!billSponsors[bill.printNo])
     ({ className, contents } = CellOption.DNE);
-  else if (billSponsors[bill.basePrintNo].has(memberId))
+  else if (billSponsors[bill.printNo].has(memberId))
     ({ className, contents } = CellOption.SPONSORING);
   else ({ className, contents } = CellOption.NOT_SPONSORING);
 
@@ -69,7 +69,7 @@ export const LegislatorRow = ({ member, bills, billSponsors }) => {
       <td>fixme: climate legislation pct</td>
       {bills.map((bill) => (
         <LegislatorRowCell
-          key={bill.basePrintNo}
+          key={bill.printNo}
           memberId={member.memberId}
           bill={bill}
           billSponsors={billSponsors}

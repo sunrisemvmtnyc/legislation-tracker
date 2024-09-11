@@ -33,9 +33,9 @@ describe("getSponsorMembers", () => {
       message: "Data for bill S890-2023",
       responseType: "bill",
       result: {
-        basePrintNo: "S890",
+        printNo: "S890",
         session: 2023,
-        basePrintNoStr: "S890-2023",
+        printNoStr: "S890-2023",
         sponsor: {
           member: TEST_SPONSOR,
           budget: false,

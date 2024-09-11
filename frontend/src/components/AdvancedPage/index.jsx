@@ -18,7 +18,7 @@ const BillTableHeader = ({ senateBills, assemblyBills }) => {
       {Object.values(senateBills)
         .concat(Object.values(assemblyBills))
         .map((bill) => (
-          <BillTableHeaderCell key={bill.basePrintNo} bill={bill} />
+          <BillTableHeaderCell key={bill.printNo} bill={bill} />
         ))}
     </>
   );
@@ -59,7 +59,7 @@ const AdvancedPage = () => {
       // todo: check if some use cosponsor instead of amendments
       // None seem to actually use the field
 
-      billSponsors[bill.basePrintNo] = sponsorSet;
+      billSponsors[bill.printNo] = sponsorSet;
     });
 
   // fixme: collect bills into campaigns
@@ -77,14 +77,14 @@ const AdvancedPage = () => {
     )
       .then((bcm) => {
         const searchObj = {
-          basePrintNo: Object.keys(bcm),
+          printNo: Object.keys(bcm),
         };
 
         // Helper method to format bills from fetchBillsBlocks method
         const billSetter = (bills) => {
           const [senate, assembly] = [{}, {}];
           bills.forEach((bill) => {
-            const billId = bill.basePrintNo;
+            const billId = bill.printNo;
             if (billId.startsWith('S')) senate[billId] = bill;
             if (billId.startsWith('A')) assembly[billId] = bill;
           });

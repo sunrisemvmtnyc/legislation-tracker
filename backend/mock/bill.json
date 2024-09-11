@@ -1,7 +1,7 @@
 {
-    "basePrintNo": "S7044",
+    "printNo": "S7044",
     "session": 2023,
-    "basePrintNoStr": "S7044-2023",
+    "printNoStr": "S7044-2023",
     "printNo": "S7044A",
     "billType": {
         "chamber": "SENATE",
@@ -58,9 +58,9 @@
         "items": [
             {
                 "billId": {
-                    "basePrintNo": "S7044",
+                    "printNo": "S7044",
                     "session": 2023,
-                    "basePrintNoStr": "S7044-2023",
+                    "printNoStr": "S7044-2023",
                     "printNo": "S7044",
                     "version": ""
                 },
@@ -71,9 +71,9 @@
             },
             {
                 "billId": {
-                    "basePrintNo": "S7044",
+                    "printNo": "S7044",
                     "session": 2023,
-                    "basePrintNoStr": "S7044-2023",
+                    "printNoStr": "S7044-2023",
                     "printNo": "S7044",
                     "version": ""
                 },
@@ -84,9 +84,9 @@
             },
             {
                 "billId": {
-                    "basePrintNo": "S7044",
+                    "printNo": "S7044",
                     "session": 2023,
-                    "basePrintNoStr": "S7044-2023",
+                    "printNoStr": "S7044-2023",
                     "printNo": "S7044",
                     "version": ""
                 },
@@ -97,9 +97,9 @@
             },
             {
                 "billId": {
-                    "basePrintNo": "S7044",
+                    "printNo": "S7044",
                     "session": 2023,
-                    "basePrintNoStr": "S7044-2023",
+                    "printNoStr": "S7044-2023",
                     "printNo": "S7044A",
                     "version": "A"
                 },
@@ -137,9 +137,9 @@
     "amendments": {
         "items": {
             "": {
-                "basePrintNo": "S7044",
+                "printNo": "S7044",
                 "session": 2023,
-                "basePrintNoStr": "S7044-2023",
+                "printNoStr": "S7044-2023",
                 "printNo": "S7044",
                 "version": "",
                 "publishDate": "2023-05-17",
@@ -193,18 +193,18 @@
                 "stricken": false
             },
             "A": {
-                "basePrintNo": "S7044",
+                "printNo": "S7044",
                 "session": 2023,
-                "basePrintNoStr": "S7044-2023",
+                "printNoStr": "S7044-2023",
                 "printNo": "S7044A",
                 "version": "A",
                 "publishDate": "2024-01-26",
                 "sameAs": {
                     "items": [
                         {
-                            "basePrintNo": "A7591",
+                            "printNo": "A7591",
                             "session": 2023,
-                            "basePrintNoStr": "A7591-2023",
+                            "printNoStr": "A7591-2023",
                             "printNo": "A7591B",
                             "version": "B"
                         }
@@ -334,9 +334,9 @@
     "billInfoRefs": {
         "items": {
             "A7591-2023": {
-                "basePrintNo": "A7591",
+                "printNo": "A7591",
                 "session": 2023,
-                "basePrintNoStr": "A7591-2023",
+                "printNoStr": "A7591-2023",
                 "printNo": "A7591B",
                 "billType": {
                     "chamber": "ASSEMBLY",
@@ -393,9 +393,9 @@
                     "items": [
                         {
                             "billId": {
-                                "basePrintNo": "A7591",
+                                "printNo": "A7591",
                                 "session": 2023,
-                                "basePrintNoStr": "A7591-2023",
+                                "printNoStr": "A7591-2023",
                                 "printNo": "A7591",
                                 "version": ""
                             },
@@ -406,9 +406,9 @@
                         },
                         {
                             "billId": {
-                                "basePrintNo": "A7591",
+                                "printNo": "A7591",
                                 "session": 2023,
-                                "basePrintNoStr": "A7591-2023",
+                                "printNoStr": "A7591-2023",
                                 "printNo": "A7591",
                                 "version": ""
                             },
@@ -419,9 +419,9 @@
                         },
                         {
                             "billId": {
-                                "basePrintNo": "A7591",
+                                "printNo": "A7591",
                                 "session": 2023,
-                                "basePrintNoStr": "A7591-2023",
+                                "printNoStr": "A7591-2023",
                                 "printNo": "A7591A",
                                 "version": "A"
                             },
@@ -432,9 +432,9 @@
                         },
                         {
                             "billId": {
-                                "basePrintNo": "A7591",
+                                "printNo": "A7591",
                                 "session": 2023,
-                                "basePrintNoStr": "A7591-2023",
+                                "printNoStr": "A7591-2023",
                                 "printNo": "A7591A",
                                 "version": "A"
                             },
@@ -445,9 +445,9 @@
                         },
                         {
                             "billId": {
-                                "basePrintNo": "A7591",
+                                "printNo": "A7591",
                                 "session": 2023,
-                                "basePrintNoStr": "A7591-2023",
+                                "printNoStr": "A7591-2023",
                                 "printNo": "A7591A",
                                 "version": "A"
                             },
@@ -458,9 +458,9 @@
                         },
                         {
                             "billId": {
-                                "basePrintNo": "A7591",
+                                "printNo": "A7591",
                                 "session": 2023,
-                                "basePrintNoStr": "A7591-2023",
+                                "printNoStr": "A7591-2023",
                                 "printNo": "A7591B",
                                 "version": "B"
                             },
