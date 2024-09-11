@@ -25,4 +25,4 @@ services:
     volumes:
       - './backend/src:/srv/src'
     ports:
-      - '3001:3001'
+      - '3000:3000'
