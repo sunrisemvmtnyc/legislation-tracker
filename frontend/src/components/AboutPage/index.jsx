@@ -36,12 +36,12 @@ function AboutPage() {
       </div>
       {
         blocks.map(({ question, description, image }) => (
-          <div className='about-page-block'>
-            <div class="about-page-block-txt">
+          <div className="about-page-block" key={question}>
+            <div className="about-page-block-txt">
               <h4 className="about-page-block-question">{question}</h4>
               <span className="about-page-block-desc">{description}</span>
             </div>
-            <img class="about-page-block-img" src={image} alt={question} />
+            <img className="about-page-block-img" src={image} alt={question} />
           </div>
         ))
       }
