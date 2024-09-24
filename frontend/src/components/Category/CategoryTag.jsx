@@ -8,7 +8,7 @@ const CategoryTag = ({ category }) => {
       style={{ background: color }}
       title={long_name} // TODO make a better tooltip
     >
-      {short_name}
+      {short_name || long_name}
     </span>
   );
 };

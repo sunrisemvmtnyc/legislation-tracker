@@ -7,7 +7,7 @@ const Card = ({ bill, billCampaignMappings, allCampaigns }) => {
   if (billCampaignMappings && allCampaigns) {
     categories = billCampaignMappings
       .map((abrv) => allCampaigns[abrv])
-      .filter(Boolean);
+      .filter(e => e.short_name || e.long_name);
   }
   return (
     <a
