@@ -5,6 +5,7 @@ import Card from './Card';
 import Banner from './Banner';
 import Filters from './Filters';
 import { fetchBillsBlocks } from '../../requests';
+import { getSponsorMembers } from '../../utils';
 
 /** Simple enum to show request status */
 const RequestStatus = {
@@ -24,6 +25,40 @@ const addCampaignBillsToSearchObj = (campaignMappings, searchObj) => {
   return { ...searchObj, printNo: Array.from(billIds) };
 };
 
+/** Get direct sponsors for all bills. Does _not_ include cosponsors
+ *
+ * @param {Array} bills - Array of bill objects from legislative API
+ * @returns {Array} - Array of sponsor objects in format for Dropdown: {displayName: string, value: string (id)}
+ */
+const getSponsorList = (bills) => {
+  // Use set to prevent duplicates
+  const sponsorIds = new Set();
+
+  // Create list of sponsor objects
+  let sponsorList = bills
+    .map((bill) => {
+      const sponsorObj = getSponsorMembers(bill);
+      return {
+        displayName: sponsorObj?.sponsor?.fullName,
+        shortName: sponsorObj?.sponsor?.shortName,
+        value: sponsorObj?.sponsor?.memberId,
+      };
+    })
+    .filter((x) => !!x.displayName && !!x.value);
+
+  // Filter out dupes
+  sponsorList = sponsorList.filter((sponsorOption) => {
+    if (sponsorIds.has(sponsorOption.value)) {
+      return false;
+    }
+    sponsorIds.add(sponsorOption.value);
+    return true;
+  });
+
+  // Sort alphabetically by last name
+  return sponsorList.sort((a, b) => a.shortName.localeCompare(b.shortName));
+};
+
 const HomePage = () => {
   const [bills, setBills] = useState([]);
   const [campaignMappings, setCampaignMappings] = useState({});
@@ -32,14 +67,27 @@ const HomePage = () => {
 
   const [baseSearchTermsObj, setSearchTermsObj] = useState({});
   const [campaignFilter, setCampaignFilter] = useState([]);
+  const [legislatorFilter, setLegislatorFilter] = useState([]);
 
-  const campaignBills = campaignFilter.length
-    ? bills.filter((bill) =>
-        campaignMappings[bill.printNo]?.some((relatedCampaignId) =>
-          campaignFilter.includes(relatedCampaignId)
-        )
-      )
-    : bills;
+  // Apply filters to bills shown
+  const campaignBills =
+    campaignFilter.length || legislatorFilter.length
+      ? bills.filter((bill) => {
+          if (
+            campaignFilter.length &&
+            !campaignMappings[bill.printNo]?.some((relatedCampaignId) =>
+              campaignFilter.includes(relatedCampaignId)
+            )
+          )
+            return false;
+          if (
+            legislatorFilter.length &&
+            !legislatorFilter.includes(getSponsorMembers(bill).sponsor.memberId)
+          )
+            return false;
+          return true;
+        })
+      : bills;
 
   const campaignList = Object.values(campaigns);
 
@@ -104,9 +152,11 @@ const HomePage = () => {
       <div id="home-page">
         <h1>Sunrise featured bills</h1>
         <Filters
+          sponsorList={getSponsorList(bills)}
           campaignList={campaignList}
           setCampaignFilter={setCampaignFilter}
           setSearchTermsObj={setSearchTermsObj}
+          setLegislatorFilter={setLegislatorFilter}
         />
         <div id="home-bill-grid">
           {campaignBills.map((bill) => (
