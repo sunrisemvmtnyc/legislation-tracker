@@ -4,7 +4,6 @@ import express from 'express';
 import fetch from 'node-fetch';
 
 import { legApi, membersFromYear } from './nysenate-api.js';
-import { categories } from './categories.js';
 import { openStatesApi, openStatesGeoApi } from './openstates-api.js';
 import { mapBoxApi } from './mapbox-api.js';
 import { fetchSunriseBills } from './airtable-api.js';
@@ -134,11 +133,6 @@ app.get(
     }
   }
 );
-
-// Category metadata
-app.get('/api/v1/categories', async (_, res) => {
-  res.json(categories());
-});
 
 app.get('/api/v1/legislators/search/offices', async (req, res, next) => {
   const name = req.query.name;
