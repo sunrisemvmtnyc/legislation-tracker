@@ -16,6 +16,15 @@
         margin: 16px;
         padding: 20px;
     }
+    .action {
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        background: #8F0D56;
+        margin: 16px;
+        border-radius: 10px;
+        color: white;
+    }
 }
 
 html {
@@ -38,6 +47,18 @@ html {
         overflow: auto;
         margin: 16px;
     }
+    .action {
+        width: 40%;
+        color: #ffffff;
+        overflow: auto;
+        border-radius: 10px;
+        background: #8F0D56;
+        padding: 20px;
+        justify-content: flex-end;
+        max-height: max-content;
+        min-height: min-content;
+        margin: 16px;
+    }
 }
 
 .status {
@@ -46,26 +67,20 @@ html {
 .category {
     justify-content: flex-start;
 }
-.action {
+/* .action {
+    width: 40%;
+    color: #ffffff;
     overflow: auto;
     border-radius: 10px;
-    background: #eeede7;
+    background: #8F0D56;
     padding: 20px;
     justify-content: flex-end;
     max-height: max-content;
     min-height: min-content;
     margin: 16px;
-}
-
-.script {
-    overflow: auto;
-    border-radius: 10px;
-    background: #ffffff;
-    justify-content: flex-end;
-    padding: 0px 20px;
-    max-height: max-content;
-    min-height: min-content;
-    margin-top: 16px;
+} */
+.action h2 {
+    padding-left: 10px;
 }
 
 .important {
