@@ -63,6 +63,7 @@ const HomePage = () => {
   const [bills, setBills] = useState([]);
   const [campaignMappings, setCampaignMappings] = useState({});
   const [campaigns, setCampaigns] = useState({});
+  const [billStatus, setBillStatus] = useState(RequestStatus.NONE);
   const [campaignStatus, setCampaignStatus] = useState(RequestStatus.NONE);
 
   const [baseSearchTermsObj, setSearchTermsObj] = useState({});
@@ -104,15 +105,19 @@ const HomePage = () => {
     // Correctly handle double-mount in dev/StrictMode
     // https://stackoverflow.com/a/72238236
     const abortController = new AbortController();
+    setBillStatus(RequestStatus.FETCHING);
     fetchBillsBlocks(abortController, searchObjWithCampaignBills, (newBills) =>
       setBills((prev) => [...prev, ...newBills])
-    ).catch((e) => {
-      if (e.name !== 'AbortError') throw e;
-    });
+    )
+      .catch((e) => {
+        if (e.name !== 'AbortError') throw e;
+      })
+      .finally(() => setBillStatus(RequestStatus.DONE));
 
     return () => {
       abortController.abort();
       setBills([]);
+      setBillStatus(RequestStatus.NONE);
     };
   }, [baseSearchTermsObj, campaignStatus, campaignMappings]);
 
@@ -157,16 +162,23 @@ const HomePage = () => {
           setCampaignFilter={setCampaignFilter}
           setSearchTermsObj={setSearchTermsObj}
           setLegislatorFilter={setLegislatorFilter}
+          isFetching={billStatus === RequestStatus.FETCHING}
         />
         <div id="home-bill-grid">
-          {campaignBills.map((bill) => (
-            <Card
-              bill={bill}
-              key={bill.printNoStr}
-              billCampaignMappings={campaignMappings[bill.printNo] || []}
-              allCampaigns={campaigns}
-            />
-          ))}
+          {campaignBills.length
+            ? campaignBills.map((bill) => (
+                <Card
+                  bill={bill}
+                  key={bill.printNoStr}
+                  billCampaignMappings={
+                    campaignMappings[bill.printNo] || []
+                  }
+                  allCampaigns={campaigns}
+                />
+              ))
+            : billStatus === RequestStatus.DONE && (
+                <h2>No bills available with current filters</h2>
+              )}
         </div>
       </div>
     </>
