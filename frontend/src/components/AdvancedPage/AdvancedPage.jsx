@@ -42,7 +42,7 @@ const BillTableHeaderCell = ({
       // open={false}
     >
       <th style={{ textAlign: 'center' }}>
-        {billCampaignMappings[senate?.basePrintNo || assembly?.basePrintNo]
+        {billCampaignMappings[senate?.printNo || assembly?.printNo]
           .map((campaignId) => campaigns[campaignId].short_name)
           .join(' ')}{' '}
         {senate?.printNo || '--'} {assembly?.printNo || '--'}
@@ -63,7 +63,7 @@ const BillTableHeader = ({ billPairs, billCampaignMappings, campaigns }) => {
     <>
       {billPairs.map(([senate, assembly]) => (
         <BillTableHeaderCell
-          key={senate?.basePrintNo || assembly?.basePrintNo}
+          key={senate?.printNo || assembly?.printNo}
           senate={senate}
           assembly={assembly}
           billCampaignMappings={billCampaignMappings}
@@ -133,14 +133,14 @@ export const AdvancedPage = () => {
     )
       .then((bcm) => {
         const searchObj = {
-          basePrintNo: Object.keys(bcm),
+          printNo: Object.keys(bcm),
         };
 
         // Helper method to format bills from fetchBillsBlocks method
         const billSetter = (bills) => {
           const [senate, assembly] = [{}, {}];
           bills.forEach((bill) => {
-            const billId = bill.basePrintNo;
+            const billId = bill.printNo;
             if (billId.startsWith('S')) senate[billId] = bill;
             if (billId.startsWith('A')) assembly[billId] = bill;
           });

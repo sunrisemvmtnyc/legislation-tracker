@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { BILL_STATUSES, SEARCH_QUERY_KEY_MAP } from '../../constants';
 import Dropdown from './Dropdown';
 import TextSearch from './TextSearch';
+import loadingSvg from '../../assets/loading.svg';
 import './Filters.css';
 
 const Filters = ({
@@ -12,6 +13,7 @@ const Filters = ({
   setSearchTermsObj,
   setCampaignFilter,
   setLegislatorFilter,
+  isFetching,
 }) => {
   const createSearchTermsObjUpdater = useCallback(
     (searchKey) => {
@@ -58,6 +60,13 @@ const Filters = ({
         }))}
         updateFilter={setCampaignFilter}
       />
+      {isFetching && (
+        <img
+          className="loading__icon"
+          src={loadingSvg}
+          alt="Loading indicator"
+        />
+      )}
     </div>
   );
 };
@@ -68,6 +77,7 @@ Filters.propTypes = {
   setCampaignFilter: PropTypes.func.isRequired,
   setSearchTermsObj: PropTypes.func.isRequired,
   setLegislatorFilter: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool,
 };
 
 export default Filters;
