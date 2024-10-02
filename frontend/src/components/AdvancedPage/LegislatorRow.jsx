@@ -33,9 +33,9 @@ const LegislatorRowCell = ({ memberId, bill, billSponsors }) => {
   else if (hasPassed) {
     if (isAssembly) ({ className, contents } = CellOption.PASSED_ASSEMBLY);
     else ({ className, contents } = CellOption.PASSED_SENATE);
-  } else if (!billSponsors[bill.basePrintNo])
+  } else if (!billSponsors[bill.printNo])
     ({ className, contents } = CellOption.DNE);
-  else if (billSponsors[bill.basePrintNo].has(memberId))
+  else if (billSponsors[bill.printNo].has(memberId))
     ({ className, contents } = CellOption.SPONSORING);
   else ({ className, contents } = CellOption.NOT_SPONSORING);
 
@@ -98,7 +98,7 @@ export const LegislatorRow = ({
         <LegislatorRowCell
           memberId={memberId}
           // TODO: Not great to key by index
-          key={`${memberId}-sponsors-${bill?.basePrintNo || 'no-bill-' + i}`}
+          key={`${memberId}-sponsors-${bill?.printNo || 'no-bill-' + i}`}
           bill={bill}
           billSponsors={billSponsors}
         />

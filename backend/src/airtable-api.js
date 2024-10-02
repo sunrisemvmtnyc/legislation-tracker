@@ -16,6 +16,7 @@ const BILL_CAMPAIGN_FIELD_ID = 'Campaign';
 const CAMPAIGN_LONG_NAME_FIELD_ID = 'Long Name';
 const CAMPAIGN_SHORT_NAME_FIELD_ID = 'Short Name';
 const CAMPAIGN_IS_CLIMATE_FIELD_ID = 'Is Climate';
+const CAMPAIGN_COLOR_FIELD_ID = 'Color';
 
 const airtable = new Airtable({ apiKey: AIRTABLE_API_KEY });
 const base = airtable.base(AIRTABLE_BASE_ID);
@@ -111,6 +112,7 @@ const sunriseCampaigns = async () => {
           CAMPAIGN_LONG_NAME_FIELD_ID,
           CAMPAIGN_SHORT_NAME_FIELD_ID,
           CAMPAIGN_IS_CLIMATE_FIELD_ID,
+          CAMPAIGN_COLOR_FIELD_ID,
         ],
       })
       .eachPage(
@@ -138,11 +140,12 @@ const sunriseCampaigns = async () => {
     const longName = record.get(CAMPAIGN_LONG_NAME_FIELD_ID);
     const shortName = record.get(CAMPAIGN_SHORT_NAME_FIELD_ID);
     const isClimate = record.get(CAMPAIGN_IS_CLIMATE_FIELD_ID);
+    const color = record.get(CAMPAIGN_COLOR_FIELD_ID);
     const campaignId = record.id;
     campaigns[campaignId] = {
       long_name: longName,
       short_name: shortName,
-
+      color,
       // Airtable returns checkboxes as `true` or `undefined` for some unknowable reason
       is_climate: isClimate,
       id: campaignId,
