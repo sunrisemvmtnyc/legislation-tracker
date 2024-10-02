@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-weight: bold;
 }
 
 .header-container img {
@@ -19,7 +20,6 @@
     flex-direction: row;
     align-items: center;
     gap: 30px;
-    font-weight: bold;
 }
 
 .header-title:hover {
