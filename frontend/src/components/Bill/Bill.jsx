@@ -4,12 +4,10 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import LocForm from './LocForm';
+import './Bill.css';
 
 const getSponsorNumber = (billData) => {
-  const {
-    activeVersion,
-    amendments: { items },
-   } = billData;
+  const { activeVersion, amendments: { items } } = billData;
   return 1 + items[activeVersion].coSponsors.size + items[activeVersion].multiSponsors.size;
 };
 
@@ -40,7 +38,6 @@ RelatedBills.propTypes = {
   related: PropTypes.object.isRequired,
 };
 
-// BillCommitteeMembers Component
 const BillCommitteeMembers = ({ committee, memberId, isSenate }) => {
   if (!isSenate) return <div>Assembly committees not currently supported</div>;
   if (!committee) return <div>No committee data</div>;
@@ -59,8 +56,7 @@ const BillCommitteeMembers = ({ committee, memberId, isSenate }) => {
           </div>
         ))}
       </div>
-      <div>
-        <span>Total Committee Members: {members.length}</span></div>
+      <div>Total Committee Members: {members.length}</div>
     </div>
   );
 };
@@ -71,6 +67,7 @@ BillCommitteeMembers.propTypes = {
   isSenate: PropTypes.bool.isRequired,
 };
 
+// Main Bill Component
 export const Bill = () => {
   const { sessionYear, printNo } = useParams();
   const [bill, setBill] = useState();
@@ -81,7 +78,7 @@ export const Bill = () => {
   const isSenate = bill?.billType?.chamber?.toLowerCase() === 'senate';
   const senateSiteUrl = `https://www.nysenate.gov/legislation/bills/${sessionYear}/${printNo}`;
 
-  // Fetch main bill data
+  // Fetch bill data
   useEffect(() => {
     const fetchBill = async () => {
       const res = await fetch(`/api/v1/bills/${sessionYear}/${printNo}`);
