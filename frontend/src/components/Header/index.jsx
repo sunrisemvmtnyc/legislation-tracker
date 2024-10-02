@@ -1,16 +1,13 @@
 import { Link } from "react-router-dom";
 
-import "./Header.css";
-import sunriseImage from "../../assets/logo-sunrise-movement-black-300x86.png";
+import './Header.css';
+import sunriseImage from '../../assets/sunrisenyc.png';
 
 function Header() {
   return (
     <div className="header-container">
       <Link to="/" className="header-title">
-        <img src={sunriseImage} alt="Sunrise logo" />
-        <div>
-          NY state<br />legislative tracker
-        </div>
+        <img src={sunriseImage} alt="Sunrise logo" height="90px" width="90px" />
       </Link>
       <div className="header-actions">
         <a className="header-get-involved" href="https://sunrisenyc.org/get-involved" target="_blank" rel="noreferrer">Get involved</a>
