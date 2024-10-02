@@ -1,14 +1,15 @@
 import { Icon } from '@iconify/react';
-import PropTypes from 'prop-types';
+import { PropTypes } from 'prop-types';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import LocForm from './LocForm';
-import './Bill.css';
 
-// Helper functions
 const getSponsorNumber = (billData) => {
-  const { activeVersion, amendments: { items } } = billData;
+  const {
+    activeVersion,
+    amendments: { items },
+   } = billData;
   return 1 + items[activeVersion].coSponsors.size + items[activeVersion].multiSponsors.size;
 };
 
@@ -20,18 +21,15 @@ const getSponsorNames = (billData) => {
   ];
 };
 
-// RelatedBills Component
 const RelatedBills = ({ related }) => {
   if (!related) return <div>No related bills</div>;
-
   return (
     <div>
       <h4>Related Bills</h4>
       {Object.values(related).map((bill) => (
         <div key={bill.printNo}>
-          <a href={`/bill/${bill.session}/${bill.printNo}`}>
-            {bill.printNo}
-          </a>: {bill.title}
+          <a href={`/bill/${bill.session}/${bill.printNo}`}>{bill.printNo}</a>:{' '}
+          {bill.title}
         </div>
       ))}
     </div>
@@ -48,7 +46,7 @@ const BillCommitteeMembers = ({ committee, memberId, isSenate }) => {
   if (!committee) return <div>No committee data</div>;
 
   const members = committee.committeeMembers.items.filter(
-    (member) => member.memberId !== memberId
+    (m) => m.memberId !== memberId
   );
 
   return (
@@ -61,7 +59,8 @@ const BillCommitteeMembers = ({ committee, memberId, isSenate }) => {
           </div>
         ))}
       </div>
-      <div>Total Committee Members: {members.length}</div>
+      <div>
+        <span>Total Committee Members: {members.length}</span></div>
     </div>
   );
 };
@@ -72,18 +71,17 @@ BillCommitteeMembers.propTypes = {
   isSenate: PropTypes.bool.isRequired,
 };
 
-// Main Bill Component
 export const Bill = () => {
   const { sessionYear, printNo } = useParams();
-  const [bill, setBill] = useState(null);
-  const [committee, setCommittee] = useState(null);
+  const [bill, setBill] = useState();
+  const [committee, setCommittee] = useState();
   const [placeName, setPlaceName] = useState('');
 
   const fetched = !!bill;
   const isSenate = bill?.billType?.chamber?.toLowerCase() === 'senate';
   const senateSiteUrl = `https://www.nysenate.gov/legislation/bills/${sessionYear}/${printNo}`;
 
-  // Fetch bill data
+  // Fetch main bill data
   useEffect(() => {
     const fetchBill = async () => {
       const res = await fetch(`/api/v1/bills/${sessionYear}/${printNo}`);
