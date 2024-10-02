@@ -28,6 +28,7 @@ html {
 }
 
 .bill-content {
+    background-color: white;
     display: flex;
 }
 @media screen and (min-width: 1001px) {
