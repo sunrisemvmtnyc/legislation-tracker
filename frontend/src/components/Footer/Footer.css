@@ -39,6 +39,10 @@
     color: white;
 }
 
+.footer-navbar a {
+    text-decoration: underline;
+}
+
 a.footer-get-involved {
     background: #FFDE16;
     padding: 10px;
