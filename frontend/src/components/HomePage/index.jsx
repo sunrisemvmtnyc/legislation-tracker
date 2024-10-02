@@ -22,7 +22,7 @@ const addCampaignBillsToSearchObj = (campaignMappings, searchObj) => {
   const billIds = new Set();
   Object.keys(campaignMappings).forEach((billId) => billIds.add(billId));
 
-  return { ...searchObj, basePrintNo: Array.from(billIds) };
+  return { ...searchObj, printNo: Array.from(billIds) };
 };
 
 /** Get direct sponsors for all bills. Does _not_ include cosponsors
@@ -76,7 +76,7 @@ const HomePage = () => {
       ? bills.filter((bill) => {
           if (
             campaignFilter.length &&
-            !campaignMappings[bill.basePrintNo]?.some((relatedCampaignId) =>
+            !campaignMappings[bill.printNo]?.some((relatedCampaignId) =>
               campaignFilter.includes(relatedCampaignId)
             )
           )
@@ -169,9 +169,9 @@ const HomePage = () => {
             ? campaignBills.map((bill) => (
                 <Card
                   bill={bill}
-                  key={bill.basePrintNoStr}
+                  key={bill.printNoStr}
                   billCampaignMappings={
-                    campaignMappings[bill.basePrintNo] || []
+                    campaignMappings[bill.printNo] || []
                   }
                   allCampaigns={campaigns}
                 />
