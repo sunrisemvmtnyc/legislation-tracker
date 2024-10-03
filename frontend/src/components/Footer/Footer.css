@@ -4,6 +4,7 @@
     padding: 30px;
     text-transform: uppercase;
     background: black;
+    font-weight: bold;
 }
 
 #footer a {
@@ -16,7 +17,6 @@
     align-items: center;
     gap: 30px;
     font-size: xx-large;
-    font-weight: bold;
 }
 
 .footer-title img {
@@ -37,6 +37,10 @@
     gap: 10px;
     font-size: 20px;
     color: white;
+}
+
+.footer-navbar a {
+    text-decoration: underline;
 }
 
 a.footer-get-involved {
