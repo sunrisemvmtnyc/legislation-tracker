@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import LocForm from './LocForm';
 import './Bill.css';
 
-function getSponsorNumber(billData) {
+const getSponsorNumber = (billData) => {
   const {
     activeVersion,
     amendments: { items },
@@ -16,9 +16,9 @@ function getSponsorNumber(billData) {
     items[activeVersion].coSponsors.size +
     items[activeVersion].multiSponsors.size
   );
-}
+};
 
-function getSponsorNames(billData) {
+const getSponsorNames = (billData) => {
   const {
     activeVersion,
     amendments: { items },
@@ -28,7 +28,7 @@ function getSponsorNames(billData) {
     sponsor.member.fullName,
     ...items[activeVersion].coSponsors.items.map((rep) => rep.fullName),
   ];
-}
+};
 
 const RelatedBills = ({ related }) => {
   if (!related) return <div>No related bills</div>;
@@ -44,44 +44,41 @@ const RelatedBills = ({ related }) => {
     </div>
   );
 };
+
 RelatedBills.propTypes = {
   related: PropTypes.object.isRequired,
 };
 
 const BillCommitteeMembers = ({ committee, memberId, isSenate }) => {
-  // TODO: better styling
   if (!isSenate) return <div>Assembly committees not currently supported</div>;
   if (!committee) return <div>No committee data</div>;
-  console.log('committee');
-  console.log(committee);
+
   const members = committee.committeeMembers.items.filter(
     (m) => m.memberId !== memberId
   );
 
   return (
     <div>
-      <h4>Committee: {committee.name} </h4>
+      <h4>Committee: {committee.name}</h4>
       <div>
         {members.map((member) => (
           <div key={member.memberId}>
-            <span>
-              {member.fullName}:{member.memberId}
-            </span>
+            {member.fullName}: {member.memberId}
           </div>
         ))}
       </div>
-      <div>
-        <span>Total Committee Members: {members.length}</span>
-      </div>
+      <div>Total Committee Members: {members.length}</div>
     </div>
   );
 };
+
 BillCommitteeMembers.propTypes = {
   committee: PropTypes.object.isRequired,
   memberId: PropTypes.string.isRequired,
   isSenate: PropTypes.bool.isRequired,
 };
 
+// Main Bill Component
 export const Bill = () => {
   const { sessionYear, printNo } = useParams();
   const [bill, setBill] = useState();
@@ -92,49 +89,48 @@ export const Bill = () => {
   const isSenate = bill?.billType?.chamber?.toLowerCase() === 'senate';
   const senateSiteUrl = `https://www.nysenate.gov/legislation/bills/${sessionYear}/${printNo}`;
 
-  // Fetch main bill data
+  // Fetch bill data
   useEffect(() => {
     const fetchBill = async () => {
       const res = await fetch(`/api/v1/bills/${sessionYear}/${printNo}`);
-      await setBill(await res.json());
+      setBill(await res.json());
     };
     fetchBill();
-  }, []);
+  }, [sessionYear, printNo]);
 
-  // Fetch bill committee data
+  // Fetch committee data
   useEffect(() => {
     if (!fetched || !isSenate) return;
+
     const chamber = bill.billType.chamber.toLowerCase();
-    const committee = bill?.status?.committeeName;
-    if (!committee) return;
+    const committeeName = bill?.status?.committeeName;
+    if (!committeeName) return;
 
     const fetchCommittee = async () => {
       const res = await fetch(
-        `/api/v1/committees/${sessionYear}/${chamber}/${committee}`
+        `/api/v1/committees/${sessionYear}/${chamber}/${committeeName}`
       );
       setCommittee(await res.json());
     };
-
     fetchCommittee();
-  }, [bill, sessionYear]);
+  }, [fetched, isSenate, bill, sessionYear]);
 
+  // Retrieve place name from session storage
   useEffect(() => {
     const setPlaceNameFromStorage = () => {
       setPlaceName(window.sessionStorage.getItem('placeName') || '[CITY, ZIP]');
     };
     setPlaceNameFromStorage();
     window.addEventListener('storage', setPlaceNameFromStorage);
+
     return () => {
       window.removeEventListener('storage', setPlaceNameFromStorage);
     };
   }, []);
 
-  if (!bill)
-    return (
-      <div>
-        <div>This is the bill {printNo}&apos;s page</div>
-      </div>
-    );
+  if (!bill) {
+    return <div>This is the bill {printNo}'s page</div>;
+  }
 
   const {
     title,
@@ -149,17 +145,14 @@ export const Bill = () => {
       <div className="summary">
         <h2>{title}</h2>
         <div>
-          <span>
-            <a
-              id="senate-site-link"
-              href={senateSiteUrl}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              on NYSenate site &nbsp;
-              <Icon icon="material-symbols:open-in-new" />
-            </a>
-          </span>
+          <a
+            id="senate-site-link"
+            href={senateSiteUrl}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            on NYSenate site <Icon icon="material-symbols:open-in-new" />
+          </a>
         </div>
         <p>{summary}</p>
         <div className="category">
@@ -167,20 +160,15 @@ export const Bill = () => {
         </div>
 
         <p>
-          Sponsored by <span style={{ fontWeight: 'bold' }}>{sponsorName}</span>
+          Sponsored by <strong>{sponsorName}</strong>
           <br />
           District {bill.sponsor.member.districtCode}
         </p>
         <p>
-          Status:{' '}
-          <span style={{ fontWeight: 'bold' }}>{bill.status.statusDesc}</span>
+          Status: <strong>{bill.status.statusDesc}</strong>
         </p>
-        <div>
-          <p>Total Sponsors: {getSponsorNumber(bill)}</p>
-        </div>
-        <p>
-          <RelatedBills related={bill.billInfoRefs.items} />
-        </p>
+        <p>Total Sponsors: {getSponsorNumber(bill)}</p>
+        <RelatedBills related={bill.billInfoRefs.items} />
         {fetched && (
           <BillCommitteeMembers
             committee={committee}
@@ -202,7 +190,7 @@ export const Bill = () => {
 
       <div className="action">
         <h2>Who are my representatives?</h2>
-        <LocForm sponsorNames={getSponsorNames(bill)} />
+        <LocForm sponsorNames={getSponsorNames(bill)} billNo={printNo} />
       </div>
     </div>
   );
