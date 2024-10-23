@@ -6,8 +6,8 @@ const Card = ({ bill, billCampaignMappings, allCampaigns }) => {
   let categories = [];
   if (billCampaignMappings && allCampaigns) {
     categories = billCampaignMappings
-      .map((abrv) => allCampaigns[abrv].short_name)
-      .filter((v) => !!v);
+      .map((abrv) => allCampaigns[abrv])
+      .filter(e => e?.short_name || e?.long_name);
   }
   return (
     <a
@@ -17,7 +17,7 @@ const Card = ({ bill, billCampaignMappings, allCampaigns }) => {
       {!!categories.length && (
         <div className="home-bill-categories">
           {categories.map((category) => (
-            <CategoryTag category={category} key={category} />
+            <CategoryTag category={category} key={category.id} />
           ))}
         </div>
       )}

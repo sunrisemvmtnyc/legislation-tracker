@@ -1,6 +1,15 @@
 .filters-bar {
   display: inline-flex;
   flex-direction: row;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.23);
+}
+
+.MuiInputBase-root {
+  background-color: white;
 }
 
 .MuiMenuItem-root.Mui-selected {

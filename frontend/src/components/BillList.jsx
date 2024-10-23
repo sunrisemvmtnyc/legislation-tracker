@@ -49,7 +49,7 @@ export default function BillList() {
       const infilter = x.status.statusType === currentFilter;
       const inSearch =
         x.title.toLowerCase().includes(search.toLowerCase()) ||
-        x.basePrintNo.toLowerCase().includes(search.toLowerCase()) || // S11, A29A, etc.
+        x.printNo.toLowerCase().includes(search.toLowerCase()) || // S11, A29A, etc.
         x.sponsor?.member?.fullName.includes(search.toLowerCase());
       return (
         infilter &&

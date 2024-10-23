@@ -4,7 +4,6 @@ import express from 'express';
 import fetch from 'node-fetch';
 
 import { legApi, membersFromYear } from './nysenate-api.js';
-import { categories } from './categories.js';
 import { openStatesApi, openStatesGeoApi } from './openstates-api.js';
 import { mapBoxApi } from './mapbox-api.js';
 import { fetchSunriseBills } from './airtable-api.js';
@@ -40,12 +39,6 @@ app.get('/api/v1/bills/:year/search', async (req, res, next) => {
   const sort = '_score:desc,session:desc'; // taken from leg-API sample app
   const term = req.query.term || '*';
 
-  if (process.env.MOCK_DATA === 'true') {
-    const file = fs.readFileSync(`mock/search.json`).toString();
-    const data = JSON.parse(file);
-    res.json(data);
-    return;
-  }
   const url = legApi(`bills/${year}/search`, {
     year,
     offset,
@@ -76,12 +69,6 @@ app.get('/api/v1/bills/airtable-bills', async (_, res) => {
 
 // Endpoint to get a single bill
 app.get('/api/v1/bills/:year/:printNumber', async (req, res) => {
-  if (process.env.MOCK_DATA === 'true') {
-    const file = fs.readFileSync(`mock/bill.json`).toString();
-    const data = JSON.parse(file);
-    res.json(data);
-    return;
-  }
   const url = legApi(`bills/${req.params.year}/${req.params.printNumber}`, {
     view: 'with_refs',
   });
@@ -142,11 +129,6 @@ app.get(
     }
   }
 );
-
-// Category metadata
-app.get('/api/v1/categories', async (_, res) => {
-  res.json(categories());
-});
 
 app.get('/api/v1/legislators/search/offices', async (req, res, next) => {
   const name = req.query.name;

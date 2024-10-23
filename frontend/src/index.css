@@ -459,6 +459,23 @@ svg {
   height: 72px;
 }
 
+.loading__icon {
+  padding-bottom: 0.75rem;
+  align-self: flex-end;
+  animation: 0.5s ease-in fadein;
+  opacity: 1;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 /* }}} */
 
 /* Callout {{{ */
@@ -651,4 +668,5 @@ a:hover .callout__text {
 
 .App {
   flex: 1;
+  background-color: #FBFAEF;
 }
