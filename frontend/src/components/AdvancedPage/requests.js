@@ -1,4 +1,5 @@
 import { REQUEST_PAGE_SIZE } from '../../constants';
+import { API_URL } from '../../requests';
 
 export const fetchLegislators = async (
   abortController,
@@ -16,7 +17,7 @@ export const fetchLegislators = async (
 
   while (total > 1 + page * REQUEST_PAGE_SIZE) {
     const res = await (
-      await fetch(`/api/v1/members/2023?${params(page)}`, {
+      await fetch(`${API_URL}/api/v1/members/2023?${params(page)}`, {
         signal: abortController.signal,
       })
     ).json();

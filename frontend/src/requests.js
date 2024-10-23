@@ -1,5 +1,9 @@
 import { REQUEST_PAGE_SIZE, SEARCH_QUERY_KEY_MAP } from './constants';
 
+// Declared in vite.config.js
+// eslint-disable-next-line no-undef
+export const API_URL = __API_URL__;
+
 /** Creates ElasticSearch query string */
 const evalSearchTerm = (searchTermsObj) => {
   let searchTermStr = Object.entries(searchTermsObj)
@@ -23,7 +27,7 @@ export const fetchBillCampaignMappings = async (
   setCampaigns,
   setBillCampaignMappings
 ) => {
-  const res = await fetch('/api/v1/bills/airtable-bills', {
+  const res = await fetch(`${API_URL}/api/v1/bills/airtable-bills`, {
     signal: abortController.signal,
   });
   const { bills: billCampaignMapping, campaigns } = await res.json();
@@ -42,7 +46,7 @@ export const fetchBillsBlocks = async (
   // console.log('fetchBillsBlocks searchObj', searchObj); // Useful for debugging
   const searchTerm = evalSearchTerm(searchObj);
 
-  const url = '/api/v1/bills/2023/search';
+  const url = `${API_URL}/api/v1/bills/2023/search`;
   const urlParams = {
     term: searchTerm,
     limit: REQUEST_PAGE_SIZE,
