@@ -57,7 +57,7 @@ const LocForm = ({ sponsorNames, billNo }) => {
     setPlaceName('');
     setLatitude('');
     setLongitude('');
-    setRepresentatives({});
+    setRepresentatives([]);
     window.sessionStorage.setItem('placeName', '');
     window.sessionStorage.setItem('latitude', '');
     window.sessionStorage.setItem('longitude', '');
