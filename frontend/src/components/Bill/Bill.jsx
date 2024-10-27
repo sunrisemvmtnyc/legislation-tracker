@@ -7,12 +7,23 @@ import LocForm from './LocForm';
 import './Bill.css';
 
 const getSponsorNumber = (billData) => {
-  const { activeVersion, amendments: { items } } = billData;
-  return 1 + items[activeVersion].coSponsors.size + items[activeVersion].multiSponsors.size;
+  const {
+    activeVersion,
+    amendments: { items },
+  } = billData;
+  return (
+    1 +
+    items[activeVersion].coSponsors.size +
+    items[activeVersion].multiSponsors.size
+  );
 };
 
 const getSponsorNames = (billData) => {
-  const { activeVersion, amendments: { items }, sponsor } = billData;
+  const {
+    activeVersion,
+    amendments: { items },
+    sponsor,
+  } = billData;
   return [
     sponsor.member.fullName,
     ...items[activeVersion].coSponsors.items.map((rep) => rep.fullName),
@@ -96,7 +107,9 @@ export const Bill = () => {
     if (!committeeName) return;
 
     const fetchCommittee = async () => {
-      const res = await fetch(`/api/v1/committees/${sessionYear}/${chamber}/${committeeName}`);
+      const res = await fetch(
+        `/api/v1/committees/${sessionYear}/${chamber}/${committeeName}`
+      );
       setCommittee(await res.json());
     };
     fetchCommittee();
@@ -122,7 +135,9 @@ export const Bill = () => {
   const {
     title,
     summary,
-    sponsor: { member: { memberId: sponsorId, fullName: sponsorName } },
+    sponsor: {
+      member: { memberId: sponsorId, fullName: sponsorName },
+    },
   } = bill;
 
   return (

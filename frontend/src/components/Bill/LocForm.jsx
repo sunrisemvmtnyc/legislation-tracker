@@ -9,7 +9,6 @@ const LocForm = ({ sponsorNames, billNo }) => {
   const [loc, setLoc] = useState('');
   const [placeName, setPlaceName] = useState('');
 
-
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   const [representatives, setRepresentatives] = useState({});
@@ -20,37 +19,37 @@ const LocForm = ({ sponsorNames, billNo }) => {
     if (sessionPlaceName) {
       setPlaceName(sessionPlaceName);
     }
-  
-    const sessionRepresentatives = window.sessionStorage.getItem('representatives');
+
+    const sessionRepresentatives =
+      window.sessionStorage.getItem('representatives');
     if (sessionRepresentatives) {
       const storedRepresentatives = JSON.parse(sessionRepresentatives);
-  
+
       // Filter state-level representatives
       const stateRepresentatives = storedRepresentatives.filter(
         (rep) => rep.jurisdiction === 'state'
       );
-  
+
       // Update sponsorship status
       const updatedSponsorshipStatus = {};
       stateRepresentatives.forEach((rep) => {
         updatedSponsorshipStatus[rep.name] = sponsorNames.includes(rep.name);
       });
-  
+
       setRepresentatives(stateRepresentatives);
       setSponsorshipStatus(updatedSponsorshipStatus);
     }
-  
+
     const sessionLatitude = window.sessionStorage.getItem('latitude');
     if (sessionLatitude) {
       setLatitude(JSON.parse(sessionLatitude));
     }
-    
+
     const sessionLongitude = window.sessionStorage.getItem('longitude');
     if (sessionLongitude) {
       setLongitude(JSON.parse(sessionLongitude));
     }
   }, [sponsorNames]);
-  
 
   const reset = () => {
     setLoc('');
@@ -150,9 +149,11 @@ const LocForm = ({ sponsorNames, billNo }) => {
             <div key={rep.name} className="representative">
               <h3>
                 {rep.title} {rep.name}:{' '}
-                <strong>{sponsorshipStatus[rep.name]
-                  ? 'Already a sponsor'
-                  : 'NOT A SPONSOR'}</strong>
+                <strong>
+                  {sponsorshipStatus[rep.name]
+                    ? 'Already a sponsor'
+                    : 'NOT A SPONSOR'}
+                </strong>
               </h3>
               <ul>
                 {rep.offices.map((office, index) => (
@@ -170,11 +171,10 @@ const LocForm = ({ sponsorNames, billNo }) => {
         <h3>Script</h3>
         <div className="script">
           <p>
-          Hi, my name is [NAME] and I'm a constituent from [CITY, ZIP].
-          I'm calling to demand [REP/SEN NAME] vote for {billNo}.
-          Thank you for your time and consideration.
-
-          IF LEAVING VOICEMAIL: Please leave your full street address to ensure your call is tallied.
+            Hi, my name is [NAME] and I'm a constituent from [CITY, ZIP]. I'm
+            calling to demand [REP/SEN NAME] vote for {billNo}. Thank you for
+            your time and consideration. IF LEAVING VOICEMAIL: Please leave your
+            full street address to ensure your call is tallied.
           </p>
         </div>
       </>
