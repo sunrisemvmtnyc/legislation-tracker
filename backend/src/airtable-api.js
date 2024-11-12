@@ -6,6 +6,7 @@ const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = 'appBS7e3igXNBXl9b';
 const BILL_TABLE_ID = 'tblCJq2YX259pH5ij'; // ImportedScorecard
 const CAMPAIGNS_TABLE_ID = 'tblffq2qDxSjGmah0';
+const URL_BASE_AIRTABLE = 'https://api.airtable.com/v0';
 
 // Bill fields we care about
 const BILL_SENATE_FIELD_ID = 'Senate Number';
@@ -167,4 +168,43 @@ export const fetchSunriseBills = async () => {
     console.error('fetch airtable bills or campaigns error', err);
   }
   return { bills, campaigns };
+};
+
+export const fetchSingleBill = (printNumber) => {
+  return new Promise((resolve, reject) => {
+    base('ImportedScorecard')
+      .select({
+        view: 'Grid view',
+        fields: ["Campaign", "Importance"],
+        maxRecords: 1,
+        filterByFormula: `{Senate Number} = '${printNumber}'`,
+      })
+      .firstPage((err, records) => {
+        if (err) {
+          console.error('Airtable fetch error:', err);
+          return reject(err); // Reject the Promise if there's an error
+        }
+        
+        if (records && records.length > 0) {
+          const record = records[0];
+          const bill = {
+            campaign: record.get("Campaign"),
+            importance: record.get("Importance"),
+          };
+          resolve(bill); // Resolve with the bill data
+        } else {
+          resolve(null); // Resolve with null if no record is found
+        }
+      });
+  });
+};
+
+export const fetchSingleCampaign = (campaignId) => {
+  return  new Promise((resolve, reject) => {
+    base('Campaigns').find(`${campaignId}`, function(err, campaign) {
+      if (err) { console.error(err); return reject(err); }
+      // console.log(campaign);
+      resolve(campaign); // Resolve with the campaign data
+    });
+  });
 };
