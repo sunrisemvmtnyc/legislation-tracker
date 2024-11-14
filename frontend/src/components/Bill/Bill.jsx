@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import LocForm from './LocForm';
 import './Bill.css';
-import CategoryTag from '../Category/CategoryTag';
+// import CategoryTag from '../Category/CategoryTag';
 
 const getSponsorNumber = (billData) => {
   const {
@@ -136,10 +136,11 @@ export const Bill = () => {
   useEffect(() => {
     const fetchATBill = async () => {
       const res = await fetch(`/api/v1/bills/airtable-bills/${printNo}`);
-      console.log(`/api/v1/bills/airtable-bills/${printNo}`)
+      console.log(`/api/v1/bills/airtable-bills/${printNo}`);
       setATBill(await res.json());
     };
     fetchATBill();
+    console.log(atBill);
   }, [printNo]);
 
   useEffect(() => {
@@ -179,7 +180,7 @@ export const Bill = () => {
           </a>
         </div>
         <p>{summary}</p>
-          {/* {campaigned && (
+        {/* {campaigned && (
             <CategoryTag  category={campaign.fields['Long Name']}
             />
           )} */}
@@ -202,9 +203,7 @@ export const Bill = () => {
         )}
         <div className="important">
           <h4>Why is this important? Why should this bill pass?</h4>
-          <p>
-            {atBill.importance}
-          </p>
+          <p>{atBill.importance}</p>
         </div>
       </div>
 

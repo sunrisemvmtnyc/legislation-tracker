@@ -6,9 +6,7 @@ import fetch from 'node-fetch';
 import { legApi, membersFromYear } from './nysenate-api.js';
 import { openStatesApi, openStatesGeoApi } from './openstates-api.js';
 import { mapBoxApi } from './mapbox-api.js';
-import { fetchSunriseBills } from './airtable-api.js';
-import { fetchSingleBill } from './airtable-api.js';
-import { fetchSingleCampaign } from './airtable-api.js';
+import { fetchSunriseBills, fetchSingleBill, fetchSingleCampaign } from './airtable-api.js';
 
 import fs from 'fs';
 
