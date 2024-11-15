@@ -1,8 +1,6 @@
 .loc-form {
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
-    background-color: #F4FFEC;
-    border: 1px solid green; /* @TODO use better/consistent colors */
 }
 
 .loc-form input#autocomplete {
@@ -11,4 +9,23 @@
 
 .loc-form form, .loc-form button.change-location {
     padding-top: 10px;
+}
+
+.representatives {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: black;
+    margin-bottom: 16px;
+}
+
+.script-title {
+    padding: 20px;
+}
+
+.script {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: black;
 }
