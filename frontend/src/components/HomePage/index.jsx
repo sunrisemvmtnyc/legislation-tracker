@@ -6,6 +6,7 @@ import Banner from './Banner';
 import Filters from './Filters';
 import { fetchBillsBlocks } from '../../requests';
 import { getSponsorMembers } from '../../utils';
+import { SEARCH_QUERY_KEY_MAP } from '../../constants';
 
 /** Simple enum to show request status */
 const RequestStatus = {
@@ -59,6 +60,79 @@ const getSponsorList = (bills) => {
   return sponsorList.sort((a, b) => a.shortName.localeCompare(b.shortName));
 };
 
+/** Handle filtering & searching of bills on frontend */
+const filterBills = (
+  bills,
+  campaignFilter,
+  legislatorFilter,
+  campaignMappings,
+  baseSearchTermsObj
+) => {
+  if (!bills.length) return bills;
+  const hasFilterObjectValue = Object.values(SEARCH_QUERY_KEY_MAP).some(
+    (v) => !!baseSearchTermsObj[v]
+  );
+  if (
+    !hasFilterObjectValue &&
+    !campaignFilter.length &&
+    !legislatorFilter.length
+  )
+    return bills;
+
+  const searchTermFilter = {
+    [SEARCH_QUERY_KEY_MAP.TEXT_SEARCH_KEY]: (bill) => {
+      if (!baseSearchTermsObj[SEARCH_QUERY_KEY_MAP.TEXT_SEARCH_KEY])
+        return true;
+      const search =
+        baseSearchTermsObj[SEARCH_QUERY_KEY_MAP.TEXT_SEARCH_KEY].toLowerCase();
+      return (
+        bill.title.toLowerCase().includes(search) ||
+        bill.summary.toLowerCase().includes(search)
+      );
+    },
+    [SEARCH_QUERY_KEY_MAP.STATUS]: (bill) => {
+      if (!baseSearchTermsObj[SEARCH_QUERY_KEY_MAP.STATUS]) return true;
+      for (let status of baseSearchTermsObj[SEARCH_QUERY_KEY_MAP.STATUS]) {
+        if (bill.status.statusDesc === status) return true;
+      }
+      return false;
+    },
+    [SEARCH_QUERY_KEY_MAP.SPONSOR_NAME]: (bill) => {
+      if (!baseSearchTermsObj[SEARCH_QUERY_KEY_MAP.SPONSOR_NAME]) return true;
+      const billSponsor = bill.sponsor.member.fullName;
+      for (let sponsor of baseSearchTermsObj[
+        SEARCH_QUERY_KEY_MAP.SPONSOR_NAME
+      ]) {
+        if (sponsor === billSponsor) return true;
+      }
+      return false;
+    },
+  };
+
+  return bills.filter((bill) => {
+    if (
+      campaignFilter.length &&
+      !campaignMappings[bill.printNo]?.some((relatedCampaignId) =>
+        campaignFilter.includes(relatedCampaignId)
+      )
+    )
+      return false;
+    if (
+      legislatorFilter.length &&
+      !legislatorFilter.includes(getSponsorMembers(bill).sponsor.memberId)
+    )
+      return false;
+    if (hasFilterObjectValue) {
+      console.log('searchTermFilter', searchTermFilter);
+      return Object.values(SEARCH_QUERY_KEY_MAP).every((k) => {
+        console.log('k', k);
+        return searchTermFilter[k](bill);
+      });
+    }
+    return true;
+  });
+};
+
 const HomePage = () => {
   const [bills, setBills] = useState([]);
   const [campaignMappings, setCampaignMappings] = useState({});
@@ -70,36 +144,23 @@ const HomePage = () => {
   const [campaignFilter, setCampaignFilter] = useState([]);
   const [legislatorFilter, setLegislatorFilter] = useState([]);
 
-  // Apply filters to bills shown
-  const campaignBills =
-    campaignFilter.length || legislatorFilter.length
-      ? bills.filter((bill) => {
-          if (
-            campaignFilter.length &&
-            !campaignMappings[bill.printNo]?.some((relatedCampaignId) =>
-              campaignFilter.includes(relatedCampaignId)
-            )
-          )
-            return false;
-          if (
-            legislatorFilter.length &&
-            !legislatorFilter.includes(getSponsorMembers(bill).sponsor.memberId)
-          )
-            return false;
-          return true;
-        })
-      : bills;
-
+  const filteredBills = filterBills(
+    bills,
+    campaignFilter,
+    legislatorFilter,
+    campaignMappings,
+    baseSearchTermsObj
+  );
   const campaignList = Object.values(campaigns);
 
-  // Fetch bills on page load & filter change
+  // Fetch bills on page load
   useEffect(() => {
     // Skip if campaigns are not yet fetched
     if (campaignStatus !== RequestStatus.DONE) return;
 
     const searchObjWithCampaignBills = addCampaignBillsToSearchObj(
       campaignMappings,
-      baseSearchTermsObj
+      {}
     );
 
     // Correctly handle double-mount in dev/StrictMode
@@ -119,7 +180,7 @@ const HomePage = () => {
       setBills([]);
       setBillStatus(RequestStatus.NONE);
     };
-  }, [baseSearchTermsObj, campaignStatus, campaignMappings]);
+  }, [campaignStatus, campaignMappings]);
 
   // Fetch campaign mappings and campaigns
   useEffect(() => {
@@ -165,14 +226,12 @@ const HomePage = () => {
           isFetching={billStatus === RequestStatus.FETCHING}
         />
         <div id="home-bill-grid">
-          {campaignBills.length
-            ? campaignBills.map((bill) => (
+          {filteredBills.length
+            ? filteredBills.map((bill) => (
                 <Card
                   bill={bill}
                   key={bill.printNoStr}
-                  billCampaignMappings={
-                    campaignMappings[bill.printNo] || []
-                  }
+                  billCampaignMappings={campaignMappings[bill.printNo] || []}
                   allCampaigns={campaigns}
                 />
               ))

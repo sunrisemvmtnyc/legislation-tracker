@@ -20,7 +20,7 @@ const Filters = ({
       return (searchVal) => {
         setSearchTermsObj((currObj) => ({
           ...currObj,
-          [searchKey]: searchVal?.length ? searchVal : [],
+          [searchKey]: searchVal?.length ? searchVal : null,
         }));
       };
     },
