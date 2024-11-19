@@ -11,6 +11,7 @@
   min-height: 300px;
 }
 
+/* https://www.digitalocean.com/community/tutorials/how-to-change-a-css-background-images-opacity */
 #home-banner-bg {
   opacity: 0.6;
   position: absolute;
