@@ -90,6 +90,7 @@ export const Bill = () => {
 
   const fetched = !!bill;
   const campaigned = !!campaign;
+  const important = !!atBill.importance;
   const isSenate = bill?.billType?.chamber?.toLowerCase() === 'senate';
   const senateSiteUrl = `https://www.nysenate.gov/legislation/bills/${sessionYear}/${printNo}`;
 
@@ -203,7 +204,7 @@ export const Bill = () => {
         )}
         <div className="important">
           <h4>Why is this important? Why should this bill pass?</h4>
-          <p>{atBill.importance}</p>
+          <p>{important && atBill.importance}</p>
         </div>
       </div>
 
