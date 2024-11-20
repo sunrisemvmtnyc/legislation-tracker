@@ -11,7 +11,7 @@ const Dropdown = ({ id, label, options, updateFilter }) => {
   };
 
   return (
-    <FormControl sx={{ minWidth: 160, fontSize: '1em' }} size="small">
+    <FormControl sx={{ minWidth: 160, fontSize: '1em' }} size="small" key={id}>
       <InputLabel id={`sunrise-filter-${id}`} sx={{ fontSize: '1em' }}>
         {label}
       </InputLabel>
