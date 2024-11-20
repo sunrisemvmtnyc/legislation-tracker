@@ -146,7 +146,6 @@ export const Bill = () => {
   useEffect(() => {
     if (!atBill.campaign) return;
     const fetchCampaign = async () => {
-      console.log(`/api/v1/campaigns/${atBill.campaign}`);
       const res = await fetch(`/api/v1/campaigns/${atBill.campaign}`);
       setCampaign(await res.json());
     };
