@@ -141,7 +141,6 @@ export const Bill = () => {
       setATBill(await res.json());
     };
     fetchATBill();
-    console.log(atBill);
   }, [printNo]);
 
   useEffect(() => {
