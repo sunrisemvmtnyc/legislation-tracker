@@ -122,13 +122,10 @@ const filterBills = (
       !legislatorFilter.includes(getSponsorMembers(bill).sponsor.memberId)
     )
       return false;
-    if (hasFilterObjectValue) {
-      console.log('searchTermFilter', searchTermFilter);
-      return Object.values(SEARCH_QUERY_KEY_MAP).every((k) => {
-        console.log('k', k);
-        return searchTermFilter[k](bill);
-      });
-    }
+    if (hasFilterObjectValue)
+      return Object.values(SEARCH_QUERY_KEY_MAP).every((k) =>
+        searchTermFilter[k](bill)
+      );
     return true;
   });
 };
@@ -221,6 +218,7 @@ const HomePage = () => {
           sponsorList={getSponsorList(bills)}
           campaignList={campaignList}
           setCampaignFilter={setCampaignFilter}
+          searchTermsObj={baseSearchTermsObj}
           setSearchTermsObj={setSearchTermsObj}
           setLegislatorFilter={setLegislatorFilter}
           isFetching={billStatus === RequestStatus.FETCHING}
