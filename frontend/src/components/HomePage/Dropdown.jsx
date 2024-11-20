@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Select, MenuItem } from '@mui/material';
-
-import './Dropdown.css';
+import { Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 
 const Dropdown = ({ id, label, options, updateFilter }) => {
   const [selected, setSelected] = useState([]);
@@ -13,24 +11,31 @@ const Dropdown = ({ id, label, options, updateFilter }) => {
   };
 
   return (
-    <div className="dropdown">
-      <label htmlFor={id} className="dropdown-label">
+    <FormControl sx={{ minWidth: 160, fontSize: '1em' }} size="small">
+      <InputLabel id={`sunrise-filter-${id}`} sx={{ fontSize: '1em' }}>
         {label}
-      </label>
+      </InputLabel>
       <Select
-        className="dropdown-options"
         id={id}
         multiple
+        sx={{ fontSize: '1em' }}
+        labelId={`sunrise-filter-${id}`}
         value={selected}
         onChange={updateSelected}
+        label={label}
       >
         {options.map(({ displayName, value }) => (
-          <MenuItem className="dropdown-option" value={value} key={value}>
+          <MenuItem
+            className="dropdown-option"
+            value={value}
+            key={value}
+            sx={{ fontSize: '1em' }}
+          >
             {displayName}
           </MenuItem>
         ))}
       </Select>
-    </div>
+    </FormControl>
   );
 };
 

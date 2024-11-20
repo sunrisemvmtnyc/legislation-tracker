@@ -3,7 +3,6 @@ import { TextField, debounce } from '@mui/material';
 import PropTypes from 'prop-types';
 
 import { SEARCH_DEBOUNCE_TIME } from '../../constants';
-import './TextSearch.css';
 
 const TextSearch = ({ updateValue }) => {
   const handleChange = useMemo(
@@ -15,9 +14,18 @@ const TextSearch = ({ updateValue }) => {
   );
 
   return (
-    <div className="text-field-container">
-      <TextField id="text-field" label="Search" onChange={handleChange} />
-    </div>
+    <TextField
+      id="sunrise-filter-search"
+      label="Search"
+      labelId="label-sunrise-filter-search"
+      onChange={handleChange}
+      sx={{ height: '100%', fontSize: '1em' }}
+      size="small"
+      // Specify font size for both, so border is correct
+      // https://stackoverflow.com/questions/50319847
+      InputProps={{ style: { fontSize: '1em' } }}
+      InputLabelProps={{ style: { fontSize: '1em' } }}
+    />
   );
 };
 
