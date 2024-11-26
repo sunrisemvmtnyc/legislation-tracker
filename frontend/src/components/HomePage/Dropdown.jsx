@@ -1,12 +1,8 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 
-const Dropdown = ({ id, label, options, updateFilter }) => {
-  const [selected, setSelected] = useState([]);
-
+const Dropdown = ({ id, label, options, value, updateFilter }) => {
   const updateSelected = (event) => {
-    setSelected(event.target.value);
     updateFilter(event.target.value);
   };
 
@@ -20,7 +16,7 @@ const Dropdown = ({ id, label, options, updateFilter }) => {
         multiple
         sx={{ fontSize: '1em' }}
         labelId={`sunrise-filter-${id}`}
-        value={selected}
+        value={value}
         onChange={updateSelected}
         label={label}
       >
@@ -42,6 +38,7 @@ const Dropdown = ({ id, label, options, updateFilter }) => {
 Dropdown.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  value: PropTypes.array,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       displayName: PropTypes.string,

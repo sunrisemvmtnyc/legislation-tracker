@@ -6,7 +6,6 @@ import Banner from './Banner';
 import Filters from './Filters';
 import { fetchBillsBlocks } from '../../requests';
 import { getSponsorMembers } from '../../utils';
-import { SEARCH_QUERY_KEY_MAP } from '../../constants';
 
 /** Simple enum to show request status */
 const RequestStatus = {
@@ -63,70 +62,61 @@ const getSponsorList = (bills) => {
 /** Handle filtering & searching of bills on frontend */
 const filterBills = (
   bills,
+  searchString,
+  statusFilter,
   campaignFilter,
   legislatorFilter,
-  campaignMappings,
-  baseSearchTermsObj
+  campaignMappings
 ) => {
   if (!bills.length) return bills;
-  const hasFilterObjectValue = Object.values(SEARCH_QUERY_KEY_MAP).some(
-    (v) => !!baseSearchTermsObj[v]
-  );
+  const hasCampaignFilter = campaignFilter.length > 0;
+  const hasLegislatorFilter = legislatorFilter.length > 0;
+  const hasStatusFilter = statusFilter.length > 0;
+
+  const hasSearchString = searchString !== '';
   if (
-    !hasFilterObjectValue &&
-    !campaignFilter.length &&
-    !legislatorFilter.length
+    !hasCampaignFilter &&
+    !hasLegislatorFilter &&
+    !hasStatusFilter &&
+    !hasSearchString
   )
     return bills;
 
-  const searchTermFilter = {
-    [SEARCH_QUERY_KEY_MAP.TEXT_SEARCH_KEY]: (bill) => {
-      if (!baseSearchTermsObj[SEARCH_QUERY_KEY_MAP.TEXT_SEARCH_KEY])
-        return true;
-      const search =
-        baseSearchTermsObj[SEARCH_QUERY_KEY_MAP.TEXT_SEARCH_KEY].toLowerCase();
-      return (
-        bill.title.toLowerCase().includes(search) ||
-        bill.summary.toLowerCase().includes(search)
-      );
-    },
-    [SEARCH_QUERY_KEY_MAP.STATUS]: (bill) => {
-      if (!baseSearchTermsObj[SEARCH_QUERY_KEY_MAP.STATUS]) return true;
-      for (let status of baseSearchTermsObj[SEARCH_QUERY_KEY_MAP.STATUS]) {
-        if (bill.status.statusDesc === status) return true;
-      }
-      return false;
-    },
-    [SEARCH_QUERY_KEY_MAP.SPONSOR_NAME]: (bill) => {
-      if (!baseSearchTermsObj[SEARCH_QUERY_KEY_MAP.SPONSOR_NAME]) return true;
-      const billSponsor = bill.sponsor.member.fullName;
-      for (let sponsor of baseSearchTermsObj[
-        SEARCH_QUERY_KEY_MAP.SPONSOR_NAME
-      ]) {
-        if (sponsor === billSponsor) return true;
-      }
-      return false;
-    },
+  const searchStringCheck = (bill) =>
+    hasSearchString
+      ? bill.title.toLowerCase().includes(searchString) ||
+        bill.summary.toLowerCase().includes(searchString)
+      : true;
+  const campaignCheck = (bill) =>
+    hasCampaignFilter
+      ? campaignMappings[bill.printNo]?.some((relatedCampaignId) =>
+          campaignFilter.includes(relatedCampaignId)
+        )
+      : true;
+
+  const legislatorCheck = (bill) => {
+    if (!hasLegislatorFilter) return true;
+    const billSponsor = bill.sponsor.member.memberId;
+    for (let sponsor of legislatorFilter) {
+      if (sponsor === billSponsor) return true;
+    }
+    return false;
+  };
+  const statusCheck = (bill) => {
+    if (!hasStatusFilter) return true;
+    for (let status of statusFilter) {
+      if (bill.status.statusDesc === status) return true;
+    }
+    return false;
   };
 
-  return bills.filter((bill) => {
-    if (
-      campaignFilter.length &&
-      !campaignMappings[bill.printNo]?.some((relatedCampaignId) =>
-        campaignFilter.includes(relatedCampaignId)
-      )
-    )
-      return false;
-    if (
-      legislatorFilter.length &&
-      !legislatorFilter.includes(getSponsorMembers(bill).sponsor.memberId)
-    )
-      return false;
-    if (hasFilterObjectValue)
-      return Object.values(SEARCH_QUERY_KEY_MAP).every((k) =>
-        searchTermFilter[k](bill)
-      );
-    return true;
+  return bills.filter((b) => {
+    return (
+      searchStringCheck(b) &&
+      campaignCheck(b) &&
+      legislatorCheck(b) &&
+      statusCheck(b)
+    );
   });
 };
 
@@ -137,16 +127,18 @@ const HomePage = () => {
   const [billStatus, setBillStatus] = useState(RequestStatus.NONE);
   const [campaignStatus, setCampaignStatus] = useState(RequestStatus.NONE);
 
-  const [baseSearchTermsObj, setSearchTermsObj] = useState({});
+  const [searchString, setSearchString] = useState('');
+  const [statusFilter, setStatusFilter] = useState([]);
   const [campaignFilter, setCampaignFilter] = useState([]);
   const [legislatorFilter, setLegislatorFilter] = useState([]);
 
   const filteredBills = filterBills(
     bills,
+    searchString,
+    statusFilter,
     campaignFilter,
     legislatorFilter,
-    campaignMappings,
-    baseSearchTermsObj
+    campaignMappings
   );
   const campaignList = Object.values(campaigns);
 
@@ -217,9 +209,13 @@ const HomePage = () => {
         <Filters
           sponsorList={getSponsorList(bills)}
           campaignList={campaignList}
+          campaignFilter={campaignFilter}
           setCampaignFilter={setCampaignFilter}
-          searchTermsObj={baseSearchTermsObj}
-          setSearchTermsObj={setSearchTermsObj}
+          searchString={searchString}
+          setSearchString={setSearchString}
+          statusFilter={statusFilter}
+          setStatusFilter={setStatusFilter}
+          legislatorFilter={legislatorFilter}
           setLegislatorFilter={setLegislatorFilter}
           isFetching={billStatus === RequestStatus.FETCHING}
         />
