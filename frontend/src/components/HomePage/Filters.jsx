@@ -39,23 +39,12 @@ const Filters = ({
   setLegislatorFilter,
   isFetching,
 }) => {
-  const createSearchTermsObjUpdater = useCallback(
-    (searchKey) => {
-      return (searchVal) => {
-        setSearchTermsObj((currObj) => ({
-          ...currObj,
-          [searchKey]: searchVal?.length ? searchVal : null,
-        }));
-      };
-    },
-    [setSearchTermsObj]
-  );
-  const updateStatusFilter = createSearchTermsObjUpdater(
-    SEARCH_QUERY_KEY_MAP.STATUS
-  );
-  const updateTextSearchFilter = createSearchTermsObjUpdater(
-    SEARCH_QUERY_KEY_MAP.TEXT_SEARCH_KEY
-  );
+  const clear = () => {
+    setSearchString('');
+    setCampaignFilter([]);
+    setLegislatorFilter([]);
+    setStatusFilter([]);
+  };
 
   return (
     <div className="filters-bar">
@@ -87,6 +76,13 @@ const Filters = ({
         value={campaignFilter}
         updateFilter={setCampaignFilter}
       />
+      <ColorButton
+        variant="outlined"
+        sx={{ whiteSpace: 'nowrap' }}
+        onClick={clear}
+      >
+        CLEAR ALL
+      </ColorButton>
       {isFetching && (
         <img
           className="loading__icon"
