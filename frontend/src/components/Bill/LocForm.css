@@ -1,5 +1,5 @@
 .loc-form {
-    padding: 10px;
+    margin-top: 20px;
     border-radius: 10px;
 }
 
@@ -11,7 +11,7 @@
     padding-top: 10px;
 }
 
-.representatives {
+.loc-form .representatives {
     padding: 20px;
     border-radius: 10px;
     background-color: #ffffff;
@@ -19,13 +19,23 @@
     margin-bottom: 16px;
 }
 
-.script-title {
+.loc-form .script-title {
     padding: 20px;
 }
 
-.script {
+.loc-form .script {
     padding: 20px;
     border-radius: 10px;
     background-color: #ffffff;
     color: black;
+}
+
+
+.loc-form .thanks {
+    font-size: 24px;
+    font-weight: bolder;
+    -webkit-text-stroke: 1px black;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    margin: 20px;
+    text-align: center;
 }

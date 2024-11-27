@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import LocForm from './LocForm';
 import './Bill.css';
-// import CategoryTag from '../Category/CategoryTag';
+import CategoryTag from '../Category/CategoryTag';
 
 const getSponsorNumber = (billData) => {
   const {
@@ -179,10 +179,6 @@ export const Bill = () => {
           </a>
         </div>
         <p>{summary}</p>
-        {/* {campaigned && (
-            <CategoryTag  category={campaign.fields['Long Name']}
-            />
-          )} */}
         <p>
           Sponsored by <strong>{sponsorName}</strong>
           <br />
@@ -192,6 +188,18 @@ export const Bill = () => {
           Status: <strong>{bill.status.statusDesc}</strong>
         </p>
         <p>Total Sponsors: {getSponsorNumber(bill)}</p>
+
+
+        {campaigned && (
+          <CategoryTag
+            category={{
+              long_name: campaign.fields['Long Name'],
+              short_name: campaign.fields['Short Name'],
+              color: campaign.fields['Color'],
+            }}
+          />
+        )}
+
         <RelatedBills related={bill.billInfoRefs.items} />
         {fetched && committee && (
           <BillCommitteeMembers
@@ -201,13 +209,18 @@ export const Bill = () => {
           />
         )}
         <div className="important">
-          <h4>Why is this important? Why should this bill pass?</h4>
+          <h4>Why this matters?</h4>
           <p>{important && atBill.importance}</p>
         </div>
       </div>
 
       <div className="action">
+        <h1>Take action now</h1>
         <h2>Who are my representatives?</h2>
+
+        <b>What can I do?</b>
+        <p>Calling your local representatives is the most effective way to put pressure on those in power. If your representative does not sponsor the bill, call or write to them. You can use the script below to aid your call. </p>
+
         <LocForm sponsorNames={getSponsorNames(bill)} billNo={printNo} />
       </div>
     </div>

@@ -11,7 +11,7 @@ const LocForm = ({ sponsorNames, billNo }) => {
 
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
-  const [representatives, setRepresentatives] = useState({});
+  const [representatives, setRepresentatives] = useState([]);
   const [sponsorshipStatus, setSponsorshipStatus] = useState({});
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const LocForm = ({ sponsorNames, billNo }) => {
     window.sessionStorage.setItem('placeName', '');
     window.sessionStorage.setItem('latitude', '');
     window.sessionStorage.setItem('longitude', '');
-    window.sessionStorage.setItem('representatives', JSON.stringify({}));
+    window.sessionStorage.setItem('representatives', []);
     window.dispatchEvent(new StorageEvent('storage'));
   };
 
@@ -138,7 +138,10 @@ const LocForm = ({ sponsorNames, billNo }) => {
   if (locationFound) {
     content = (
       <>
-        Now displaying representatives for your District <b>{placeName}</b>.
+        <b>
+          Now displaying representatives for your District:<br />
+          <i>{placeName}</i>
+        </b>
         <br />
         <Button variant="text" className="change-location" onClick={reset}>
           Change location
@@ -177,18 +180,18 @@ const LocForm = ({ sponsorNames, billNo }) => {
             full street address to ensure your call is tallied.
           </p>
         </div>
+
+        <div className="thanks">Thank you for taking action on this bill.<br />Your voice matters!</div>
       </>
     );
   } else {
     content = (
       <>
-        You can personalize this page by displaying the list of representatives
-        from your district.
-        <i>(we do not store any data!)</i>
+        <b>Enter Your Address or Zipcode to find your local representatives</b>
         <form onSubmit={handleFormSubmit}>
           <input
             id="autocomplete"
-            placeholder="Enter your address or ZIP code"
+            placeholder="Type in your address or ZIP code"
             onChange={handleInputChange}
             value={loc}
           />
