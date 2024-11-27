@@ -9,6 +9,19 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.23);
 }
 
+@media screen and (max-width: 800px) {
+  .filters-bar {
+    flex-wrap: wrap;
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .filters-bar {
+    flex-wrap: wrap;
+  }
+}
+
 .MuiInputBase-root {
   background-color: white;
 }
