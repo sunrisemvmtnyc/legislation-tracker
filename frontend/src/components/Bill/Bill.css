@@ -11,12 +11,20 @@ html {
     gap: 50px;
 }
 
+.bill-content h4 {
+    margin: 0;
+}
+
 .summary {
     flex: 1;
 }
 
 .summary h2 {
     margin: 0;
+}
+
+.summary .related-bills {
+    margin: 20px 0;
 }
 
 .action {
