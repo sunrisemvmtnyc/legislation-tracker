@@ -19,11 +19,20 @@
     margin-bottom: 16px;
 }
 
+.loc-form .representative .sponsor {
+    color: #95AF9B;
+}
+
+.loc-form .representative .no-sponsor {
+    color: #DE5827;
+}
+
 .loc-form .script-title {
     padding: 20px;
 }
 
 .loc-form .script {
+    margin: 10px 0;
     padding: 20px;
     border-radius: 10px;
     background-color: #ffffff;

@@ -186,7 +186,7 @@ export const Bill = () => {
         </p>
         <p>
           <a
-            id="senate-site-link"
+            className="link-with-icon"
             href={senateSiteUrl}
             rel="noopener noreferrer"
             target="_blank"

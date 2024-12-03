@@ -96,7 +96,7 @@ html {
     }
 }
 
-#senate-site-link {
+.link-with-icon {
     align-items: center;
     display: inline-flex;
 }
