@@ -3,12 +3,39 @@
     border-radius: 10px;
 }
 
-.loc-form input#autocomplete {
+.loc-form .form-type-address {
+    width: 100%;
+    display: flex;
+}
+
+.loc-form .form-type-address input {
     width: 250px;
+    background-color: white;
+    color: #000;
+    border: 1px solid black;
+    border-radius: 10px 0 0 10px;
+    height: 36px;
+    padding: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+    flex: 1;
+}
+
+.loc-form .form-type-address input:placeholder {
+    color: #6D6D6D;
+}
+
+.loc-form .form-type-address button {
+    border-radius: 0 10px 10px 0;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    background-color: #FBFAEF;
 }
 
 .loc-form form, .loc-form button.change-location {
     padding-top: 10px;
+    color: white;
+    display: flex;
+    margin: auto;
 }
 
 .loc-form .representatives {

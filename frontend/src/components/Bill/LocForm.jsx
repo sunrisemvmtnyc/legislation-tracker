@@ -229,7 +229,7 @@ const LocForm = ({ sponsorNames, billNo }) => {
     content = (
       <>
         <b>Enter Your Address or Zipcode to find your local representatives</b>
-        <form onSubmit={handleFormSubmit}>
+        <form className="form-type-address" onSubmit={handleFormSubmit}>
           <input
             id="autocomplete"
             placeholder="Type in your address or ZIP code"
