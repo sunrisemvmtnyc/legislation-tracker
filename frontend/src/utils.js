@@ -59,7 +59,7 @@ export const billIsAssembly = (bill) => bill?.basePrintNo?.startsWith('A');
 export function getSponsorMembers(billsResult) {
   return {
     sponsor: billsResult?.sponsor?.member,
-    coSponsors: billsResult?.coSponsors?.items,
+    coSponsors: billsResult?.coSponsors?.items || [],
   };
 }
 

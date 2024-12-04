@@ -1,11 +1,20 @@
 .filters-bar {
   display: inline-flex;
   flex-direction: row;
+  gap: 30px;
   position: sticky;
   top: 0;
   width: 100%;
   padding: 10px 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.23);
+  background-color: #FBFAEF;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 800px) {
+  .filters-bar {
+    position: relative;
+  }
 }
 
 .MuiInputBase-root {
