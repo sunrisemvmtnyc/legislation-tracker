@@ -1,7 +1,6 @@
 /* TODO use actual color palette variables */
 
 #about-page {
-  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   align-items: center;
