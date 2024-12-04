@@ -6,7 +6,7 @@ import fetch from 'node-fetch';
 import { legApi, membersFromYear } from './nysenate-api.js';
 import { openStatesApi, openStatesGeoApi } from './openstates-api.js';
 import { mapBoxApi } from './mapbox-api.js';
-import { fetchSunriseBills } from './airtable-api.js';
+import { fetchSunriseBills, fetchSingleBill, fetchSingleCampaign } from './airtable-api.js';
 
 // Create Express server
 const host = '0.0.0.0';
@@ -76,6 +76,16 @@ app.get('/api/v1/bills/:year/search', async (req, res, next) => {
 // TODO: rename endpoint something more appropriate
 app.get('/api/v1/bills/airtable-bills', async (_, res) => {
   res.json(await fetchSunriseBills());
+});
+
+// Endpoint to get a single bill from Airtable
+app.get('/api/v1/bills/airtable-bills/:printNumber', async (req, res) => {
+  res.json(await fetchSingleBill(req.params.printNumber)); // Call with printNumber
+});
+
+// Endpoint to get a single Campign from Airtable
+app.get('/api/v1/campaigns/:id', async (req, res) => {
+  res.json(await fetchSingleCampaign(req.params.id));
 });
 
 // Endpoint to get a single bill

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 
 import LocForm from './LocForm';
 import './Bill.css';
+// import CategoryTag from '../Category/CategoryTag';
 
 const getSponsorNumber = (billData) => {
   const {
@@ -84,8 +85,12 @@ export const Bill = () => {
   const [bill, setBill] = useState();
   const [committee, setCommittee] = useState();
   const [placeName, setPlaceName] = useState('');
+  const [atBill, setATBill] = useState('');
+  const [campaign, setCampaign] = useState('');
 
   const fetched = !!bill;
+  const campaigned = !!campaign;
+  const important = !!atBill.importance;
   const isSenate = bill?.billType?.chamber?.toLowerCase() === 'senate';
   const senateSiteUrl = `https://www.nysenate.gov/legislation/bills/${sessionYear}/${printNo}`;
 
@@ -128,6 +133,25 @@ export const Bill = () => {
     };
   }, []);
 
+  // Retrieve Airtable info for Bill
+  useEffect(() => {
+    const fetchATBill = async () => {
+      const res = await fetch(`/api/v1/bills/airtable-bills/${printNo}`);
+      console.log(`/api/v1/bills/airtable-bills/${printNo}`);
+      setATBill(await res.json());
+    };
+    fetchATBill();
+  }, [printNo]);
+
+  useEffect(() => {
+    if (!atBill.campaign) return;
+    const fetchCampaign = async () => {
+      const res = await fetch(`/api/v1/campaigns/${atBill.campaign}`);
+      setCampaign(await res.json());
+    };
+    fetchCampaign();
+  }, [atBill]);
+
   if (!bill) {
     return <div>This is the bill {printNo}'s page</div>;
   }
@@ -155,10 +179,10 @@ export const Bill = () => {
           </a>
         </div>
         <p>{summary}</p>
-        <div className="category">
-          {bill.category} <p>(Sample Category)</p>
-        </div>
-
+        {/* {campaigned && (
+            <CategoryTag  category={campaign.fields['Long Name']}
+            />
+          )} */}
         <p>
           Sponsored by <strong>{sponsorName}</strong>
           <br />
@@ -169,22 +193,16 @@ export const Bill = () => {
         </p>
         <p>Total Sponsors: {getSponsorNumber(bill)}</p>
         <RelatedBills related={bill.billInfoRefs.items} />
-        {fetched && (
+        {fetched && committee && (
           <BillCommitteeMembers
             committee={committee}
-            memberId={sponsorId}
+            memberId={String(sponsorId)}
             isSenate={isSenate}
           />
         )}
         <div className="important">
           <h4>Why is this important? Why should this bill pass?</h4>
-          <p>
-            Sample reasons why it should be passed!
-            <ol>
-              <li>Reason 1</li>
-              <li>Just because</li>
-            </ol>
-          </p>
+          <p>{important && atBill.importance}</p>
         </div>
       </div>
 
