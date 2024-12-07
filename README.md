@@ -18,9 +18,7 @@ Your `.env` file will look like this:
 OPEN_LEGISLATION_KEY=myopenlegislationapikey
 
 # REQUIRED - sunrise bill campaigns
-# The token "base" is the shared sunrise legislation tracker
-# The token "scopes" are data.records:read and schema.bases:read
-# Guide to create personal access token: https://airtable.com/developers/web/guides/personal-access-tokens
+# Ask in the group chat for this
 AIRTABLE_API_KEY=my.airtable.api.key
 
 # OPTIONAL - needed for `legislators/search/offices`

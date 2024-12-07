@@ -25,6 +25,7 @@ const LocForm = ({ sponsorNames, billNo }) => {
       window.sessionStorage.getItem('representatives');
     if (sessionRepresentatives) {
       const storedRepresentatives = JSON.parse(sessionRepresentatives);
+      console.log('sessionRepresentatives', sessionRepresentatives);
 
       // Filter state-level representatives
       const stateRepresentatives = storedRepresentatives.filter(
@@ -61,7 +62,7 @@ const LocForm = ({ sponsorNames, billNo }) => {
     window.sessionStorage.setItem('placeName', '');
     window.sessionStorage.setItem('latitude', '');
     window.sessionStorage.setItem('longitude', '');
-    window.sessionStorage.setItem('representatives', []);
+    window.sessionStorage.setItem('representatives', JSON.stringify([]));
     window.dispatchEvent(new StorageEvent('storage'));
   };
 
