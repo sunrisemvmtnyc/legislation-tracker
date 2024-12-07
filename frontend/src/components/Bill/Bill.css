@@ -5,7 +5,6 @@ html {
 }
 
 .bill-content {
-    background-color: white;
     display: flex;
     flex-direction: row;
     margin: 50px;
