@@ -173,6 +173,9 @@ export const Bill = () => {
     <div className="bill-content">
       <div className="summary">
         <h2>{title}</h2>
+        <p style={{ fontSize: '16px', fontFamily: 'sans-serif' }}>
+          Bill No. {printNo}
+        </p>
         <p>{summary}</p>
         <p>
           Bill No.: {printNo}
