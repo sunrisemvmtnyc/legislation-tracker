@@ -1,95 +1,102 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
-@media screen and (max-width: 1000px) {
-    .bill-content {
-        display: flex;
-        flex-direction: column;
-    }
-    .summary {
-        display: flex;
-        flex-direction: column;
-        overflow: auto;
-        background: #eeede7;
-        max-height: max-content;
-        min-height: min-content;
-        border-radius: 10px;
-        margin: 16px;
-        padding: 20px;
-    }
-    .action {
-        display: flex;
-        flex-direction: column;
-        overflow: auto;
-        background: #8F0D56;
-        margin: 16px;
-        border-radius: 10px;
-        color: white;
-    }
-}
-
 html {
     font-family: 'Source Sans 3';
 }
 
-#senate-site-link {
-    align-items: center;
-    display: inline-flex;
-}
-
 .bill-content {
-    background-color: white;
     display: flex;
-}
-@media screen and (min-width: 1001px) {
-    .summary {
-        width: 60%;
-        justify-content: flex-start;
-        padding: 20px;
-        overflow: auto;
-        margin: 16px;
-    }
-    .action {
-        width: 40%;
-        color: #ffffff;
-        overflow: auto;
-        border-radius: 10px;
-        background: #8F0D56;
-        padding: 20px;
-        justify-content: flex-end;
-        max-height: max-content;
-        min-height: min-content;
-        margin: 16px;
-    }
+    flex-direction: row;
+    margin: 50px;
+    gap: 50px;
 }
 
-.status {
-    justify-content: flex-start;
+.bill-content h4 {
+    margin: 0;
 }
-.category {
-    justify-content: flex-start;
+
+.summary {
+    flex: 1;
 }
-/* .action {
-    width: 40%;
-    color: #ffffff;
-    overflow: auto;
-    border-radius: 10px;
+
+.summary h2 {
+    margin: 0;
+}
+
+.summary .related-bills {
+    margin: 20px 0;
+}
+
+.action {
+    display: flex;
+    flex-direction: column;
     background: #8F0D56;
-    padding: 20px;
-    justify-content: flex-end;
-    max-height: max-content;
-    min-height: min-content;
-    margin: 16px;
-} */
-.action h2 {
-    padding-left: 10px;
+    border: 2px solid #E6E6E6;
+    border-radius: 10px;
+    color: white;
+    margin-top: 30px;
+    padding: 0px 30px 30px 30px;
+    width: 40%;
+}
+
+.action h1 {
+    width: fit-content;
+    font-size: 30px;
+    text-transform: uppercase;
+    background-color: #FFDE16; /* TODO color palette */
+    border: 1px solid black;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    top: -30px;
+    display: flex;
+    text-align: center;
+    justify-items: center;
+    padding: 10px 50px;
+    margin: 0 auto;
+}
+
+.action p {
+    margin: 0;
 }
 
 .important {
-    overflow: auto;
+    padding: 30px ;
+    margin-top: 50px;
+    color: white;
     border-radius: 10px;
-    background: #eeede7;
-    justify-content: flex-start;
-    max-height: max-content;
-    min-height: min-content;
-    margin-top: 16px;
+    background: #8F0D56;
+}
+
+.important h4 {
+    margin: 0;
+}
+
+@media screen and (max-width: 1450px) {
+    .action h1 {
+        font-size: 24px;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .bill-content {
+        flex-direction: column;
+    }
+
+    .action {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .bill-content {
+        margin: 20px;
+    }
+}
+
+.link-with-icon {
+    align-items: center;
+    display: inline-flex;
 }

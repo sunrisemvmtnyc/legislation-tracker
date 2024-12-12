@@ -1,17 +1,44 @@
 .loc-form {
-    padding: 10px;
+    margin-top: 20px;
     border-radius: 10px;
 }
 
-.loc-form input#autocomplete {
+.loc-form .form-type-address {
+    width: 100%;
+    display: flex;
+}
+
+.loc-form .form-type-address input {
     width: 250px;
+    background-color: white;
+    color: #000;
+    border: 1px solid black;
+    border-radius: 10px 0 0 10px;
+    height: 36px;
+    padding: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+    flex: 1;
+}
+
+.loc-form .form-type-address input:placeholder {
+    color: #6D6D6D;
+}
+
+.loc-form .form-type-address button {
+    border-radius: 0 10px 10px 0;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    background-color: #FBFAEF;
 }
 
 .loc-form form, .loc-form button.change-location {
     padding-top: 10px;
+    color: white;
+    display: flex;
+    margin: auto;
 }
 
-.representatives {
+.loc-form .representatives {
     padding: 20px;
     border-radius: 10px;
     background-color: #ffffff;
@@ -19,13 +46,32 @@
     margin-bottom: 16px;
 }
 
-.script-title {
+.loc-form .representative .sponsor {
+    color: #95AF9B;
+}
+
+.loc-form .representative .no-sponsor {
+    color: #DE5827;
+}
+
+.loc-form .script-title {
     padding: 20px;
 }
 
-.script {
+.loc-form .script {
+    margin: 10px 0;
     padding: 20px;
     border-radius: 10px;
     background-color: #ffffff;
     color: black;
+}
+
+
+.loc-form .thanks {
+    font-size: 24px;
+    font-weight: bolder;
+    -webkit-text-stroke: 1px black;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+    margin: 20px;
+    text-align: center;
 }

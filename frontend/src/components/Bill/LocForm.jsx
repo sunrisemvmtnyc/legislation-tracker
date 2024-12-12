@@ -1,6 +1,7 @@
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
+import { Icon } from '@iconify/react';
 
 import './LocForm.css';
 
@@ -86,6 +87,8 @@ const LocForm = ({ sponsorNames, billNo }) => {
 
         const fetchedRepresentatives = repData.map((rep) => ({
           name: rep.name,
+          email: rep.email,
+          url: rep.openstates_url,
           title: rep.current_role.title,
           offices: rep.offices.map((office) => ({
             name: office.name.includes('District')
@@ -139,23 +142,58 @@ const LocForm = ({ sponsorNames, billNo }) => {
   if (locationFound) {
     content = (
       <>
-        Now displaying representatives for your District <b>{placeName}</b>.
+        <b>
+          Now displaying representatives for your District:<br />
+          <i>{placeName}</i>
+        </b>
         <br />
         <Button variant="text" className="change-location" onClick={reset}>
           Change location
         </Button>
         <div className="representatives">
-          {/* eslint-disable-next-line no-unused-vars */}
-          {Object.entries(representatives).map(([name, rep]) => (
+          {representatives
+          .sort((a, b) => sponsorshipStatus[a.name] - sponsorshipStatus[b.name])
+          .map(rep => (
             <div key={rep.name} className="representative">
               <h3>
-                {rep.title} {rep.name}:{' '}
+                {rep.title} {rep.name}:
+                <br />
                 <strong>
                   {sponsorshipStatus[rep.name]
-                    ? 'Already a sponsor'
-                    : 'NOT A SPONSOR'}
+                    ? <span className='sponsor'>SPONSOR</span>
+                    : <span className='no-sponsor'>NOT A SPONSOR</span>}
                 </strong>
               </h3>
+              {
+                rep.email && (
+                  <div>
+                    <strong>Email:</strong>&nbsp;
+                    <a
+                      className="link-with-icon"
+                      href={rep.email?.includes('@') ? `mailto:${rep.email}` : rep.email}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      >
+                      {rep.email}&nbsp;&nbsp;<Icon icon="material-symbols:open-in-new" />
+                    </a>
+                  </div>
+                )
+              }
+              {
+                rep.url && (
+                  <div>
+                    <strong>URL:</strong>&nbsp;
+                    <a
+                      className="link-with-icon"
+                      href={rep.url}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      See Open States page&nbsp;&nbsp;<Icon icon="material-symbols:open-in-new" />
+                    </a>
+                  </div>
+                )
+              }
               <ul>
                 {rep.offices.map((office, index) => (
                   <li key={index}>
@@ -169,27 +207,33 @@ const LocForm = ({ sponsorNames, billNo }) => {
             </div>
           ))}
         </div>
-        <h3>Script</h3>
+
+        <div>
+          <b>Script</b>
+          <p>
+            <i>IF LEAVING VOICEMAIL: Please leave your
+            full street address to ensure your call is tallied.</i>
+          </p>
+        </div>
         <div className="script">
           <p>
             Hi, my name is [NAME] and I'm a constituent from [CITY, ZIP]. I'm
             calling to demand [REP/SEN NAME] vote for {billNo}. Thank you for
-            your time and consideration. IF LEAVING VOICEMAIL: Please leave your
-            full street address to ensure your call is tallied.
+            your time and consideration.
           </p>
         </div>
+
+        <div className="thanks">Thank you for taking action on this bill.<br />Your voice matters!</div>
       </>
     );
   } else {
     content = (
       <>
-        You can personalize this page by displaying the list of representatives
-        from your district.
-        <i>(we do not store any data!)</i>
-        <form onSubmit={handleFormSubmit}>
+        <b>Enter Your Address or Zipcode to find your local representatives</b>
+        <form className="form-type-address" onSubmit={handleFormSubmit}>
           <input
             id="autocomplete"
-            placeholder="Enter your address or ZIP code"
+            placeholder="Type in your address or ZIP code"
             onChange={handleInputChange}
             value={loc}
           />

@@ -5,8 +5,9 @@ import { useParams } from 'react-router-dom';
 
 import LocForm from './LocForm';
 import './Bill.css';
-// import CategoryTag from '../Category/CategoryTag';
+import CategoryTag from '../Category/CategoryTag';
 
+/*
 const getSponsorNumber = (billData) => {
   const {
     activeVersion,
@@ -18,6 +19,7 @@ const getSponsorNumber = (billData) => {
     items[activeVersion].multiSponsors.size
   );
 };
+*/
 
 const getSponsorNames = (billData) => {
   const {
@@ -32,17 +34,19 @@ const getSponsorNames = (billData) => {
 };
 
 const RelatedBills = ({ related }) => {
-  if (!related) return <div>No related bills</div>;
+  if (!related) return <p className='related-bills'>No related bills</p>;
   return (
-    <div>
+    <p className='related-bills'>
       <h4>Related Bills</h4>
-      {Object.values(related).map((bill) => (
-        <div key={bill.printNo}>
-          <a href={`/bill/${bill.session}/${bill.printNo}`}>{bill.printNo}</a>:{' '}
-          {bill.title}
-        </div>
-      ))}
-    </div>
+      <ul>
+        {Object.values(related).map((bill) => (
+          <li key={bill.printNo}>
+            <a href={`/bill/${bill.session}/${bill.printNo}`}>{bill.printNo}</a>:{' '}
+            {bill.title}
+          </li>
+        ))}
+      </ul>
+    </p>
   );
 };
 
@@ -51,25 +55,26 @@ RelatedBills.propTypes = {
 };
 
 const BillCommitteeMembers = ({ committee, memberId, isSenate }) => {
-  if (!isSenate) return <div>Assembly committees not currently supported</div>;
-  if (!committee) return <div>No committee data</div>;
+  if (!isSenate || !committee) {
+    return null;
+  }
 
   const members = committee.committeeMembers.items.filter(
     (m) => m.memberId !== memberId
   );
 
   return (
-    <div>
+    <p>
       <h4>Committee: {committee.name}</h4>
-      <div>
-        {members.map((member) => (
-          <div key={member.memberId}>
-            {member.fullName}: {member.memberId}
-          </div>
-        ))}
-      </div>
       <div>Total Committee Members: {members.length}</div>
-    </div>
+      <ul>
+        {members.map((member) => (
+          <li key={member.memberId}>
+            <b>{member.fullName}</b> - district {member.districtCode}
+          </li>
+        ))}
+      </ul>
+    </p>
   );
 };
 
@@ -168,30 +173,43 @@ export const Bill = () => {
     <div className="bill-content">
       <div className="summary">
         <h2>{title}</h2>
-        <div>
+        <p style={{ fontSize: '16px', fontFamily: 'sans-serif' }}>
+          Bill No. {printNo}
+        </p>
+        <p>{summary}</p>
+        <p>
+          Bill No.: {printNo}
+          <br />
+          Sponsored by <strong>{sponsorName}</strong>
+          <br />
+          District {bill.sponsor.member.districtCode}
+          <br />
+          Status: <strong>{bill.status.statusDesc}</strong>
+          <br />
+        </p>
+        <p>
           <a
-            id="senate-site-link"
+            className="link-with-icon"
             href={senateSiteUrl}
             rel="noopener noreferrer"
             target="_blank"
           >
-            on NYSenate site <Icon icon="material-symbols:open-in-new" />
+            See New York State Bill Page&nbsp;&nbsp;<Icon icon="material-symbols:open-in-new" />
           </a>
-        </div>
-        <p>{summary}</p>
-        {/* {campaigned && (
-            <CategoryTag  category={campaign.fields['Long Name']}
-            />
-          )} */}
-        <p>
-          Sponsored by <strong>{sponsorName}</strong>
-          <br />
-          District {bill.sponsor.member.districtCode}
         </p>
-        <p>
-          Status: <strong>{bill.status.statusDesc}</strong>
-        </p>
-        <p>Total Sponsors: {getSponsorNumber(bill)}</p>
+        {/* <p>Total Sponsors: {getSponsorNumber(bill)}</p> */}
+
+
+        {campaigned && (
+          <CategoryTag
+            category={{
+              long_name: campaign.fields['Long Name'],
+              short_name: campaign.fields['Short Name'],
+              color: campaign.fields['Color'],
+            }}
+          />
+        )}
+
         <RelatedBills related={bill.billInfoRefs.items} />
         {fetched && committee && (
           <BillCommitteeMembers
@@ -201,13 +219,18 @@ export const Bill = () => {
           />
         )}
         <div className="important">
-          <h4>Why is this important? Why should this bill pass?</h4>
+          <h4>Why this matters?</h4>
           <p>{important && atBill.importance}</p>
         </div>
       </div>
 
       <div className="action">
+        <h1>Take action now</h1>
         <h2>Who are my representatives?</h2>
+
+        <b>What can I do?</b>
+        <p>Calling your local representatives is the most effective way to put pressure on those in power. If your representative does not sponsor the bill, call or write to them. You can use the script below to aid your call. </p>
+
         <LocForm sponsorNames={getSponsorNames(bill)} billNo={printNo} />
       </div>
     </div>
