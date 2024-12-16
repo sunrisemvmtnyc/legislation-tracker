@@ -34,15 +34,15 @@ const getSponsorNames = (billData) => {
 };
 
 const RelatedBills = ({ related }) => {
-  if (!related) return <p className='related-bills'>No related bills</p>;
+  if (!related) return <p className="related-bills">No related bills</p>;
   return (
-    <p className='related-bills'>
+    <p className="related-bills">
       <h4>Related Bills</h4>
       <ul>
         {Object.values(related).map((bill) => (
           <li key={bill.printNo}>
-            <a href={`/bill/${bill.session}/${bill.printNo}`}>{bill.printNo}</a>:{' '}
-            {bill.title}
+            <a href={`/bill/${bill.session}/${bill.printNo}`}>{bill.printNo}</a>
+            : {bill.title}
           </li>
         ))}
       </ul>
@@ -143,7 +143,8 @@ export const Bill = () => {
     const fetchATBill = async () => {
       const res = await fetch(`/api/v1/bills/airtable-bills/${printNo}`);
       console.log(`/api/v1/bills/airtable-bills/${printNo}`);
-      setATBill(await res.json());
+      const j = await res.json();
+      if (j) setATBill(j);
     };
     fetchATBill();
   }, [printNo]);
@@ -194,11 +195,11 @@ export const Bill = () => {
             rel="noopener noreferrer"
             target="_blank"
           >
-            See New York State Bill Page&nbsp;&nbsp;<Icon icon="material-symbols:open-in-new" />
+            See New York State Bill Page&nbsp;&nbsp;
+            <Icon icon="material-symbols:open-in-new" />
           </a>
         </p>
         {/* <p>Total Sponsors: {getSponsorNumber(bill)}</p> */}
-
 
         {campaigned && (
           <CategoryTag
@@ -229,7 +230,12 @@ export const Bill = () => {
         <h2>Who are my representatives?</h2>
 
         <b>What can I do?</b>
-        <p>Calling your local representatives is the most effective way to put pressure on those in power. If your representative does not sponsor the bill, call or write to them. You can use the script below to aid your call. </p>
+        <p>
+          Calling your local representatives is the most effective way to put
+          pressure on those in power. If your representative does not sponsor
+          the bill, call or write to them. You can use the script below to aid
+          your call.{' '}
+        </p>
 
         <LocForm sponsorNames={getSponsorNames(bill)} billNo={printNo} />
       </div>
