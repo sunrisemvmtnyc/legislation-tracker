@@ -83,10 +83,11 @@ app.get('/api/v1/bills/airtable-bills', async (_, res) => {
 });
 
 // Endpoint to get a single bill from Airtable
-app.get('/api/v1/bills/airtable-bills/:printNumber', async (req, res, next) => {
+app.get('/api/v1/bills/airtable-bills/:printNumber', async (req, res) => {
   fetchSingleBill(req.params.printNumber)
-    .then(res.json)
+    .then((bill) => res.json(bill))
     .catch((e) => {
+      console.error(e.stack);
       console.error(`Error fetching single bill from Airtable: ${e}`);
       res
         .status(404)
