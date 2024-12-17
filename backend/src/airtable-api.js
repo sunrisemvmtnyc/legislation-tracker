@@ -196,7 +196,7 @@ export const fetchSingleBill = (printNumber) => {
           };
           resolve(bill); // Resolve with the bill data
         } else {
-          resolve(null); // Resolve with null if no record is found
+          reject(`No bill found with id ${printNumber}`);
         }
       });
   });
